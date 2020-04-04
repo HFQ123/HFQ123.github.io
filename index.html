@@ -184,14 +184,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我正在尝试使用Hexo搭建博客,其实早就有搭建博客的想法 ,然而一直没有去实现,今天刚做完一个SpringBoot项目。心血来潮就开始了,完工后才发现原来搭建一个自己的博客这么简单，有点相见恨晚的感觉。<br>这第一篇博客就来简单记录一下我本次搭建博客的路线，以作纪念。以后我会更多地在此分享自己的学习内容，记录开发遇到的问题。</p>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我正在尝试使用Hexo搭建博客,其实早就有搭建博客的想法 ,然而一直没有去实现,今天刚做完一个SpringBoot项目。闲着无事心血来潮就开始了,完工后才发现原来搭建一个自己的博客这么简单且高效，有点相见恨晚的感觉。<br>这第一篇博客就来简单记录一下我本次搭建博客的路线，以作纪念。以后我会更多地在此分享自己的学习内容，记录开发遇到的问题。</p>
 <h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><p>本次博客搭建使用到的工具有 <a href="https://hexo.io/zh-cn" target="_blank" rel="noopener">Hexo</a> + <a href="https://github.com" target="_blank" rel="noopener">Github</a>。</p>
 <p>Hexo是一个博客框架，让我们从渲染前端页面、部署JavaWeb开发环境中解脱出来，把更多的精力放在写博客这件事情本身上，如其官网介绍：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% blockquote %&#125;</span><br><span class="line">Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
 
-<p>Hexo的灵活性体现在其大部分参数，，</p>
+<p>Hexo的灵活性体现在其大部分前端显示内容都是通过参数来配置的，包括整个博客的主题、模板都可通过配置完成（下文会讲搭建好博客后如何更换主题）。</p>
+<p><img src="C:%5CUsers%5C86137%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1586022290377.png" alt="1586022290377"></p>
 <p>Github大家都比较熟悉，这里主要用到了它的Github Pages的功能来提供远端访问的支持，不使用Github，只使用Hexo工具也能搭建博客，不过只能在本地端口访问。</p>
-<p><a href="https://www.jianshu.com/p/f6f19b02c661" target="_blank" rel="noopener">关于hexo yilia主题配置</a></p>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1 、安装Hexo</p>
+<p>2、关联Github的库</p>
+<p>3、更换自己喜欢的博客主题</p>
+<p>本打算重做以详细记录一下这几个步骤，但是想想这次部署之后以后也没有必要重新部署了，再加上网上已经有很很详细的教程了，重新做一次对自己提升不大，就不浪费时间，所以直接贴教程：<a href="https://www.jianshu.com/p/4d51f7dba417" target="_blank" rel="noopener">手把手教你用Hexo+Github 搭建属于自己的博客</a></p>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>特别要注意在修改配置文件_config.xml中的配置项时的格式，正确格式形如：”属性: 空格 值”，如”title: 然后就的博客”。如果冒号和值之前没有空格隔开执行hexo命令时会报错。 </p>
+<hr>
+
+<p>以上就是本篇博客的全部内容了，没什么干货，差不多是简单的流水账，仅是为了纪念第一篇博客，以后争取只写高质量的博客！！！</p>
 
       
 
