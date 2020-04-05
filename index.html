@@ -164,6 +164,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-《Head-First-设计模式》读书笔记charpter1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/">《Head First 设计模式》读书笔记charpter1</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" class="archive-article-date">
+  	<time datetime="2020-04-05T07:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇博客是《Head First 设计模式》第一章的读书笔记。</p>
+<p>分享的主题是设计模式中的 「策略模式(Strategy Pattern)」。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>书中给了这样一个例子作为应用场景引入：某公司有一套模拟鸭子游戏，游戏中会出现各种各样的鸭子，这些鸭子有一些动作：呱呱叫、戏水。按照面向对象的思想，系统设计为鸭子这一对象设计了一个名为Duck的超类，在这个类中，为实现了动作呱呱叫、戏水分别加入了quack()、swim()方法，而各种不同种类的鸭子通过继承这一超类获得这些描述鸭子动作的方法。</p>
+<p><img src="/.io//C:%5CUsers%5C86137%5CDesktop%5Cmyblog%5Ctest%5Csource_posts%5C%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1%5Cimage-20200405162702530.png" alt="image-20200405162702530"></p>
+<p>接下来问题来了，系统引入了一个新的需求：让鸭子飞起来。开发人员需要为鸭子类实现描述飞的动作的方法，书中也是以实现此需求展开来引入策略模式的。</p>
+<h2 id="一些思路"><a href="#一些思路" class="headerlink" title="一些思路"></a>一些思路</h2><h3 id="1-通过继承实现"><a href="#1-通过继承实现" class="headerlink" title="1. 通过继承实现"></a>1. 通过继承实现</h3><p>首先,我们很自然地想到，可以在超类Duck中加入一个fly()方法（就像quack()、swim()方法一样），子类通过继承获取描述鸭子飞的方法。</p>
+<p><strong>分析</strong>: 因为所有子类都会继承超类Duck的方法，即使是一些不能飞的鸭子如橡胶鸭也会继承fly()方法，这样做我们不得不在子类橡胶鸭中重写fly()方法，修改其方法体为什么都不做。同理的，如果有不会叫的鸭子，又需要在子类中重写quack()方法。</p>
+<p><strong>评价</strong>：这种思路是最容易想到的,主要利用了面向对象的继承、多态（体现在重写方法）特性。<br>在代码重用上有一定效果，但是也存在了一些缺点：</p>
+<ul>
+<li>代码在多个子类中重复。</li>
+<li>很难知道所有鸭子的全部行为。</li>
+<li>运行时的行为不容易改变。</li>
+<li>改变会牵一发而动全身，造成其他鸭子不想要的改变。<h3 id="2-通过接口实现"><a href="#2-通过接口实现" class="headerlink" title="2.通过接口实现"></a>2.通过接口实现</h3></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -191,7 +278,7 @@
 </blockquote>
 
 <p>Hexo的灵活性体现在其大部分前端显示内容都是通过参数来配置的，包括整个博客的主题、模板都可通过配置完成（下文会讲搭建好博客后如何更换主题）。</p>
-<p><img src="C:%5CUsers%5C86137%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1586022290377.png" alt="1586022290377"></p>
+<p><img src="/.io//C:%5CUsers%5C86137%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1586022290377.png" alt="1586022290377"></p>
 <p>Github大家都比较熟悉，这里主要用到了它的Github Pages的功能来提供远端访问的支持，不使用Github，只使用Hexo工具也能搭建博客，不过只能在本地端口访问。</p>
 <h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1 、安装Hexo</p>
 <p>2、关联Github的库</p>
