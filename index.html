@@ -206,12 +206,12 @@
 </blockquote> 借助下图，能够让我们清楚地看到观察者模式的“一对多依赖”。</p>
 <p><img src="/images/image-20200406230651346.png" alt="image-20200406230651346"></p>
 <p>观察者模式为主题和观察者都创建了各自的接口。在主题接口中，定义了注册观察者(registerObserver)方法、撤销观察者(removeObserver)方法、更新所有观察者状态方法（notifyObservers,一旦主题状态改变会触发）；在观察者接口中，定义了更新观察者状态的方法(update)。</p>
-<p><img src="../images/image-20200407002547510.png" alt="image-20200407002547510"></p>
+<p><img src="/images/image-20200407002547510.png" alt="image-20200407002547510"></p>
 <p>我们再把目光转移到应用场景，前面我们已经分析了思路1实现带来的问题，接下来就要好好考虑怎么解决：</p>
 <p>首先，我们可以考虑需要<strong>为所有布告板类创建一个观察者接口</strong>，因为在WeatherData类中，WeatherData不关心布告板是叫currentConditionDisplay还是叫statisticsDisplay，只关心它是否需要在气象数据更新时获得自己的最新气象数据，如果它实现了观察者接口并且注册了主题（相当于订报人完成了订阅动作），那么当WeatherData类的数据更新时，它就是分发数据的目标之一。</p>
 <p>然后，我们可以<strong>在WeatherData类中维护一个所有观察者组成的列表</strong>，这样做能让WeatherData类轻松地获取所有观察者（布告板）。有了观察者列表之后，每当WeatherData类的数据更新，就遍历列表内的所有布告板，调用它们的update()方法即可，WeatherData类不用再关注有几个观察者布告板，它们叫什么名字。当需要添加或删除新的布告板的时候，只需要对列表做增删操作，而不用像思路1中那样改动measurementsChanged()方法体内的代码，同时，这也解决了不能运行时动态地增删布告板的问题，因为运行时可以动态的修改列表的元素（比如说系统运行了十分钟后将currentConditionDisplay公告板从观察者列表中移除）。</p>
 <p>想到这些，引入观察者模式之后的模型就呼之欲出了。引入观察者模式之后，本气象站应用的的类图就如下图所示，WeatherData和各布告板分别实现主题接口和观察者接口。</p>
-<p><img src="../images/image-20200407002514351.png" alt="image-20200407002514351"></p>
+<p><img src="/images/image-20200407002514351.png" alt="image-20200407002514351"></p>
 <p>我们接下来从代码的层面上来考虑一下各个接口的是如何实现的。</p>
 <p>registerObserver(Observer o)：将观察者对象o加入到WeatherData维护的观察者列表。</p>
 <p>removeObserver(Observer o)：将观察者对象o从WeatherData维护的观察者列表中删除。</p>
