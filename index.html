@@ -164,6 +164,125 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-二叉搜索树学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">二叉搜索树学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-04-10T05:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。</p>
+<p>本篇博客分享主题：「二叉搜索树」。</p>
+<h2 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h2><p>二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。</p>
+<ul>
+<li>任意一个节点的值都<code>大于</code>其<code>左子树</code>所有节点的值。</li>
+<li>任意一个节点的值都<code>小于</code>其<code>右子树</code>所有节点的值。</li>
+<li>它的<code>左右子树</code>也是一颗二叉搜索树。</li>
+</ul>
+<p><img src="/images/image-20200410222712471.png" alt="image-20200410222712471"></p>
+<p>为什么要引入二叉搜索树，需求是什么？</p>
+<ul>
+<li><p>在数组中插入元素，搜索操作平均时间复杂度O(n)，插入操作复杂度O(1)</p>
+</li>
+<li><p>排好序的数组，二分搜索，最坏时间复杂度O(logn),但插入、删除操作平均复杂度是O(n)</p>
+</li>
+<li><p>使用二叉搜索树，添加、删除、搜索的最坏事件复杂度均可优化至：<code>O(logn)</code></p>
+</li>
+</ul>
+<p>从二叉搜索树的定义来看，涉及到比较操作，所以二叉搜索树存储的元素必须具备可比较性。</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinarySearchTree</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size; <span class="comment">// 元素的个数</span></span><br><span class="line">    <span class="keyword">private</span> Node&lt;E&gt; root; <span class="comment">// 根节点</span></span><br><span class="line">    <span class="keyword">private</span> Comparator&lt;E&gt; comparator; <span class="comment">// 比较器</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 元素的数量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    <span class="comment">// 是否为空</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    <span class="comment">// 清空所有元素</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    <span class="comment">// 添加元素</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(E element)</span> </span></span><br><span class="line"><span class="function">    <span class="comment">// 删除元素</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(E element)</span> </span></span><br><span class="line"><span class="function">    <span class="comment">// 是否包含某元素</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(E element)</span> </span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>详细实现思路点击<a href="https://juejin.im/post/5dfc735ee51d45582d3405de" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="实现接口时的注意细节"><a href="#实现接口时的注意细节" class="headerlink" title="实现接口时的注意细节"></a>实现接口时的注意细节</h2><ol>
+<li><p>comparable和comparator？</p>
+</li>
+<li><p>add操作如果遇到相等的情况，为什么要覆盖？</p>
+</li>
+</ol>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="遍历-适用所有二叉树"><a href="#遍历-适用所有二叉树" class="headerlink" title="遍历(适用所有二叉树)"></a>遍历(适用所有二叉树)</h3><ol>
+<li><p>前序遍历(Preorder)，访问顺序： <code>根节点</code> -&gt; <code>前序遍历左子树</code> -&gt; <code>前序遍历右子树</code></p>
+<p><img src="/images/image-20200410224737170.png" alt="image-20200410224737170"><br>递归实现。</p>
+</li>
+</ol>
+<p><strong>非递归实现</strong> ？！！！待解决</p>
+<ol start="2">
+<li><p>中序遍历(Inorder)，访问顺序：<code>中序遍历左子树</code> -&gt; <code>根节点</code> -&gt; <code>中序遍历右子树</code></p>
+<p><img src="/images/image-20200410232004382.png" alt="image-20200410232004382"></p>
+<p>中序遍历的结果是有序的，因为根据BST的定义，左&lt;中&lt;右。</p>
+</li>
+<li><p>后序遍历(Postorder)，访问顺序：<code>后序遍历左子树</code> -&gt; <code>后序遍历右子树</code> -&gt; <code>根节点</code></p>
+</li>
+<li><p>层序遍历(Level Order)，访问顺序：<code>从上到下</code>，<code>从左到右</code>依次访问节点。</p>
+</li>
+</ol>
+<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><p>比较器comparable与comparator的使用 <a href="https://www.cnblogs.com/qq1083735206/p/6242205.html" target="_blank" rel="noopener">详情</a></p>
+<p>策略模式的体现！。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构 读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cxsj项目-停车位使用情况可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,15 +328,15 @@
 <p>至此，我们就完成了地图页面展示，掌握了点击车位图标触发事件的方法和修改车位图标颜色的方法。</p>
 <h3 id="2-创建停车位的数据表和后端api接口"><a href="#2-创建停车位的数据表和后端api接口" class="headerlink" title="2. 创建停车位的数据表和后端api接口"></a>2. 创建停车位的数据表和后端api接口</h3><p>在我创建的车位数据表中，有这样几个主要字段：</p>
 <ul>
-<li><p>车位标识id：由于在本案例我们使用的室内地图数据包中，所有车位对象的name属性在“车位1001~车位1102”，为了下一步地图车位对象和数据库记录的绑定，车位id的值也设置在此范围内。</p>
+<li><p>车位标识<code>id</code>：由于在本案例我们使用的室内地图数据包中，所有车位对象的name属性在“车位1001~车位1102”，为了下一步地图车位对象和数据库记录的绑定，车位id的值也设置在此范围内。</p>
 </li>
-<li><p>车位所在停车场标识parkinglot_id：由于我的项目涉及到多个停车场，需要此字段，如果只是有一个停车场可以不用此字段。 </p>
+<li><p>车位所在停车场标识<code>parkinglot_id</code>：由于我的项目涉及到多个停车场，需要此字段，如果只是有一个停车场可以不用此字段。 </p>
 </li>
-<li><p>车位状态标识in_use：若车位是空闲状态，取值0，若占用取1。</p>
+<li><p>车位状态标识<code>in_use</code>：若车位是空闲状态，取值0，若占用取1。</p>
 </li>
-<li><p>车牌号car_id：若车位占用，存车牌号，否则为空。</p>
+<li><p>车牌号<code>car_id</code>：若车位占用，存车牌号，否则为空。</p>
 </li>
-<li><p>停车时间park_time：若车位占用，存此车进入车位的时间戳，否则为0。</p>
+<li><p>停车时间<code>park_time</code>：若车位占用，存此车进入车位的时间戳，否则为0。</p>
 </li>
 </ul>
 <p>创建好车位数据表之后，生成一些假数据（我是通过写了一个java类，按照给定格式随机生成记录，然后拼接字符串打印这条记录的insert语句，然后到数据库执行，后来网上了解一下，或许可以尝试使用Python的伪造数据生成器Faker），生成的部分假数据如下图展示。</p>
@@ -910,6 +1029,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">项目 JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构 读书笔记</a>
               </li>
             
             <div class="clearfix"></div>
