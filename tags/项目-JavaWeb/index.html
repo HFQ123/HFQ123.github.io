@@ -6,26 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://HFQ123.github.io">
-  <title>《Head-First-设计模式》读书笔记charpter2 | 然后就的博客</title>
+  <title>Tag: 项目 JavaWeb | 然后就的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇博客是《Head First 设计模式》第二章的读书笔记。 分享主题是设计模式中的 「观察者模式(Observer Pattern)」。 1、应用场景—气象监测应用书中给出的例子是：公司要建立一个气象监测应用，如下图，WeatherData对象会从气象检测站获取实时更新的气象数据（湿度、温度、气压），WeatherData对象要做的就是将这些数据及时“分发”到多个布告板，使得每个布告板能使用最">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《Head-First-设计模式》读书笔记charpter2">
-<meta property="og:url" content="http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/index.html">
+  <meta name="description" content="分享我的学习内容：Java,SpringBoot,设计模式,算法....">
+<meta property="og:type" content="website">
+<meta property="og:title" content="然后就的博客">
+<meta property="og:url" content="http://hfq123.github.io/tags/%E9%A1%B9%E7%9B%AE-JavaWeb/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="本篇博客是《Head First 设计模式》第二章的读书笔记。 分享主题是设计模式中的 「观察者模式(Observer Pattern)」。 1、应用场景—气象监测应用书中给出的例子是：公司要建立一个气象监测应用，如下图，WeatherData对象会从气象检测站获取实时更新的气象数据（湿度、温度、气压），WeatherData对象要做的就是将这些数据及时“分发”到多个布告板，使得每个布告板能使用最">
+<meta property="og:description" content="分享我的学习内容：Java,SpringBoot,设计模式,算法....">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hfq123.github.io/images/image-20200406223021520.png">
-<meta property="og:image" content="http://hfq123.github.io/images/image-20200406223736428.png">
-<meta property="og:image" content="http://hfq123.github.io/images/image-20200406230651346.png">
-<meta property="og:image" content="http://hfq123.github.io/images/image-20200407002547510.png">
-<meta property="og:image" content="http://hfq123.github.io/images/image-20200407002514351.png">
-<meta property="article:published_time" content="2020-04-06T14:26:09.000Z">
-<meta property="article:modified_time" content="2020-04-07T14:18:14.682Z">
 <meta property="article:author" content="然后就">
-<meta property="article:tag" content="设计模式 读书笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hfq123.github.io/images/image-20200406223021520.png">
   
     <link rel="alternative" href="/atom.xml" title="然后就的博客" type="application/atom+xml">
   
@@ -171,223 +162,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-《Head-First-设计模式》读书笔记charpter2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      《Head-First-设计模式》读书笔记charpter2
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/10/cxsj%E9%A1%B9%E7%9B%AE-%E5%81%9C%E8%BD%A6%E4%BD%8D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%8F%AF%E8%A7%86%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-04-10T00:53:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/10/cxsj%E9%A1%B9%E7%9B%AE-%E5%81%9C%E8%BD%A6%E4%BD%8D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%8F%AF%E8%A7%86%E5%8C%96/">cxsj项目-停车位使用情况可视化</a>
     </h1>
   
 
-        
-        <a href="/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" class="archive-article-date">
-  	<time datetime="2020-04-06T14:26:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇博客是《Head First 设计模式》第二章的读书笔记。</p>
-<p>分享主题是设计模式中的 「观察者模式(Observer Pattern)」。</p>
-<h2 id="1、应用场景—气象监测应用"><a href="#1、应用场景—气象监测应用" class="headerlink" title="1、应用场景—气象监测应用"></a>1、应用场景—气象监测应用</h2><p>书中给出的例子是：公司要建立一个气象监测应用，如下图，WeatherData对象会从气象检测站获取实时更新的气象数据（湿度、温度、气压），WeatherData对象要做的就是将这些数据及时“分发”到多个布告板，使得每个布告板能使用最新的气象数据以更新它的显示情况。除此之外，附加的需求是系统必须可扩展，能够让用户随心所欲地添加或删除布告板，也就是说，目前系统有“目前状况”、“气象统计”、“天气预报”三个布告板，以后可能会删除某个或者新增别的布告板，言外之意就是说，WeatherData对象要随时准备好停止向现有的布告板分发最新数据以及随时准备好向新的布告板分发最新数据。</p>
-<p><img src="/images/image-20200406223021520.png" alt="image-20200406223021520"></p>
-<h2 id="2、实现思路"><a href="#2、实现思路" class="headerlink" title="2、实现思路"></a>2、实现思路</h2><h3 id="2-1-错误示范"><a href="#2-1-错误示范" class="headerlink" title="2.1 错误示范"></a>2.1 错误示范</h3><p>我们先来看一个很容易想到的思路，然而这被书中称之为“错误示范”（这也是我学习观察者模式之前的思路）。首先我们先约定：一旦气象站测量的气象数据更新，WeatherData类的measurementsChanged()方法就会被调用，在本文，我们不用关心它是怎么做的，只要知道在此方法下，我们要做的就是将这些数据及时“分发”到多个布告板类。</p>
-<p>接下来我们就一起来看看这个简单自然但是错误的示例吧，如下图，在WeatherData类的中measurementsChanged()方法里，做的事情很简单，就是获得最新的气象数据，然后以此作为参数各个布告板类的更新方法。</p>
-<p><img src="/images/image-20200406223736428.png" alt="image-20200406223736428"></p>
-<p>看似完全能实现我们的需求：当气象站检测到新的数据，measurementsChanged()被调用：获得最新的气象数据，然后分别调用各个不同的布告板的update()方法（在这个方法里，布告板会根据自己的需求使用最新数据来改变显示板，我们无需关注update()方法里究竟做了什么，只要知道它需要获得WeatherData类的最新气象数据，供它们更新自己的数据以改变显示屏）。</p>
-<p>这样实现究竟有哪些错误呢？</p>
-<ul>
-<li><p>各个布告板类之间是独立的，没有一个共同的接口，是典型的“针对实现而非针对接口编程”的错误。</p>
-</li>
-<li><p>每当添加或删除新的布告板，我们都不得不修改方法体内的代码。比如说设计了一个新的testDisplay布告板，我们就要加上一行testDisplay.update(temp,humdity,pressure)，当testDisplay不再需要获取最新的气象状态，就要删除这行代码。</p>
-</li>
-<li><p>也正是因为每当添加或删除新的布告板，我们都不得不修改方法体内的代码，所以我们无法在运行时动态地增加或者删除布告板。</p>
-</li>
-</ul>
-<h3 id="2-2-观察者模式"><a href="#2-2-观察者模式" class="headerlink" title="2.2 观察者模式"></a>2.2 观察者模式</h3><p>引入观察者模式就能解决上述实现带来的问题。</p>
-<p>先简单介绍一下什么是观察者模式，在观察者模式中，有两个主角，分别是<strong>主题(Subject)</strong>和<strong>观察者(Observer)</strong>，书上用了“出版者”和“订阅者”来类比观察者模式中的主题和观察者。出版者一旦出版新的报纸，他就要负责将新报纸分发到各个订阅者手中，而那些没有订阅报纸的人就不会收到，就和这里的例子一样，WeatherData类一旦获得新的气象数据，就要负责分发到各个布告板类中。观察者模式的概念是：<blockquote><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</p>
-</blockquote> 借助下图，能够让我们清楚地看到观察者模式的“一对多依赖”。</p>
-<p><img src="/images/image-20200406230651346.png" alt="image-20200406230651346"></p>
-<p>观察者模式为主题和观察者都创建了各自的接口。在主题接口中，定义了注册观察者(registerObserver)方法、撤销观察者(removeObserver)方法、更新所有观察者状态方法（notifyObservers,一旦主题状态改变会触发）；在观察者接口中，定义了更新观察者状态的方法(update)。</p>
-<p><img src="/images/image-20200407002547510.png" alt="image-20200407002547510"></p>
-<p>我们再把目光转移到应用场景，前面我们已经分析了思路1实现带来的问题，接下来就要好好考虑怎么解决：</p>
-<p>首先，我们可以考虑需要<strong>为所有布告板类创建一个观察者接口</strong>，因为在WeatherData类中，WeatherData不关心布告板是叫currentConditionDisplay还是叫statisticsDisplay，只关心它是否需要在气象数据更新时获得自己的最新气象数据，如果它实现了观察者接口并且注册了主题（相当于订报人完成了订阅动作），那么当WeatherData类的数据更新时，它就是分发数据的目标之一。</p>
-<p>然后，我们可以<strong>在WeatherData类中维护一个所有观察者组成的列表</strong>，这样做能让WeatherData类轻松地获取所有观察者（布告板）。有了观察者列表之后，每当WeatherData类的数据更新，就遍历列表内的所有布告板，调用它们的update()方法即可，WeatherData类不用再关注有几个观察者布告板，它们叫什么名字。当需要添加或删除新的布告板的时候，只需要对列表做增删操作，而不用像思路1中那样改动measurementsChanged()方法体内的代码，同时，这也解决了不能运行时动态地增删布告板的问题，因为运行时可以动态的修改列表的元素（比如说系统运行了十分钟后将currentConditionDisplay公告板从观察者列表中移除）。</p>
-<p>想到这些，引入观察者模式之后的模型就呼之欲出了。引入观察者模式之后，本气象站应用的的类图就如下图所示，WeatherData和各布告板分别实现主题接口和观察者接口。</p>
-<p><img src="/images/image-20200407002514351.png" alt="image-20200407002514351"></p>
-<p>接下来我们从代码的层面上来考虑一下主题的方法是如何实现的。</p>
-<p>registerObserver(Observer o)：将观察者对象o加入到WeatherData维护的观察者列表。</p>
-<p>removeObserver(Observer o)：将观察者对象o从WeatherData维护的观察者列表中删除。</p>
-<p>notifyObservers():遍历WeatherData维护的观察者列表，在循环体内调用每个观察者对象的update()方法。</p>
-<p><strong>对比思路1和思路2，可以发现，通过引入观察者模式，我们不仅能方便地实现布告板的增删</strong>：当有了新的布告板对象o要“监听”WeatherData的最新数据，就调用registerObserver(o)，当它不再需要获取最新气象数据，就调用removeObserver(o)，<strong>还能在运行时动态地增删布告板</strong>：，比如说为布告板对象o设置一个“监听”时间10分钟，在10分钟内，它需要监听主题的状态变化，10分钟以后，它就不需要再监听，那么就可以通过在到达10分钟的时候调用removeObserver(o)将其从观察者列表移除即可。</p>
-<h2 id="3、总结与思考"><a href="#3、总结与思考" class="headerlink" title="3、总结与思考"></a>3、总结与思考</h2><p>从观察者模式的两个主角来看，主题拥有自己的一些状态(参考例子中WeatherData对象的天气数据)，而多个观察者想要获知这些状态来改变自身的状态，从而构成了一对多依赖。主题向全体观察者通知，观察者可以随时决定取消监听主题。</p>
-<p>如果我们仔细体会本例中一下思路1到思路2的转变，会发现实现了一个<strong>松耦合</strong>的过程，在思路1中，主题需要关注观察者是谁，而引入观察者模式后，主题不需要知道观察者的具体类是谁，只知道观察者实现了某个接口，有新的观察者出现时，主题的代码不需要修改，二者并非紧耦合。改变主题或观察者其中一方，不会影响另外一方。</p>
-<p>最后，本文以一条设计原则结尾。<blockquote><p>为了交互对象之间的松耦合设计而努力。</p>
-</blockquote> </p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式 读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">项目 JavaWeb</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          
 
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/04/10/cxsj%E9%A1%B9%E7%9B%AE-%E5%81%9C%E8%BD%A6%E4%BD%8D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%8F%AF%E8%A7%86%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          cxsj项目-停车位使用情况可视化
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/04/06/20200406%E7%AE%97%E6%B3%95%E9%A2%982%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">:20200406算法题2则</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -410,9 +238,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
