@@ -18,11 +18,10 @@
 <meta property="og:image" content="http://hfq123.github.io/2020/04/10/images/image-20200410090026678.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200409174547260.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200410095433726.png">
-<meta property="og:image" content="http://hfq123.github.io/2020/04/10/images/image-20200410102612112.png">
-<meta property="og:image" content="http://hfq123.github.io/2020/04/10/images/image-20200410104415328.png">
-<meta property="og:image" content="http://hfq123.github.io/2020/04/10/images/image-20200410104637275.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200410102612112.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200410104637275.png">
 <meta property="article:published_time" content="2020-04-10T00:53:18.000Z">
-<meta property="article:modified_time" content="2020-04-10T03:34:12.103Z">
+<meta property="article:modified_time" content="2020-04-10T03:36:27.374Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="项目 JavaWeb">
 <meta name="twitter:card" content="summary">
@@ -229,12 +228,15 @@
 </li>
 </ul>
 <p>创建好车位数据表之后，生成一些假数据（我是通过写了一个java类，按照给定格式随机生成记录，然后拼接字符串打印这条记录的insert语句，然后到数据库执行，后来网上了解一下，或许可以尝试使用Python的伪造数据生成器Faker），生成的部分假数据如下图展示。</p>
-<p><img src="../images/image-20200410102612112.png" alt="image-20200410102612112"></p>
-<p>   下一步，写一个Controller，完成车位查询的api接口，响应POST方法，为请求返回json数据，代码如下图：</p>
-<p><img src="../images/image-20200410104415328.png" alt="image-20200410104415328"></p>
+<p><img src="/images/image-20200410102612112.png" alt="image-20200410102612112"></p>
+<p>   下一步，写一个Controller，完成车位查询的api接口，响应POST方法，为请求返回json数据，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> parkinglot_id 停车场ID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> parking_space_id 车位id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * 如果参数parking_space_id 为空，查找所有停车场ID为parkinglot_id的所有车位使用情况</span></span><br><span class="line"><span class="comment">     * 如果参数parking_space_id非空，根据停车场id和车位id 查询一条记录。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/parkinglot/&#123;parkinglot_id&#125;/space"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">selectAllSpace</span><span class="params">(@PathVariable(name = <span class="string">"parkinglot_id"</span>)</span> Integer parkinglot_id,</span></span><br><span class="line"><span class="function">                                  @<span class="title">RequestParam</span><span class="params">(name = <span class="string">"parking_space_id"</span>,required = <span class="keyword">false</span>)</span> Integer parking_space_id</span></span><br><span class="line"><span class="function">                                  )</span>&#123;</span><br><span class="line">        ParkingSpaceExample example = <span class="keyword">new</span> ParkingSpaceExample();</span><br><span class="line">        <span class="keyword">if</span>(parking_space_id!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            example.createCriteria()</span><br><span class="line">                    .andParkinglotIdEqualTo(parkinglot_id)</span><br><span class="line">                    .andIdEqualTo(parking_space_id);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            example.createCriteria()</span><br><span class="line">                    .andParkinglotIdEqualTo(parkinglot_id);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;ParkingSpace&gt; parkingSpaces = parkingSpaceMapper.selectByExample(example);</span><br><span class="line">        <span class="keyword">return</span> parkingSpaces;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <p>如果请求时携带了parking_space_id参数，就只查询车位id等于parking_space_id的那条车位记录，否则，查询该停车场的全部车位记录。请求参数携带车位标识和不携带车位标识这两种请求应用场景分别是：加载页面时，需要查询全部车位的车位状态，而用户点击地图的某个车位图标时，只需要查询这一个车位状态。</p>
 <p>当不携带车位标识时，某次请求响应的部分json数据如下图展示。</p>
-<p><img src="../images/image-20200410104637275.png" alt="image-20200410104637275"></p>
+<p><img src="/images/image-20200410104637275.png" alt="image-20200410104637275"></p>
 <p>至此，我们就完成了车位数据表的建立和查询。</p>
 <h3 id="3-将地图显示和数据库“绑定”"><a href="#3-将地图显示和数据库“绑定”" class="headerlink" title="3. 将地图显示和数据库“绑定”"></a>3. 将地图显示和数据库“绑定”</h3><p>这一步我们就完成可视化的任务，具体需要完成的功能有两个：功能一是加载车位详情页面的时候，查询车位数据表，根据车位状态为地图的车位图标“上色”（空位占用则红，车位空闲则为绿）；功能二是当用户点击车位图标时，查询数据库该车位的当前状态并显示出来（如果车位占用还会显示出当前的车牌号）。</p>
 <p>有了步骤1、2的基础后，这一步就很简单了，简单地说，就是用步骤2的数据填充到步骤1的方法内。具体做法是在javascript脚本中使用ajax请求获取后端的车位数据，然后对这些数据按指定格式处理，作为调用Esmap sdk的配置参数。</p>
