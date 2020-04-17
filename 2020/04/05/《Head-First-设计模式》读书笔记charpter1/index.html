@@ -27,7 +27,7 @@
 <meta property="og:url" content="http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/index.html">
 <meta property="og:site_name" content="然后就的博客">
 <meta property="og:description" content="本篇博客是《Head First 设计模式》第一章的读书笔记。 分享主题是设计模式中的 「策略模式(Strategy Pattern)」。 1、应用场景—一群鸭子引发的故事。书中给了这样一个例子作为应用场景引入：某公司有一套模拟鸭子游戏，游戏中会出现各种各样的鸭子，这些鸭子有一些动作：呱呱叫、戏水。按照面向对象的思想，系统设计为鸭子这一对象设计了一个名为Duck的超类，在这个类中，为实现动作呱呱叫">
-<meta property="og:locale" content="zh">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200405173133388.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200405165408727.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200406005221237.png">
@@ -133,7 +133,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -261,7 +261,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2020-04-17T13:09:52.964Z" itemprop="dateUpdated">2020-04-17 21:09:52</time>
+    最后更新时间：<time datetime="2020-04-17T13:09:52.964Z" itemprop="dateUpdated">2020-04-17 21:09:52</time>
 </span><br>
 
 
@@ -413,7 +413,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -514,23 +514,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
