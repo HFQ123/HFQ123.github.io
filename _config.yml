@@ -4,12 +4,12 @@
 
 # Site
 title: 然后就的博客
-subtitle: 技术博客，记录并分享自己学习的内容
+subtitle: 飘风不终朝,骤雨不终日。
 description: 分享我的学习内容：Java,SpringBoot,设计模式,算法....
-keywords:
-author: John Doe
-language: zh
-timezone: ''
+keywords: '技术博客' 
+author:  然后就
+language: zh-CN
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -93,11 +93,53 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-indigo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: git@github.com:HFQ123/HFQ123.github.io.git
-  branch: public
+  branch: master
+  
+# jsonContent:
+    # meta: false
+    # pages: false
+    # posts:
+      # title: true
+      # date: true
+      # path: true
+      # text: true
+      # raw: false
+      # content: false
+      # slug: false
+      # updated: false
+      # comments: false
+      # link: false
+      # permalink: false
+      # excerpt: false
+      # categories: false
+      # tags: true
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0
+
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: true
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
