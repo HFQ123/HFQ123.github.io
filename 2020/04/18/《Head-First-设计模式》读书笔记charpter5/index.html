@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content="设计模式,读书笔记">
     <meta name="description" content="本篇博客是《Head First 设计模式》第四章的读书笔记。 分享主题是设计模式中的 「单件模式(Singleton Pattern)」。 单件模式（也常叫单例模式）可以说是最简单的设计模式了，然而具体实现的还是有些讲究的，本文梳理了四种单例模式的实现方法 。其中前三种是书上给出的，最后一种书上没有提到，以作补充。 单例模式的基本认识 定义：单件模式确保一个类只有一个实例，并提供一个全局访问点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Head-First-设计模式》读书笔记charpter5">
@@ -29,9 +29,10 @@
 <meta property="og:description" content="本篇博客是《Head First 设计模式》第四章的读书笔记。 分享主题是设计模式中的 「单件模式(Singleton Pattern)」。 单件模式（也常叫单例模式）可以说是最简单的设计模式了，然而具体实现的还是有些讲究的，本文梳理了四种单例模式的实现方法 。其中前三种是书上给出的，最后一种书上没有提到，以作补充。 单例模式的基本认识 定义：单件模式确保一个类只有一个实例，并提供一个全局访问点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-18T14:19:15.000Z">
-<meta property="article:modified_time" content="2020-04-18T15:14:06.380Z">
+<meta property="article:modified_time" content="2020-04-18T16:24:39.638Z">
 <meta property="article:author" content="然后就">
-<meta property="article:tag" content="技术博客">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary">
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
@@ -150,6 +151,8 @@
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+
             
         </h5>
     </div>
@@ -179,6 +182,8 @@
             <time class="post-time" title="2020-04-18 22:19:15" datetime="2020-04-18T14:19:15.000Z"  itemprop="datePublished">2020-04-18</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+
 
 
             
@@ -196,7 +201,7 @@
 <li><p>定义：<blockquote><p>单件模式确保一个类只有一个实例，并提供一个全局访问点。</p>
 </blockquote> </p>
 </li>
-<li><p>用来创建独一无二只能有一个实例的对象。</p>
+<li><p>用来创建只能有一个实例的独一无二对象。</p>
 <p>比如说线程池、缓存、对话框、处理偏好设置、注册表、日志对象、打印机等设备的驱动程序的对象。</p>
 </li>
 <li><p>可以确保只有一个实例会被创建，单件模式给了我们一个全局的访问点，和全局变量一样方便，又没有全局变量的缺点。</p>
@@ -280,7 +285,7 @@
 
 <ul>
 <li>分析<ul>
-<li>这种方式同样利用了类加载机制来保证只创建一个instance实例。它与饿汉模式一样，也是利用了类加载机制，因此不存在多线程并发的问题。</li>
+<li>它与饿汉模式一样，也是利用了类加载机制，因此不存在多线程并发的问题。</li>
 <li>不一样的是，它是在内部类里面去创建对象实例。</li>
 <li>这样的话，只要应用中不使用内部类，JVM就不会去加载这个单例类，也就不会创建单例对象，从而实现懒汉式的延迟加载。也就是说这种方式可以同时保证延迟加载和线程安全。</li>
 </ul>
@@ -297,7 +302,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-04-18T15:14:06.380Z" itemprop="dateUpdated">2020-04-18 23:14:06</time>
+    最后更新时间：<time datetime="2020-04-18T16:24:39.638Z" itemprop="dateUpdated">2020-04-19 00:24:39</time>
 </span><br>
 
 
@@ -319,6 +324,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -372,7 +379,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/04/20/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter7/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">《Head-First-设计模式》读书笔记charpter7</h4>
+      </a>
+    </div>
   
 
   
