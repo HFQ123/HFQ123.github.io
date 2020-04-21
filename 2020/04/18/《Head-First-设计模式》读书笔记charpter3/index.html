@@ -196,12 +196,26 @@
             <p>本篇博客是《Head First 设计模式》第三章的读书笔记。</p>
 <p>分享主题是设计模式中的 「装饰者模式(Decorator Pattern)」。</p>
 <h3 id="应用背景——种类繁多的饮料的“类爆炸”"><a href="#应用背景——种类繁多的饮料的“类爆炸”" class="headerlink" title="应用背景——种类繁多的饮料的“类爆炸”"></a>应用背景——种类繁多的饮料的“类爆炸”</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>书中给出的例子是，一家饮品店的饮品种类繁多，且客户可以自行选择在饮品内加入收费的调料（调料当然也有多种）。即使是同一种的饮品，由于加入了不同的调料，价格也会有差异，如何计算饮品的价格就成了一个问题。如下图1，书中给出的第一个尝试是列举所有饮品的可能情况来构成饮品的所有子类，如HouseBlendWithSoy(表示带调料Soy的HouseBlend饮品类)，由于饮品和调料的组合方式很多，这势必会造成”类爆炸”。</p>
-<p><img src="/images/image-20200418103234825.png" alt="图1"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418103234825.png" alt="图1" title="">
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+
 <p>但凡有点开发经验的都不会像上面这样做，我们往往都能想到通过继承解决类爆炸的常规思路，而继承解决会带来一些问题，这就需要引出本文的主角装饰者模式了，一起来看看吧。</p>
 <h4 id="通过继承解决"><a href="#通过继承解决" class="headerlink" title="通过继承解决"></a>通过继承解决</h4><p>具体做法是：为饮品父类中添加一些布尔类型的成员变量(如milk、soy等,都是调料名)来表示是否有该调料，和它们对应的成员方法(如hasMilk())。在父类的计算饮品价格方法 cost()中，依次判断是否加入了各调料，也就是判断该调料的变量是否为true，如果是true就在饮品的基础上加上这种调料的价格。如此一来，针对一个带特定调料的饮品对象，只需要设置它的这些成员变量的状态，使用继承自父类的cost()方法就能计算价格了。<br>这种做法很简洁易懂，然而可拓展性不好：如果客户需要在饮品中加入双倍的某种调料，就要修改现有的代码：在饮品的父类中再加入多个成员变量(如milkNum,soyNum)来记录饮品的调料数目，同时，也会修改父类计算饮品价格的cost()方法，因为现在还要乘上调料的数量。</p>
 <h4 id="通过装饰者模式解决"><a href="#通过装饰者模式解决" class="headerlink" title="通过装饰者模式解决"></a>通过装饰者模式解决</h4><p>现在我们还不用着急知道什么是装饰者模式，只需要知道它的基本思路就是：用一种种调料层层“包装”饮品，然后逐级调用cost()方法来获得最终饮品的价格。</p>
 <p>下图是用调料层层包装饮品的示例，模拟了加入了两种调料(Mocha和Whip)的DarkRoast饮品。</p>
-<p><img src="/images/image-20200418144735272.png" alt="图2"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418144735272.png" alt="图2" title="">
+                </div>
+                <div class="image-caption">图2</div>
+            </figure>
+
 <p>我们姑且把调料叫做<strong>装饰者</strong>，把饮品叫做<strong>被装饰者</strong>。但是，这里有个小细节，调料既可以用来包装饮品（如图上红字标出的调料1对象包装了一个饮品对象），还可以包装其他调料（如图上红字标出的调料2包装了一个调料1对象），也就是说调料1在这里既作为最内层饮品的“装饰者”，又作为外层调料2的“被装饰者”。</p>
 <p>为了标记每个装饰者包装的对象是谁，我们有必要在装饰者类（就是调料类）里设置个成员变量warppedObj——一个指向“被装饰者”的引用，那这个成员变量的类型应该是什么呢？这里有点绕，再次强调一下，调料2的“被装饰者”是调料1，其类型是调料，调料1的“被装饰者”是饮品，其类型是饮品，所以说这里怎么设置warppedObj的类型都不对：如果设置成饮品类，那么调料2就无法包装调料1，如果设置成调料类，那么调料1就无法包装饮品。也就是说如果要正确设定warppedObj类型以支持以上情形，就要完成调料类和饮品类的类型统一。书中的做法是让调料类继承饮品类，以达成类型的统一。</p>
 <p>搞懂了这个，接下来的事情就好办了，如上图2，我们的目标是：计算有1份Whip、1份Mocha的DarkRoast饮品价格，做法就是先new一个Mocha对象包装DarkRoast对象记作obj1，在new一个Whip对象包装obj1。计算价格的时候调用最外层调料2对象的cost()方法，它的实现是调用其包装了的对象调料1的cost()方法获得调料1对象的价格，再加上自己的价格，而调料1的cost()实现又是调用内层饮品的cost()方法再加上自己的价格，以此类推，计算价格的过程就像上图2标出的6步流程。</p>
@@ -233,7 +247,14 @@
 </ul>
 <h4 id="实际中的装饰者模式——java-io"><a href="#实际中的装饰者模式——java-io" class="headerlink" title="实际中的装饰者模式——java.io"></a>实际中的装饰者模式——java.io</h4><p>java.io包提供的众多输入输出流相关的类，就是应用了装饰者模式。</p>
 <p>输入流层层包装，外层流为内层流提供了新的服务。如下图，InputStream是被装饰者类父类,FilterInputStream是一个很多装饰者类的父类，其中有一个InputStream类型的名为in的成员变量。</p>
-<p><img src="/images/image-20200418111628569.png" alt="image-20200418111628569"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418111628569.png" alt="image-20200418111628569" title="">
+                </div>
+                <div class="image-caption">image-20200418111628569</div>
+            </figure>
+
 <p>下面我给出了一个自定义InputStream的装饰类Demo,作用是将输入流字母变成小写。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LowerCaseInputStream.class </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 编写自己的Java IO装饰者类,负责将输入流字母变成小写</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LowerCaseInputStream</span> <span class="keyword">extends</span> <span class="title">FilterInputStream</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Creates a &lt;code&gt;FilterInputStream&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * by assigning the  argument &lt;code&gt;in&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * to the field &lt;code&gt;this.in&lt;/code&gt; so as</span></span><br><span class="line"><span class="comment">     * to remember it for later use.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> in the underlying input stream, or &lt;code&gt;null&lt;/code&gt; if</span></span><br><span class="line"><span class="comment">     *           this instance is to be created without an underlying stream.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">LowerCaseInputStream</span><span class="params">(InputStream in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c = <span class="keyword">super</span>.read();</span><br><span class="line">        <span class="keyword">return</span> c==-<span class="number">1</span>?c:Character.toLowerCase((<span class="keyword">char</span>)c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -242,7 +263,16 @@
 
 
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/images/image-20200418153331522.png" alt="装饰者模式的UML建模图"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418153331522.png" alt="装饰者模式的UML建模图" title="">
+                </div>
+                <div class="image-caption">装饰者模式的UML建模图</div>
+            </figure>
+
+
+
 <p>如上图所见，装饰者模式的核心就是：装饰者既<strong>是一个</strong>(is-a)被装饰者，又<strong>有一个</strong>(has-a)被装饰者。</p>
 <ul>
 <li>is-a 装饰者和被装饰者是相同的类型，这样做是为了利用继承达到“类型匹配”而不是为了利用继承“获得行为”。<strong>“类型匹配是说”一个装饰类的接口必须与被装饰类的接口保持相同。</strong></li>

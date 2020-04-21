@@ -210,7 +210,14 @@
 </ul>
 <p>下文可以看到，通过使用策略模式能有效解决这些问题。</p>
 <h3 id="2-2-通过接口实现"><a href="#2-2-通过接口实现" class="headerlink" title="2.2 通过接口实现"></a>2.2 通过接口实现</h3><p>上面的解读以fly()举例，其实其他方法也可能存在类似的问题，比如说如果不同类的鸭子叫法不同，继承的quark()方法也会存在上述问题，有的鸭子这样飞、叫，有的鸭子那样飞、叫，有的鸭子不飞不叫。这时，我们就想到了将fly()、quark()从超类中取出来放进一个接口。如下图，以fly()为例，将其放进一个名为Flyable的接口。</p>
-<p><img src="/images/image-20200405165408727.png" alt="image文件夹"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200405165408727.png" alt="image文件夹" title="">
+                </div>
+                <div class="image-caption">image文件夹</div>
+            </figure>
+
 <p>*<em>分析 *</em>：这样一来，如果一个鸭子子类会飞则实现Flyable接口，将其fly()方法写到子类的方法体，如果不会飞则无需实现。</p>
 <p><strong>评价</strong>：从超类中分离出有些子类不需要的fly()、quack()方法，这样避免了部分子类继承它压根不需要的方法的情况。然而这样做的缺点也很明显，每次编写一个会飞的新的鸭子子类，都必须在子类中单独实现fly()方法（即使有和它飞行方式一样的其他子类），导致代码根本无法重用，所以这种方法非常不可取。</p>
 <h3 id="2-3-策略模式"><a href="#2-3-策略模式" class="headerlink" title="2.3 策略模式"></a>2.3 策略模式</h3><p>如何弥补思路1、2的缺陷，这就需要引入策略模式这一设计模式，讲策略模式之前，先引入2条设计原则。 </p>
@@ -222,9 +229,23 @@
 </blockquote>
 
 <p>我们可以利用接口代表每个行为，比如说，引入接口FlyBehavior与QuackBehavior分别代表了飞行、呱呱叫的行为，通过实现FlyBehavior接口的fly()方法，建立各种各样飞行的<strong>行为类</strong>，来描述不同飞行方式。与思路2通过接口实现的区别在于，我们不再是直接在Duck或者是它的子类中实现不同的fly()方法，而是再另外引入一个实现了FlyBehavior接口的行为类来实现fly()方法。本系统中，每个飞行的行为类都实现了FlyBehavior接口，而在Duck类中，我们定义一个FlyBehavior接口型的成员变量，来保存其对应的行为类的指针，以调用其飞行方法。</p>
-<p><img src="/images/image-20200406005221237.png" alt="image-20200406005221237"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406005221237.png" alt="image-20200406005221237" title="">
+                </div>
+                <div class="image-caption">image-20200406005221237</div>
+            </figure>
+
 <p>这样做就是策略模式的思路。使用策略模式后，本系统的全局类图如下图展示， 不变的方法swim()仍然在Duck超类中实现，而经常改变的fly()、quack()方法被抽离成为接口，再用具体的行为类去实现这些接口，在Duck超类中，保存对应的行为类一个对象的指针以确定该类鸭子的对应的fly、quack行为。</p>
-<p><img src="/images/image-20200406003932396.png" alt="image-20200406003932396"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406003932396.png" alt="image-20200406003932396" title="">
+                </div>
+                <div class="image-caption">image-20200406003932396</div>
+            </figure>
+
 <p>为什么说引入了策略模式会解决上述继承的四个问题呢？</p>
 <ul>
 <li>代码在多个子类中重复：如果使用继承，如果鸭子的飞行方式与超类中给定的的不一致，即使是有同样飞行方式的鸭子子类，也不能重用代码，因为它们都要在各自的类里重写fly()方法。而引入策略模式后，只需要为有同样飞行方式的鸭子子类编写一个实现了FlyBehavior的行为类。</li>
@@ -232,7 +253,14 @@
 <li>运行时的行为不容易改变：通过改变Duck或其子类对象的行为类的指针，就可以实现运行时切换飞行方式，也就是说，在Duck类中创建一个setFlyBehavior()方法，就可以随时改变鸭子的行为。</li>
 <li>改变会牵一发而动全身，造成其他鸭子不想要的改变：如果某种鸭子的飞行方式有所改变，只需要改变其行为类的引用，不影响其他鸭子子类。</li>
 </ul>
-<h2 id="3、总结与思考"><a href="#3、总结与思考" class="headerlink" title="3、总结与思考"></a>3、总结与思考</h2><p><img src="/images/image-20200406014158325.png" alt="image-20200406014158325"><br>是时候给出策略模式的概念了（像本文一样，书中在本章节的最后才给出其概念，也就是讲完了所有细节再告诉你你已经不知不觉地学会了策略模式，我个人觉得这种学习方法比较适合人认识新事物的规律，否则，如果开头就先抛出这个晦涩的概念就能把人吓跑了！）：</p>
+<h2 id="3、总结与思考"><a href="#3、总结与思考" class="headerlink" title="3、总结与思考"></a>3、总结与思考</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406014158325.png" alt="image-20200406014158325" title="">
+                </div>
+                <div class="image-caption">image-20200406014158325</div>
+            </figure>
+<p>是时候给出策略模式的概念了（像本文一样，书中在本章节的最后才给出其概念，也就是讲完了所有细节再告诉你你已经不知不觉地学会了策略模式，我个人觉得这种学习方法比较适合人认识新事物的规律，否则，如果开头就先抛出这个晦涩的概念就能把人吓跑了！）：</p>
 <blockquote><p><strong>策略（Strategy）模式</strong>定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
 </blockquote>
 <p>本项目中，我们可以把鸭子飞行的方式看作是策略，描述不同鸭子飞行方式的代码就构成了策略的算法族。之所以说策略模式让使“算法的变化独立于使用算法的客户”，是因为使用策略模式可以方便地更改客户正在使用的策略（通过更改Context类中对策略的引用）。如果认为使用思路1的继承方法，不厌其烦地在子类中编写fly()的覆盖方法、多写上几行重复代码是可以接受的话，那么，能够随时方便地为类替换策略这个优点就是你无法拒绝策略模式的理由。</p>
