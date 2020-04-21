@@ -17,8 +17,6 @@
     <title>《Head-First-设计模式》读书笔记charpter2 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="设计模式,读书笔记">
     <meta name="description" content="本篇博客是《Head First 设计模式》第二章的读书笔记。 分享主题是设计模式中的 「观察者模式(Observer Pattern)」。 1、应用场景—气象监测应用书中给出的例子是：公司要建立一个气象监测应用，如下图，WeatherData对象会从气象检测站获取实时更新的气象数据（湿度、温度、气压），WeatherData对象要做的就是将这些数据及时“分发”到多个布告板，使得每个布告板能使用最">
@@ -43,8 +41,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -55,59 +53,24 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/HFQ123" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -122,20 +85,6 @@
         </a>
         <div class="flex-col header-title ellipsis">《Head-First-设计模式》读书笔记charpter2</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -164,13 +113,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、应用场景—气象监测应用"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、应用场景—气象监测应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-实现思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 实现思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-错误示范"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 错误示范</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-观察者模式"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 观察者模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、总结与思考"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、总结与思考</span></a></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-《Head-First-设计模式》读书笔记charpter2"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -186,36 +128,16 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>本篇博客是《Head First 设计模式》第二章的读书笔记。</p>
 <p>分享主题是设计模式中的 「观察者模式(Observer Pattern)」。</p>
 <h2 id="1、应用场景—气象监测应用"><a href="#1、应用场景—气象监测应用" class="headerlink" title="1、应用场景—气象监测应用"></a>1、应用场景—气象监测应用</h2><p>书中给出的例子是：公司要建立一个气象监测应用，如下图，WeatherData对象会从气象检测站获取实时更新的气象数据（湿度、温度、气压），WeatherData对象要做的就是将这些数据及时“分发”到多个布告板，使得每个布告板能使用最新的气象数据以更新它的显示情况。除此之外，附加的需求是系统必须可扩展，能够让用户随心所欲地添加或删除布告板，也就是说，目前系统有“目前状况”、“气象统计”、“天气预报”三个布告板，以后可能会删除某个或者新增别的布告板，言外之意就是说，WeatherData对象要随时准备好停止向现有的布告板分发最新数据以及随时准备好向新的布告板分发最新数据。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200406223021520.png" alt="image-20200406223021520" title="">
-                </div>
-                <div class="image-caption">image-20200406223021520</div>
-            </figure>
-
-
-
+<p><img src="/images/image-20200406223021520.png" alt="image-20200406223021520"></p>
 <h2 id="2-实现思路"><a href="#2-实现思路" class="headerlink" title="2 实现思路"></a>2 实现思路</h2><h3 id="2-1-错误示范"><a href="#2-1-错误示范" class="headerlink" title="2.1 错误示范"></a>2.1 错误示范</h3><p>我们先来看一个很容易想到的思路，然而这被书中称之为“错误示范”（这也是我学习观察者模式之前的思路）。首先我们先约定：一旦气象站测量的气象数据更新，WeatherData类的measurementsChanged()方法就会被调用，在本文，我们不用关心它是怎么做的，只要知道在此方法下，我们要做的就是将这些数据及时“分发”到多个布告板类。</p>
 <p>接下来我们就一起来看看这个简单自然但是错误的示例吧，如下图，在WeatherData类的中measurementsChanged()方法里，做的事情很简单，就是获得最新的气象数据，然后以此作为参数各个布告板类的更新方法。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200406223736428.png" alt="image-20200406223736428" title="">
-                </div>
-                <div class="image-caption">image-20200406223736428</div>
-            </figure>
-
+<p><img src="/images/image-20200406223736428.png" alt="image-20200406223736428"></p>
 <p>看似完全能实现我们的需求：当气象站检测到新的数据，measurementsChanged()被调用：获得最新的气象数据，然后分别调用各个不同的布告板的update()方法（在这个方法里，布告板会根据自己的需求使用最新数据来改变显示板，我们无需关注update()方法里究竟做了什么，只要知道它需要获得WeatherData类的最新气象数据，供它们更新自己的数据以改变显示屏）。</p>
 <p>这样实现究竟有哪些错误呢？</p>
 <ul>
@@ -229,35 +151,14 @@
 <h3 id="2-2-观察者模式"><a href="#2-2-观察者模式" class="headerlink" title="2.2 观察者模式"></a>2.2 观察者模式</h3><p>引入观察者模式就能解决上述实现带来的问题。</p>
 <p>先简单介绍一下什么是观察者模式，在观察者模式中，有两个主角，分别是<strong>主题(Subject)</strong>和<strong>观察者(Observer)</strong>，书上用了“出版者”和“订阅者”来类比观察者模式中的主题和观察者。出版者一旦出版新的报纸，他就要负责将新报纸分发到各个订阅者手中，而那些没有订阅报纸的人就不会收到，就和这里的例子一样，WeatherData类一旦获得新的气象数据，就要负责分发到各个布告板类中。观察者模式的概念是：<blockquote><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</p>
 </blockquote> 借助下图，能够让我们清楚地看到观察者模式的“一对多依赖”。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200406230651346.png" alt="image-20200406230651346" title="">
-                </div>
-                <div class="image-caption">image-20200406230651346</div>
-            </figure>
-
+<p><img src="/images/image-20200406230651346.png" alt="image-20200406230651346"></p>
 <p>观察者模式为主题和观察者都创建了各自的接口。在主题接口中，定义了注册观察者(registerObserver)方法、撤销观察者(removeObserver)方法、更新所有观察者状态方法（notifyObservers,一旦主题状态改变会触发）；在观察者接口中，定义了更新观察者状态的方法(update)。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200407002547510.png" alt="image-20200407002547510" title="">
-                </div>
-                <div class="image-caption">image-20200407002547510</div>
-            </figure>
-
+<p><img src="/images/image-20200407002547510.png" alt="image-20200407002547510"></p>
 <p>我们再把目光转移到应用场景，前面我们已经分析了思路1实现带来的问题，接下来就要好好考虑怎么解决：</p>
 <p>首先，我们可以考虑需要<strong>为所有布告板类创建一个观察者接口</strong>，因为在WeatherData类中，WeatherData不关心布告板是叫currentConditionDisplay还是叫statisticsDisplay，只关心它是否需要在气象数据更新时获得自己的最新气象数据，如果它实现了观察者接口并且注册了主题（相当于订报人完成了订阅动作），那么当WeatherData类的数据更新时，它就是分发数据的目标之一。</p>
 <p>然后，我们可以<strong>在WeatherData类中维护一个所有观察者组成的列表</strong>，这样做能让WeatherData类轻松地获取所有观察者（布告板）。有了观察者列表之后，每当WeatherData类的数据更新，就遍历列表内的所有布告板，调用它们的update()方法即可，WeatherData类不用再关注有几个观察者布告板，它们叫什么名字。当需要添加或删除新的布告板的时候，只需要对列表做增删操作，而不用像思路1中那样改动measurementsChanged()方法体内的代码，同时，这也解决了不能运行时动态地增删布告板的问题，因为运行时可以动态的修改列表的元素（比如说系统运行了十分钟后将currentConditionDisplay公告板从观察者列表中移除）。</p>
 <p>想到这些，引入观察者模式之后的模型就呼之欲出了。引入观察者模式之后，本气象站应用的的类图就如下图所示，WeatherData和各布告板分别实现主题接口和观察者接口。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200407002514351.png" alt="image-20200407002514351" title="">
-                </div>
-                <div class="image-caption">image-20200407002514351</div>
-            </figure>
-
+<p><img src="/images/image-20200407002514351.png" alt="image-20200407002514351"></p>
 <p>接下来我们从代码的层面上来考虑一下主题的方法是如何实现的。</p>
 <p>registerObserver(Observer o)：将观察者对象o加入到WeatherData维护的观察者列表。</p>
 <p>removeObserver(Observer o)：将观察者对象o从WeatherData维护的观察者列表中删除。</p>
@@ -272,21 +173,9 @@
 
         <blockquote class="post-copyright">
     
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2020-04-18T02:15:52.838Z" itemprop="dateUpdated">2020-04-18 10:15:52</time>
-</span><br>
-
-
-        
-        欢迎留言评论！
-        
-    </div>
-    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" alt="然后就">
+            <img src="/" alt="然后就">
             然后就
         </a>
     </footer>
@@ -301,51 +190,6 @@
 
 
             
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&title=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&pic=http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&title=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
 
 
         </div>
@@ -389,30 +233,6 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="gitalk-container"></div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-        var id = location.pathname
-        if (location.pathname.length > 50) {
-          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
-        }
-        const gitalk = new Gitalk({
-          clientID: '5266827d0c65b2c78ad9',
-          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
-          repo: 'blog_comment',
-          owner: 'HFQ123',
-          admin: ['HFQ123'],
-          id: id,      // Ensure uniqueness and length less than 50
-          title: document.title.split('|')[0],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</section>
-
 
 
 
@@ -425,15 +245,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -457,87 +268,19 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&title=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&pic=http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&title=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter2》 — 然后就的博客&url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/06/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter2/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
