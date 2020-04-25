@@ -17,8 +17,6 @@
     <title>二叉搜索树学习笔记 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="读书笔记,数据结构">
     <meta name="description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。 本篇博客分享主题：「二叉搜索树」。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是一颗二叉搜索树。">
@@ -40,8 +38,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -52,59 +50,24 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/HFQ123" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -119,20 +82,6 @@
         </a>
         <div class="flex-col header-title ellipsis">二叉搜索树学习笔记</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -159,13 +108,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本认识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本认识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">基本操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现接口时的注意细节"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现接口时的注意细节</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">4.</span> <span class="post-toc-text">常用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遍历-适用所有二叉树"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">遍历(适用所有二叉树)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#陌生知识点"><span class="post-toc-number">5.</span> <span class="post-toc-text">陌生知识点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感受"><span class="post-toc-number">6.</span> <span class="post-toc-text">感受</span></a></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-二叉搜索树学习笔记"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -179,10 +121,6 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -254,21 +192,9 @@
 
         <blockquote class="post-copyright">
     
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2020-04-17T13:09:16.275Z" itemprop="dateUpdated">2020-04-17 21:09:16</time>
-</span><br>
-
-
-        
-        欢迎留言评论！
-        
-    </div>
-    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" alt="然后就">
+            <img src="/" alt="然后就">
             然后就
         </a>
     </footer>
@@ -283,51 +209,6 @@
 
 
             
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《二叉搜索树学习笔记》 — 然后就的博客&pic=http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《二叉搜索树学习笔记》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《二叉搜索树学习笔记》 — 然后就的博客&url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
 
 
         </div>
@@ -371,30 +252,6 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="gitalk-container"></div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-        var id = location.pathname
-        if (location.pathname.length > 50) {
-          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
-        }
-        const gitalk = new Gitalk({
-          clientID: '5266827d0c65b2c78ad9',
-          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
-          repo: 'blog_comment',
-          owner: 'HFQ123',
-          admin: ['HFQ123'],
-          id: id,      // Ensure uniqueness and length less than 50
-          title: document.title.split('|')[0],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</section>
-
 
 
 
@@ -407,15 +264,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -439,87 +287,19 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《二叉搜索树学习笔记》 — 然后就的博客&pic=http://pic2.zhimg.com/50/v2-fb824dbb6578831f7b5d92accdae753a_hd.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《二叉搜索树学习笔记》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《二叉搜索树学习笔记》 — 然后就的博客&url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
