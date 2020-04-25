@@ -17,6 +17,8 @@
     <title>《Head-First-设计模式》读书笔记charpter3 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="设计模式,读书笔记">
     <meta name="description" content="本篇博客是《Head First 设计模式》第三章的读书笔记。 分享主题是设计模式中的 「装饰者模式(Decorator Pattern)」。 应用背景——种类繁多的饮料的“类爆炸”背景书中给出的例子是，一家饮品店的饮品种类繁多，且客户可以自行选择在饮品内加入收费的调料（调料当然也有多种）。即使是同一种的饮品，由于加入了不同的调料，价格也会有差异，如何计算饮品的价格就成了一个问题。如下图1，书中给">
@@ -41,8 +43,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -53,24 +55,66 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/images/hfq-favicon.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/HFQ123" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutMe" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -85,6 +129,20 @@
         </a>
         <div class="flex-col header-title ellipsis">《Head-First-设计模式》读书笔记charpter3</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -113,6 +171,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用背景——种类繁多的饮料的“类爆炸”"><span class="post-toc-number">1.</span> <span class="post-toc-text">应用背景——种类繁多的饮料的“类爆炸”</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#通过继承解决"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">通过继承解决</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#通过装饰者模式解决"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">通过装饰者模式解决</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#装饰者模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">装饰者模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#装饰者模式思想"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">装饰者模式思想</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#装饰者模式定义"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">装饰者模式定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#装饰者模式UML图"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">装饰者模式UML图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实际中的装饰者模式——java-io"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">实际中的装饰者模式——java.io</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感悟"><span class="post-toc-number">4.</span> <span class="post-toc-text">感悟</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-《Head-First-设计模式》读书笔记charpter3"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -128,18 +193,36 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>本篇博客是《Head First 设计模式》第三章的读书笔记。</p>
 <p>分享主题是设计模式中的 「装饰者模式(Decorator Pattern)」。</p>
 <h3 id="应用背景——种类繁多的饮料的“类爆炸”"><a href="#应用背景——种类繁多的饮料的“类爆炸”" class="headerlink" title="应用背景——种类繁多的饮料的“类爆炸”"></a>应用背景——种类繁多的饮料的“类爆炸”</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>书中给出的例子是，一家饮品店的饮品种类繁多，且客户可以自行选择在饮品内加入收费的调料（调料当然也有多种）。即使是同一种的饮品，由于加入了不同的调料，价格也会有差异，如何计算饮品的价格就成了一个问题。如下图1，书中给出的第一个尝试是列举所有饮品的可能情况来构成饮品的所有子类，如HouseBlendWithSoy(表示带调料Soy的HouseBlend饮品类)，由于饮品和调料的组合方式很多，这势必会造成”类爆炸”。</p>
-<p><img src="/images/image-20200418103234825.png" alt="图1"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418103234825.png" alt="图1" title="">
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+
 <p>但凡有点开发经验的都不会像上面这样做，我们往往都能想到通过继承解决类爆炸的常规思路，而继承解决会带来一些问题，这就需要引出本文的主角装饰者模式了，一起来看看吧。</p>
 <h4 id="通过继承解决"><a href="#通过继承解决" class="headerlink" title="通过继承解决"></a>通过继承解决</h4><p>具体做法是：为饮品父类中添加一些布尔类型的成员变量(如milk、soy等,都是调料名)来表示是否有该调料，和它们对应的成员方法(如hasMilk())。在父类的计算饮品价格方法 cost()中，依次判断是否加入了各调料，也就是判断该调料的变量是否为true，如果是true就在饮品的基础上加上这种调料的价格。如此一来，针对一个带特定调料的饮品对象，只需要设置它的这些成员变量的状态，使用继承自父类的cost()方法就能计算价格了。<br>这种做法很简洁易懂，然而可拓展性不好：如果客户需要在饮品中加入双倍的某种调料，就要修改现有的代码：在饮品的父类中再加入多个成员变量(如milkNum,soyNum)来记录饮品的调料数目，同时，也会修改父类计算饮品价格的cost()方法，因为现在还要乘上调料的数量。</p>
 <h4 id="通过装饰者模式解决"><a href="#通过装饰者模式解决" class="headerlink" title="通过装饰者模式解决"></a>通过装饰者模式解决</h4><p>现在我们还不用着急知道什么是装饰者模式，只需要知道它的基本思路就是：用一种种调料层层“包装”饮品，然后逐级调用cost()方法来获得最终饮品的价格。</p>
 <p>下图是用调料层层包装饮品的示例，模拟了加入了两种调料(Mocha和Whip)的DarkRoast饮品。</p>
-<p><img src="/images/image-20200418144735272.png" alt="图2"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418144735272.png" alt="图2" title="">
+                </div>
+                <div class="image-caption">图2</div>
+            </figure>
+
 <p>我们姑且把调料叫做<strong>装饰者</strong>，把饮品叫做<strong>被装饰者</strong>。但是，这里有个小细节，调料既可以用来包装饮品（如图上红字标出的调料1对象包装了一个饮品对象），还可以包装其他调料（如图上红字标出的调料2包装了一个调料1对象），也就是说调料1在这里既作为最内层饮品的“装饰者”，又作为外层调料2的“被装饰者”。</p>
 <p>为了标记每个装饰者包装的对象是谁，我们有必要在装饰者类（就是调料类）里设置个成员变量warppedObj——一个指向“被装饰者”的引用，那这个成员变量的类型应该是什么呢？这里有点绕，再次强调一下，调料2的“被装饰者”是调料1，其类型是调料，调料1的“被装饰者”是饮品，其类型是饮品，所以说这里怎么设置warppedObj的类型都不对：如果设置成饮品类，那么调料2就无法包装调料1，如果设置成调料类，那么调料1就无法包装饮品。也就是说如果要正确设定warppedObj类型以支持以上情形，就要完成调料类和饮品类的类型统一。书中的做法是让调料类继承饮品类，以达成类型的统一。</p>
 <p>搞懂了这个，接下来的事情就好办了，如上图2，我们的目标是：计算有1份Whip、1份Mocha的DarkRoast饮品价格，做法就是先new一个Mocha对象包装DarkRoast对象记作obj1，在new一个Whip对象包装obj1。计算价格的时候调用最外层调料2对象的cost()方法，它的实现是调用其包装了的对象调料1的cost()方法获得调料1对象的价格，再加上自己的价格，而调料1的cost()实现又是调用内层饮品的cost()方法再加上自己的价格，以此类推，计算价格的过程就像上图2标出的6步流程。</p>
@@ -171,7 +254,14 @@
 </ul>
 <h4 id="实际中的装饰者模式——java-io"><a href="#实际中的装饰者模式——java-io" class="headerlink" title="实际中的装饰者模式——java.io"></a>实际中的装饰者模式——java.io</h4><p>java.io包提供的众多输入输出流相关的类，就是应用了装饰者模式。</p>
 <p>输入流层层包装，外层流为内层流提供了新的服务。如下图，InputStream是被装饰者类父类,FilterInputStream是一个很多装饰者类的父类，其中有一个InputStream类型的名为in的成员变量。</p>
-<p><img src="/images/image-20200418111628569.png" alt="image-20200418111628569"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418111628569.png" alt="image-20200418111628569" title="">
+                </div>
+                <div class="image-caption">image-20200418111628569</div>
+            </figure>
+
 <p>下面我给出了一个自定义InputStream的装饰类Demo,作用是将输入流字母变成小写。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LowerCaseInputStream.class </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 编写自己的Java IO装饰者类,负责将输入流字母变成小写</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LowerCaseInputStream</span> <span class="keyword">extends</span> <span class="title">FilterInputStream</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Creates a &lt;code&gt;FilterInputStream&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * by assigning the  argument &lt;code&gt;in&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * to the field &lt;code&gt;this.in&lt;/code&gt; so as</span></span><br><span class="line"><span class="comment">     * to remember it for later use.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> in the underlying input stream, or &lt;code&gt;null&lt;/code&gt; if</span></span><br><span class="line"><span class="comment">     *           this instance is to be created without an underlying stream.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">LowerCaseInputStream</span><span class="params">(InputStream in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c = <span class="keyword">super</span>.read();</span><br><span class="line">        <span class="keyword">return</span> c==-<span class="number">1</span>?c:Character.toLowerCase((<span class="keyword">char</span>)c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -180,7 +270,16 @@
 
 
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/images/image-20200418153331522.png" alt="装饰者模式的UML建模图"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200418153331522.png" alt="装饰者模式的UML建模图" title="">
+                </div>
+                <div class="image-caption">装饰者模式的UML建模图</div>
+            </figure>
+
+
+
 <p>如上图所见，装饰者模式的核心就是：装饰者既<strong>是一个</strong>(is-a)被装饰者，又<strong>有一个</strong>(has-a)被装饰者。</p>
 <ul>
 <li>is-a 装饰者和被装饰者是相同的类型，这样做是为了利用继承达到“类型匹配”而不是为了利用继承“获得行为”。<strong>“类型匹配是说”一个装饰类的接口必须与被装饰类的接口保持相同。</strong></li>
@@ -204,9 +303,21 @@
 
         <blockquote class="post-copyright">
     
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-04-18T08:40:28.231Z" itemprop="dateUpdated">2020-04-18 16:40:28</time>
+</span><br>
+
+
+        
+        欢迎留言评论！
+        
+    </div>
+    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="/" alt="然后就">
+            <img src="/images/hfq-favicon.jpg" alt="然后就">
             然后就
         </a>
     </footer>
@@ -221,6 +332,51 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&title=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&title=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -264,6 +420,30 @@
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '5266827d0c65b2c78ad9',
+          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
+          repo: 'blog_comment',
+          owner: 'HFQ123',
+          admin: ['HFQ123'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -276,6 +456,15 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
@@ -299,19 +488,87 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&title=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&title=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter3》 — 然后就的博客&url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/18/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter3/" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
