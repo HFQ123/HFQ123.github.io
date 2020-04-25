@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="设计模式,读书笔记">
-    <meta name="description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。  接下来">
+    <meta name="description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Head-First-设计模式》读书笔记charpter8">
 <meta property="og:url" content="http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。  接下来">
+<meta property="og:description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421145905200.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421150454878.png">
@@ -106,6 +106,13 @@
               <a href="https://github.com/HFQ123" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutMe" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                关于
               </a>
             </li>
         
@@ -199,14 +206,29 @@
 </blockquote> 
 
 <h2 id="具体应用场景"><a href="#具体应用场景" class="headerlink" title="具体应用场景"></a>具体应用场景</h2><p>从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。</p>
-<p><img src="/images/image-20200421145905200.png" alt="咖啡和茶的制作流程"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421145905200.png" alt="咖啡和茶的制作流程" title="">
+                </div>
+                <div class="image-caption">咖啡和茶的制作流程</div>
+            </figure>
+
 <p>接下来用代码表示咖啡的制作过程：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 咖啡的制作流程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//冲泡咖啡</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brewCoffeeGrinds();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addSugarAndMilk();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brewCoffeeGrinds</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dripping Coffee through filter"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addSugarAndMilk</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding sugar and milk"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同样的，茶的制作过程代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 茶的制作过程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tea</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//冲泡茶</span></span><br><span class="line">        boilWater();</span><br><span class="line">        steepTeaBag();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addLemon();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">steepTeaBag</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Steeping the tea"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLemon</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding lemon"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以发现，boilWater()和pourInCup()方法的代码重复了。究其原因，这是因为咖啡和茶的制作流程大致上一样，它们的制作过程都可以用下图的算法表示，1、3步骤是一样的，2、4步骤有差异，所以我们想到用继承的方法重用1、3步骤的代码，将实现1、3步骤的方法抽取到一个父类中，而2、4步骤这两个有差异的步骤在咖啡子类和茶子类中实现。<br><img src="/images/image-20200421150454878.png" alt="制作咖啡和制作茶的相同和不同的步骤"></p>
+<p>可以发现，boilWater()和pourInCup()方法的代码重复了。究其原因，这是因为咖啡和茶的制作流程大致上一样，它们的制作过程都可以用下图的算法表示，1、3步骤是一样的，2、4步骤有差异，所以我们想到用继承的方法重用1、3步骤的代码，将实现1、3步骤的方法抽取到一个父类中，而2、4步骤这两个有差异的步骤在咖啡子类和茶子类中实现。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421150454878.png" alt="制作咖啡和制作茶的相同和不同的步骤" title="">
+                </div>
+                <div class="image-caption">制作咖啡和制作茶的相同和不同的步骤</div>
+            </figure>
+
 <p>基于此想法，我们设置一个咖啡因饮料的父类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 咖啡因饮料的父类，是一个抽象类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123; <span class="comment">//为了防止子类修改制作流程，使用final关键字修饰</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addCondiments();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;   <span class="comment">//步骤1，共同的操作，由父类实现</span></span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span></span>;  <span class="comment">//步骤2，冲泡，由于不同饮料实现有差异，由子类实现</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;  <span class="comment">//步骤3，共同的操作，由父类实现</span></span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span></span>; <span class="comment">//步骤4，添加调料，由于不同饮料实现有差异，由子类实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -216,7 +238,14 @@
 <p>这样，我们就完成了共同代码（prepareRecipe()、boilWater()、pourInCup()三个方法）的重用。其中，prepareRecipe()方法就叫做<strong>模板方法</strong>。它作为制作咖啡因饮料算法的模板，在这个模板中，每个步骤都被一个方法代表了，其中，制作不同的咖啡因饮料有<strong>共同的步骤</strong>：就是上文说的步骤1和步骤3，它们可以直接在父类中实现(分别对应于boilWater()和pourInCup()方法)。制作不同的咖啡因饮料也有<strong>不同的步骤</strong>：步骤2和步骤4，由于子类有不同的实现，所以父类中不实现，设置为抽象方法，由子类实现，这就是模板方法模式中说的“将一些步骤延迟到子类中”。</p>
 <p>如果有新的制作流程一致的咖啡因饮料加入，只需要继承父类，并负责实现父类的抽象方法（表示制作步骤中不同的部分）。</p>
 <h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p>模板方法模式的UML建模图如下：</p>
-<p><img src="/images/image-20200421155001199.png" alt="模板方法模式的UML建模图"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421155001199.png" alt="模板方法模式的UML建模图" title="">
+                </div>
+                <div class="image-caption">模板方法模式的UML建模图</div>
+            </figure>
+
 <h2 id="使用钩子-Hook"><a href="#使用钩子-Hook" class="headerlink" title="使用钩子(Hook)"></a>使用钩子(Hook)</h2><p>在上例中引入一个新的需求：客户可以自行选择是否需要在饮料中加入调料（也就是选择是否执行制作饮料中的步骤4），这时模板方法的钩子就起作用了。</p>
 <p>做法很简单：在模板方法中，加入判断，如果判断为真，则执行步骤4，修改后的模板方法类代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//为了防止子类修改制作流程，使用final关键字修饰</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        <span class="keyword">if</span>(customerWantsCondimentsHook())&#123;</span><br><span class="line">            addCondiments();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	...省略了相同的代码.... </span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">customerWantsCondimentsHook</span><span class="params">()</span></span>&#123;  <span class="comment">//这是一个钩子，子类可以选择是否覆盖</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -228,7 +257,14 @@
 </blockquote> 
 
 <p>好莱坞原则和模板方法之间的连接比较明显，当我们设计模板方法模式时，我们告诉子类，不要调用我们，我们会调用你。让我们再看一下的咖啡因饮料的设计类图：</p>
-<p><img src="/images/image-20200421163742368.png" alt="好莱坞原则和模板方法"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421163742368.png" alt="好莱坞原则和模板方法" title="">
+                </div>
+                <div class="image-caption">好莱坞原则和模板方法</div>
+            </figure>
+
 <h2 id="Java-API中的模板方法"><a href="#Java-API中的模板方法" class="headerlink" title="Java API中的模板方法"></a>Java API中的模板方法</h2><p>书中指出，模板方法模式很常见，因为对于创建框架来说，这个模式简直棒极了。由框架控制如何做事情，而由使用框架的人指定框架算法中的每个步骤的细节。另外，模板方法有多种实现，不一定看起来和上例讲述的设计一致。</p>
 <p>书中给出三个java api中的模板方法示例：</p>
 <ul>
@@ -240,7 +276,16 @@
 </li>
 </ul>
 <p>第一个示例归结于模板方法我觉得似乎有些牵强，后两个示例平时开发没使用过，不熟悉。所以讲讲另外一个比较熟悉的示例吧：Servlet类的service()方法就是一个模板方法，定义了算法骨架，doGet()、doPost()方法是这个算法骨架中的具体步骤，子类可以实现自己的doGet()方法和doPost()方法，这样做子类自己的doGet()、doPost()方法就”挂进”了父类service()方法这一模板方法。 与我们上文咖啡因饮料示例不同的是，子类具有不同实现的方法在父类是抽象的，子类必须实现，而Servlet中的doGet()和doPost()有默认实现。</p>
-<p><img src="/images/image-20200421175736238.png" alt="Servlet中的模板方法"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421175736238.png" alt="Servlet中的模板方法" title="">
+                </div>
+                <div class="image-caption">Servlet中的模板方法</div>
+            </figure>
+
+
+
 <p>Servlet中的模板方法具体实现参考<a href="https://blog.csdn.net/y_love_f/article/details/38302413" target="_blank" rel="noopener">这里</a>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>模板方法模式实际上是封装了一个固定流程，该流程由几个步骤组成，具体步骤可以由子类进行不同实现，从而让固定的流程产生不同的结果。</li>
