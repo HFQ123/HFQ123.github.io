@@ -19,12 +19,12 @@
     
     
     <meta name="keywords" content="读书笔记,数据结构">
-    <meta name="description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。 本篇博客分享主题：「二叉搜索树」。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是一颗二叉搜索树。">
+    <meta name="description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。 本篇博客分享主题：「二叉搜索树」。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是一颗二叉搜索树。   为什么要引入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉搜索树学习笔记">
 <meta property="og:url" content="http://hfq123.github.io/2020/04/10/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。 本篇博客分享主题：「二叉搜索树」。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是一颗二叉搜索树。">
+<meta property="og:description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很详细的笔记了，所以很多地方没有再展开，着重写下自己的感悟以及记录一些细节。 本篇博客分享主题：「二叉搜索树」。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是一颗二叉搜索树。   为什么要引入">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200410222712471.png">
 <meta property="og:image" content="http://hfq123.github.io/2020/04/10/images/image-20200411002614229.png">
@@ -132,14 +132,7 @@
 <li>任意一个节点的值都<code>小于</code>其<code>右子树</code>所有节点的值。</li>
 <li>它的<code>左右子树</code>也是一颗二叉搜索树。</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200410222712471.png" alt="image-20200410222712471" title="">
-                </div>
-                <div class="image-caption">image-20200410222712471</div>
-            </figure>
-
+<p><img src="/images/image-20200410222712471.png" alt="image-20200410222712471"></p>
 <p>为什么要引入二叉搜索树，需求是什么？</p>
 <ul>
 <li><p>在数组中插入元素，搜索操作平均时间复杂度O(n)，插入操作复杂度O(1)</p>
@@ -159,14 +152,7 @@
 <li><p>add操作如果遇到相等的情况，为什么要覆盖？</p>
 </li>
 </ol>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="遍历-适用所有二叉树"><a href="#遍历-适用所有二叉树" class="headerlink" title="遍历(适用所有二叉树)"></a>遍历(适用所有二叉树)</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="../images/image-20200411002614229.png" alt="image-20200411002614229" title="">
-                </div>
-                <div class="image-caption">image-20200411002614229</div>
-            </figure>
-
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="遍历-适用所有二叉树"><a href="#遍历-适用所有二叉树" class="headerlink" title="遍历(适用所有二叉树)"></a>遍历(适用所有二叉树)</h3><p><img src="../images/image-20200411002614229.png" alt="image-20200411002614229"></p>
 <ol>
 <li><p>前序遍历(Preorder)，访问顺序： <code>根节点</code> -&gt; <code>前序遍历左子树</code> -&gt; <code>前序遍历右子树</code><br>递归实现。<br><strong>非递归实现</strong> ？！！！待解决</p>
 </li>
