@@ -17,6 +17,8 @@
     <title>《Head First 设计模式》读书笔记charpter1 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="设计模式,读书笔记">
     <meta name="description" content="本篇博客是《Head First 设计模式》第一章的读书笔记。 分享主题是设计模式中的 「策略模式(Strategy Pattern)」。 1、应用场景—一群鸭子引发的故事。书中给了这样一个例子作为应用场景引入：某公司有一套模拟鸭子游戏，游戏中会出现各种各样的鸭子，这些鸭子有一些动作：呱呱叫、戏水。按照面向对象的思想，系统设计为鸭子这一对象设计了一个名为Duck的超类，在这个类中，为实现动作呱呱叫">
@@ -41,8 +43,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -53,24 +55,66 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/images/hfq-favicon.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/HFQ123" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutMe" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -85,6 +129,20 @@
         </a>
         <div class="flex-col header-title ellipsis">《Head First 设计模式》读书笔记charpter1</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -113,6 +171,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、应用场景—一群鸭子引发的故事。"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、应用场景—一群鸭子引发的故事。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、解决思路—继承还是接口-？"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、解决思路—继承还是接口 ？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-通过继承实现"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 通过继承实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-通过接口实现"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 通过接口实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-策略模式"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 策略模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、总结与思考"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、总结与思考</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-《Head-First-设计模式》读书笔记charpter1"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -128,6 +193,10 @@
 
 
             
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -148,7 +217,14 @@
 </ul>
 <p>下文可以看到，通过使用策略模式能有效解决这些问题。</p>
 <h3 id="2-2-通过接口实现"><a href="#2-2-通过接口实现" class="headerlink" title="2.2 通过接口实现"></a>2.2 通过接口实现</h3><p>上面的解读以fly()举例，其实其他方法也可能存在类似的问题，比如说如果不同类的鸭子叫法不同，继承的quark()方法也会存在上述问题，有的鸭子这样飞、叫，有的鸭子那样飞、叫，有的鸭子不飞不叫。这时，我们就想到了将fly()、quark()从超类中取出来放进一个接口。如下图，以fly()为例，将其放进一个名为Flyable的接口。</p>
-<p><img src="/images/image-20200405165408727.png" alt="image文件夹"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200405165408727.png" alt="image文件夹" title="">
+                </div>
+                <div class="image-caption">image文件夹</div>
+            </figure>
+
 <p>*<em>分析 *</em>：这样一来，如果一个鸭子子类会飞则实现Flyable接口，将其fly()方法写到子类的方法体，如果不会飞则无需实现。</p>
 <p><strong>评价</strong>：从超类中分离出有些子类不需要的fly()、quack()方法，这样避免了部分子类继承它压根不需要的方法的情况。然而这样做的缺点也很明显，每次编写一个会飞的新的鸭子子类，都必须在子类中单独实现fly()方法（即使有和它飞行方式一样的其他子类），导致代码根本无法重用，所以这种方法非常不可取。</p>
 <h3 id="2-3-策略模式"><a href="#2-3-策略模式" class="headerlink" title="2.3 策略模式"></a>2.3 策略模式</h3><p>如何弥补思路1、2的缺陷，这就需要引入策略模式这一设计模式，讲策略模式之前，先引入2条设计原则。 </p>
@@ -160,9 +236,23 @@
 </blockquote>
 
 <p>我们可以利用接口代表每个行为，比如说，引入接口FlyBehavior与QuackBehavior分别代表了飞行、呱呱叫的行为，通过实现FlyBehavior接口的fly()方法，建立各种各样飞行的<strong>行为类</strong>，来描述不同飞行方式。与思路2通过接口实现的区别在于，我们不再是直接在Duck或者是它的子类中实现不同的fly()方法，而是再另外引入一个实现了FlyBehavior接口的行为类来实现fly()方法。本系统中，每个飞行的行为类都实现了FlyBehavior接口，而在Duck类中，我们定义一个FlyBehavior接口型的成员变量，来保存其对应的行为类的指针，以调用其飞行方法。</p>
-<p><img src="/images/image-20200406005221237.png" alt="image-20200406005221237"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406005221237.png" alt="image-20200406005221237" title="">
+                </div>
+                <div class="image-caption">image-20200406005221237</div>
+            </figure>
+
 <p>这样做就是策略模式的思路。使用策略模式后，本系统的全局类图如下图展示， 不变的方法swim()仍然在Duck超类中实现，而经常改变的fly()、quack()方法被抽离成为接口，再用具体的行为类去实现这些接口，在Duck超类中，保存对应的行为类一个对象的指针以确定该类鸭子的对应的fly、quack行为。</p>
-<p><img src="/images/image-20200406003932396.png" alt="image-20200406003932396"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406003932396.png" alt="image-20200406003932396" title="">
+                </div>
+                <div class="image-caption">image-20200406003932396</div>
+            </figure>
+
 <p>为什么说引入了策略模式会解决上述继承的四个问题呢？</p>
 <ul>
 <li>代码在多个子类中重复：如果使用继承，如果鸭子的飞行方式与超类中给定的的不一致，即使是有同样飞行方式的鸭子子类，也不能重用代码，因为它们都要在各自的类里重写fly()方法。而引入策略模式后，只需要为有同样飞行方式的鸭子子类编写一个实现了FlyBehavior的行为类。</li>
@@ -170,7 +260,14 @@
 <li>运行时的行为不容易改变：通过改变Duck或其子类对象的行为类的指针，就可以实现运行时切换飞行方式，也就是说，在Duck类中创建一个setFlyBehavior()方法，就可以随时改变鸭子的行为。</li>
 <li>改变会牵一发而动全身，造成其他鸭子不想要的改变：如果某种鸭子的飞行方式有所改变，只需要改变其行为类的引用，不影响其他鸭子子类。</li>
 </ul>
-<h2 id="3、总结与思考"><a href="#3、总结与思考" class="headerlink" title="3、总结与思考"></a>3、总结与思考</h2><p><img src="/images/image-20200406014158325.png" alt="image-20200406014158325"><br>是时候给出策略模式的概念了（像本文一样，书中在本章节的最后才给出其概念，也就是讲完了所有细节再告诉你你已经不知不觉地学会了策略模式，我个人觉得这种学习方法比较适合人认识新事物的规律，否则，如果开头就先抛出这个晦涩的概念就能把人吓跑了！）：</p>
+<h2 id="3、总结与思考"><a href="#3、总结与思考" class="headerlink" title="3、总结与思考"></a>3、总结与思考</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200406014158325.png" alt="image-20200406014158325" title="">
+                </div>
+                <div class="image-caption">image-20200406014158325</div>
+            </figure>
+<p>是时候给出策略模式的概念了（像本文一样，书中在本章节的最后才给出其概念，也就是讲完了所有细节再告诉你你已经不知不觉地学会了策略模式，我个人觉得这种学习方法比较适合人认识新事物的规律，否则，如果开头就先抛出这个晦涩的概念就能把人吓跑了！）：</p>
 <blockquote><p><strong>策略（Strategy）模式</strong>定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
 </blockquote>
 <p>本项目中，我们可以把鸭子飞行的方式看作是策略，描述不同鸭子飞行方式的代码就构成了策略的算法族。之所以说策略模式让使“算法的变化独立于使用算法的客户”，是因为使用策略模式可以方便地更改客户正在使用的策略（通过更改Context类中对策略的引用）。如果认为使用思路1的继承方法，不厌其烦地在子类中编写fly()的覆盖方法、多写上几行重复代码是可以接受的话，那么，能够随时方便地为类替换策略这个优点就是你无法拒绝策略模式的理由。</p>
@@ -189,9 +286,21 @@
 
         <blockquote class="post-copyright">
     
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-04-17T13:09:52.964Z" itemprop="dateUpdated">2020-04-17 21:09:52</time>
+</span><br>
+
+
+        
+        欢迎留言评论！
+        
+    </div>
+    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="/" alt="然后就">
+            <img src="/images/hfq-favicon.jpg" alt="然后就">
             然后就
         </a>
     </footer>
@@ -206,6 +315,51 @@
 
 
             
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&title=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&title=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
 
 
         </div>
@@ -249,6 +403,30 @@
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '5266827d0c65b2c78ad9',
+          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
+          repo: 'blog_comment',
+          owner: 'HFQ123',
+          admin: ['HFQ123'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -261,6 +439,15 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
@@ -284,19 +471,87 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&title=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&title=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head First 设计模式》读书笔记charpter1》 — 然后就的博客&url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/05/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter1/" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
