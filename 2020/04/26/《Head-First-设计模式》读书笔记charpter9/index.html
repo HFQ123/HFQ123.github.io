@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>《Head-First-设计模式》读书笔记charpter9 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+    <meta name="keywords" content="设计模式,读书笔记">
+    <meta name="description" content="本篇博客是《Head First 设计模式》第九章的读书笔记。 分享主题是设计模式中的 「迭代器模式(Iterator Pattern)」以及 「组合模式(Composite Pattern)」。 9-1 迭代器模式场景:菜单合并有一家早餐馆和一家饭馆合并了，我们需要合并2张菜单，由于以前它们底层实现的数据结构不同，早餐菜单是由AarryList实现的，而正餐菜单是由数组实现的，现在要打印合并后的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Head-First-设计模式》读书笔记charpter9">
+<meta property="og:url" content="http://hfq123.github.io/2020/04/26/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter9/index.html">
+<meta property="og:site_name" content="然后就的博客">
+<meta property="og:description" content="本篇博客是《Head First 设计模式》第九章的读书笔记。 分享主题是设计模式中的 「迭代器模式(Iterator Pattern)」以及 「组合模式(Composite Pattern)」。 9-1 迭代器模式场景:菜单合并有一家早餐馆和一家饭馆合并了，我们需要合并2张菜单，由于以前它们底层实现的数据结构不同，早餐菜单是由AarryList实现的，而正餐菜单是由数组实现的，现在要打印合并后的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-26T02:22:51.000Z">
+<meta property="article:modified_time" content="2020-04-26T04:59:46.492Z">
+<meta property="article:author" content="然后就">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="读书笔记">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">然后就</h5>
+          <a href="mailto:undefined" class="mail">
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《Head-First-设计模式》读书笔记charpter9</div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《Head-First-设计模式》读书笔记charpter9</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-04-26T02:22:51.000Z" itemprop="datePublished" class="page-time">
+  2020-04-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-《Head-First-设计模式》读书笔记charpter9"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《Head-First-设计模式》读书笔记charpter9</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-04-26 10:22:51" datetime="2020-04-26T02:22:51.000Z"  itemprop="datePublished">2020-04-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇博客是《Head First 设计模式》第九章的读书笔记。</p>
+<p>分享主题是设计模式中的 「迭代器模式(Iterator Pattern)」以及 「组合模式(Composite Pattern)」。</p>
+<h2 id="9-1-迭代器模式"><a href="#9-1-迭代器模式" class="headerlink" title="9-1 迭代器模式"></a>9-1 迭代器模式</h2><h3 id="场景-菜单合并"><a href="#场景-菜单合并" class="headerlink" title="场景:菜单合并"></a>场景:菜单合并</h3><p>有一家早餐馆和一家饭馆合并了，我们需要合并2张菜单，由于以前它们底层实现的数据结构不同，早餐菜单是由AarryList实现的，而正餐菜单是由数组实现的，现在要打印合并后的菜单。<br>注意：这里说的“合并”不要求底层实现的数据结构的统一，产生一个新的菜单，而只需要打印格式统一就行了，供服务员类菜单统一打印菜单。</p>
+<h4 id="思路1：依次打印两张菜单"><a href="#思路1：依次打印两张菜单" class="headerlink" title="思路1：依次打印两张菜单"></a>思路1：依次打印两张菜单</h4><h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>P.S.为了便于阅读，本文只给出了部分核心代码，完整代码见<a href="https://github.com/HFQ123/designpatternlearning" target="_blank" rel="noopener">GitHub</a>。</p>
+<p>pancakeHouseMenu类和DinerMenu类分别是早餐菜单和正餐菜单，代码略。</p>
+<p>服务员类代码：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Waitress</span></span>&#123;  <span class="comment">//服务员类，主要工作:打印菜单(包含早餐菜单和正餐菜单)</span></span><br><span class="line">     PancakeHouseMenu pancakeHouseMenu; <span class="comment">//早餐菜单对象，ArrayList实现</span></span><br><span class="line">     DinerMenu dinerMenu;            <span class="comment">//正餐菜单对象，数组实现</span></span><br><span class="line">    .....</span><br><span class="line">      <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">printMenu</span><span class="params">()</span></span>&#123;  <span class="comment">//思路1</span></span><br><span class="line">        System.out.println(<span class="string">"早餐--烙饼专场:"</span>);</span><br><span class="line">        ArrayList&lt;MenuItem&gt; arrayList = pancakeHouseMenu.getArrayList();</span><br><span class="line">        <span class="keyword">for</span>(MenuItem item : arrayList)&#123;</span><br><span class="line">            System.out.println(item.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"正餐--套餐饭专场："</span>);</span><br><span class="line">        MenuItem[] menuItems = dinerMenu.getMenuItems();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;menuItems.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(menuItems[i] == <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            System.out.println(menuItems[i].toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上代码，这种思路是依次打印早餐菜单和正餐菜单：</p>
+<ul>
+<li>用一个ArrayList对象接收早餐菜单，遍历这个ArrayList对象，打印每个早餐菜单项。</li>
+<li>用一个数组对象接收正餐菜单，遍历这个数组对象，打印每个正餐菜单项。</li>
+</ul>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><ul>
+<li>这种方法需要服务员类清楚地知道各个菜单的内部实现是怎么样的，这样才能分别使用正确的数据类型接收各菜单。</li>
+<li>如果有新的菜单需要合并（比如这家餐厅又并入了一个咖啡馆），毫无疑问，我们要修改服务员类的printMenu()方法：根据新的菜单的数据结构接收菜单，再遍历这个集合。</li>
+<li>总结前面两点，也就是说，如果有第三张菜单的出现，那么就会需要三个循环，服务员类需要清楚地知道这三张菜单各自的底层数据结构，数组？ArrayList ？HashTable？……</li>
+</ul>
+<h4 id="思路2：使用迭代器模式"><a href="#思路2：使用迭代器模式" class="headerlink" title="思路2：使用迭代器模式"></a>思路2：使用迭代器模式</h4><p>经过对思路1的分析，我们发现，对于服务员类来说，其实没有必要关注菜单实现的细节：不需要知道每张菜单的各个菜单项是存放在什么类型的集合中的，它只需要关注如何依次获得每个菜单项对象。为此，改进思路是设计原则中的<strong>封装变化的部分</strong>：在这里，需要封装由不同集合类型所造成的遍历。</p>
+<h6 id="使用迭代器之后"><a href="#使用迭代器之后" class="headerlink" title="使用迭代器之后"></a>使用迭代器之后</h6><p>以正餐菜单为例，设计迭代器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DinerMenu</span> <span class="keyword">implements</span> <span class="title">IMenu</span> </span>&#123;  <span class="comment">//正餐菜单</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> MAX_ITEMS = <span class="number">10</span> ;</span><br><span class="line">    <span class="keyword">int</span> numberOfItems = <span class="number">0</span> ;</span><br><span class="line">    MenuItem [] menuItems;</span><br><span class="line">	..........................<span class="comment">//省略了初始化代码</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">createIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DinerMenuIterator(<span class="keyword">this</span>.getMenuItems());  <span class="comment">//获得迭代器</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DinerMenuIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123; <span class="comment">//正餐菜单的迭代器</span></span><br><span class="line">    MenuItem [] items;  <span class="comment">//正餐菜单的数据结构是数组</span></span><br><span class="line">    <span class="keyword">int</span> postion = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DinerMenuIterator</span><span class="params">(MenuItem[] items)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.items = items;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(postion&gt;=items.length || items[postion]==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MenuItem <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> items[postion++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务员类中打印整张菜单的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">printMenuWithIterator</span><span class="params">()</span></span>&#123;  <span class="comment">//使用迭代器后，打印整张合并后的菜单</span></span><br><span class="line">    System.out.println(<span class="string">"早餐--烙饼专场:"</span>);</span><br><span class="line">   <span class="comment">// printMenu(pancakeHouseMenu.createIterator());</span></span><br><span class="line">    printMenu(pancakeHouseMenu.getArrayList().iterator());  <span class="comment">//pancakeHouseMenu的菜单项组织的数据结构是ArrayList，所以可以直接获得ArrayList内置的迭代器</span></span><br><span class="line">    System.out.println();</span><br><span class="line">    System.out.println(<span class="string">"正餐--套餐饭专场："</span>);</span><br><span class="line">    printMenu(dinerMenu.createIterator());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">printMenu</span><span class="params">(Iterator iterator)</span></span>&#123;  <span class="comment">//遍历某个菜单迭代器可访问的全部菜单项</span></span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">        MenuItem menuItem = (MenuItem) iterator.next();</span><br><span class="line">        System.out.println(menuItem.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，服务员类中，只需要调用各个菜单迭代器的hasNext()和next()来获得每个菜单项，无需关注其数据结构，只有在迭代器内部才需要关注具体的数据结构。</p>
+<h6 id="进一步改进："><a href="#进一步改进：" class="headerlink" title="进一步改进："></a>进一步改进：</h6><p>如上服务员类的代码，服务员类中分别组合了早餐菜单和午餐菜单两个对象，为了提高可拓展性，可以用一个ArrayList保存所有菜单，便于今后加入新的菜单或者删除现有菜单。</p>
+<p>改进后更加优雅的服务员类代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/26</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 更加优雅的服务员</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitressImproved</span> </span>&#123;</span><br><span class="line">    ArrayList menuList;  <span class="comment">//保存各个菜单</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WaitressImproved</span><span class="params">(ArrayList menuList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.menuList = menuList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printMenu</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Iterator menuIterator = menuList.iterator();</span><br><span class="line">        <span class="keyword">while</span> (menuIterator.hasNext())&#123; </span><br><span class="line">            IMenu menu = (IMenu) menuIterator.next();  <span class="comment">//遍历各个菜单 </span></span><br><span class="line">            printMenu(menu.createIterator());  <span class="comment">//调用printMenu方法依次遍历并打印该菜单的每个菜单项</span></span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">printMenu</span><span class="params">(Iterator iterator)</span></span>&#123;   <span class="comment">//遍历某个菜单迭代器可访问的全部菜单项</span></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            MenuItem menuItem = (MenuItem) iterator.next();</span><br><span class="line">            System.out.println(menuItem.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这样做的好处在于，如果有新的菜单（需要实现createIterator()方法，获得这个菜单的迭代器）加入，不需要修改服务员类的代码，就能直接调用打印整个菜单的功能。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote><p>迭代器模式提供一种顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示。</p>
+</blockquote> 
+
+<p>结合上例解读迭代器模式：服务员类不需要知道各个菜单内部究竟是用数组表示的还是ArrayList表示的，它只需要获得菜单的迭代器，来遍历其中的每个对象。</p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ul>
+<li>一个类应该只有一个引起变化的原因</li>
+</ul>
+<h3 id="java的Iterator接口"><a href="#java的Iterator接口" class="headerlink" title="java的Iterator接口"></a>java的Iterator接口</h3><p>迭代器模式在平时开发中经常用到。</p>
+<ul>
+<li>hasNext()</li>
+<li>next()</li>
+</ul>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://HFQ123.github.io">
+            <img src="/" alt="然后就">
+            然后就
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/04/26/%E5%AF%86%E7%A0%81%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">密码测试文章</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>然后就 &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
