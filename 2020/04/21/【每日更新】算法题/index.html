@@ -17,20 +17,18 @@
     <title>【每日更新】算法题 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="算法刷题,剑指Offer">
-    <meta name="description" content="20200425 晴题1复杂链表的复制做题前思路首先要注意要求是复制结点，而不是复制引用。 其次要注意random属性。 题2 序列化二叉树思路层序遍历。  在序列化操作的时候，要注意左右子树的空结点也要加入队列。 在反序列化的时候，用一个结点数组保存所有节点（包含左右空节点）。 1234567891011121314151617181920212223242526272829303132333">
+    <meta name="description" content="20200427 晴题1 按之字形顺序打印二叉树思路这题和昨天做的”把二叉树打印成多行“很像。都是用层序遍历的思路，区别就在于当访问行数是偶数，要将该行元素的ArrayList反转。 细节 Collections.reverse(arrayList); import java.util.Collections; arrayList.add() ,queue.offer()。一开始没注意写了arra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【每日更新】算法题">
 <meta property="og:url" content="http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="20200425 晴题1复杂链表的复制做题前思路首先要注意要求是复制结点，而不是复制引用。 其次要注意random属性。 题2 序列化二叉树思路层序遍历。  在序列化操作的时候，要注意左右子树的空结点也要加入队列。 在反序列化的时候，用一个结点数组保存所有节点（包含左右空节点）。 1234567891011121314151617181920212223242526272829303132333">
+<meta property="og:description" content="20200427 晴题1 按之字形顺序打印二叉树思路这题和昨天做的”把二叉树打印成多行“很像。都是用层序遍历的思路，区别就在于当访问行数是偶数，要将该行元素的ArrayList反转。 细节 Collections.reverse(arrayList); import java.util.Collections; arrayList.add() ,queue.offer()。一开始没注意写了arra">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421205013742.png">
 <meta property="article:published_time" content="2020-04-21T12:17:21.000Z">
-<meta property="article:modified_time" content="2020-04-25T16:22:18.441Z">
+<meta property="article:modified_time" content="2020-04-27T06:37:44.629Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="算法刷题">
 <meta property="article:tag" content="剑指Offer">
@@ -39,8 +37,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -51,66 +49,24 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/images/hfq-favicon.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/HFQ123" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/aboutMe" target="_blank" >
-                <i class="icon icon-lg icon-link"></i>
-                关于
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -125,20 +81,6 @@
         </a>
         <div class="flex-col header-title ellipsis">【每日更新】算法题</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -165,13 +107,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#20200425-晴"><span class="post-toc-number">1.</span> <span class="post-toc-text">20200425 晴</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题1复杂链表的复制"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">题1复杂链表的复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#做题前思路"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">做题前思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题2-序列化二叉树"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">题2 序列化二叉树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题3-数组中重复的数字"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">题3 数组中重复的数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路-1"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【待解决】题4-数组中的逆序对"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">【待解决】题4 数组中的逆序对</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路-2"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">思路</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#20200422"><span class="post-toc-number">2.</span> <span class="post-toc-text">20200422</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题1-二叉搜索树的第k个结点"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">题1 二叉搜索树的第k个结点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#做题前思路-1"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">做题前思路</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按照此思路的代码："><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">按照此思路的代码：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【待解决】题2-字符流中第一个不重复的字符"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">【待解决】题2 字符流中第一个不重复的字符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#做题前思路-2"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">做题前思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#知识点"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题3-统计一个数字在排序数组中出现的次数"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">题3 统计一个数字在排序数组中出现的次数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#做题前思路-3"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">做题前思路</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#20200421"><span class="post-toc-number">3.</span> <span class="post-toc-text">20200421</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题1：栈的压入、弹出序列"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">题1：栈的压入、弹出序列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码："><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">代码：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解析："><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">解析：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题2：二叉树的下一个结点"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">题2：二叉树的下一个结点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解析：-1"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">解析：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【待解决】题3-顺时针打印矩阵"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">【待解决】题3:顺时针打印矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题4-包含min函数的栈"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">题4:包含min函数的栈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路-3"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#知识点复习"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">知识点复习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码-1"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题解"><span class="post-toc-number">3.4.4.</span> <span class="post-toc-text">题解</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题5-把数组排成最小的数"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">题5 把数组排成最小的数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提示"><span class="post-toc-number">3.5.1.</span> <span class="post-toc-text">提示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#知识点复习-1"><span class="post-toc-number">3.5.2.</span> <span class="post-toc-text">知识点复习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码-2"><span class="post-toc-number">3.5.3.</span> <span class="post-toc-text">代码</span></a></li></ol></li></ol></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-【每日更新】算法题"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -185,24 +120,41 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <hr>
-<h1 id="20200425-晴"><a href="#20200425-晴" class="headerlink" title="20200425 晴"></a>20200425 晴</h1><h2 id="题1复杂链表的复制"><a href="#题1复杂链表的复制" class="headerlink" title="题1复杂链表的复制"></a>题1<a href="https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba" target="_blank" rel="noopener">复杂链表的复制</a></h2><h3 id="做题前思路"><a href="#做题前思路" class="headerlink" title="做题前思路"></a>做题前思路</h3><p>首先要注意要求是复制结点，而不是复制引用。</p>
-<p>其次要注意random属性。</p>
-<h2 id="题2-序列化二叉树"><a href="#题2-序列化二叉树" class="headerlink" title="题2 序列化二叉树"></a>题2 <a href="https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84" target="_blank" rel="noopener">序列化二叉树</a></h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>层序遍历。 </p>
-<p>在序列化操作的时候，要注意左右子树的空结点也要加入队列。</p>
-<p>在反序列化的时候，用一个结点数组保存所有节点（包含左右空节点）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">Serialize</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        Queue &lt;TreeNode&gt; queue = <span class="keyword">new</span>  LinkedList &lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            TreeNode currentNode = queue.poll();</span><br><span class="line">            <span class="keyword">if</span>(currentNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">                sb.append(currentNode.val+<span class="string">","</span>);</span><br><span class="line">                queue.offer(currentNode.left); <span class="comment">//不管是否为空都会加入队列</span></span><br><span class="line">                queue.offer(currentNode.right);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                sb.append(<span class="string">"#"</span>+<span class="string">","</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">        </span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function">TreeNode <span class="title">Deserialize</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        String [] nodeVals = str.split(<span class="string">","</span>);</span><br><span class="line">        TreeNode [] nodes = <span class="keyword">new</span> TreeNode[nodeVals.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nodeVals.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!nodeVals[i].equals(<span class="string">"#"</span>))&#123;</span><br><span class="line">               nodes[i] = <span class="keyword">new</span> TreeNode(Integer.valueOf(nodeVals[i]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(TreeNode node : nodes)&#123;</span><br><span class="line">            <span class="keyword">if</span>(node != <span class="keyword">null</span>)&#123;</span><br><span class="line">                node.left=nodes[i++];</span><br><span class="line">                node.right=nodes[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nodes[<span class="number">0</span>] ;</span><br><span class="line">       </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="20200427-晴"><a href="#20200427-晴" class="headerlink" title="20200427 晴"></a>20200427 晴</h1><h2 id="题1-按之字形顺序打印二叉树"><a href="#题1-按之字形顺序打印二叉树" class="headerlink" title="题1 按之字形顺序打印二叉树"></a>题1 <a href="https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0" target="_blank" rel="noopener">按之字形顺序打印二叉树</a></h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这题和昨天做的”<a href="https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288" target="_blank" rel="noopener">把二叉树打印成多行</a>“很像。都是用层序遍历的思路，区别就在于当访问行数是偶数，要将该行元素的ArrayList反转。</p>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ul>
+<li>Collections.reverse(arrayList); import java.util.Collections;</li>
+<li>arrayList.add() ,queue.offer()。一开始没注意写了arrayList.offer()报错了</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt; &gt; Print(TreeNode pRoot) &#123;</span><br><span class="line">        <span class="keyword">if</span>(pRoot == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>   <span class="keyword">new</span> ArrayList&lt;&gt;();          </span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt; &gt; rows = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Queue &lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(pRoot);</span><br><span class="line">        ArrayList&lt;Integer&gt; row = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> nextLevelNum = <span class="number">1</span>; <span class="comment">//记录还要访问几个元素可以到下一层，即每层元素的个数，初始化是1</span></span><br><span class="line">        <span class="keyword">boolean</span> needReverse = <span class="keyword">false</span>; <span class="comment">//记录当前行是否需要反转</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            <span class="comment">//队首节点出队列</span></span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            <span class="comment">//将节点值加入row</span></span><br><span class="line">            row.add(node.val);</span><br><span class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                queue.offer(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                queue.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            nextLevelNum--;</span><br><span class="line">            <span class="keyword">if</span>(nextLevelNum == <span class="number">0</span>)&#123;<span class="comment">//说明该层访问完了</span></span><br><span class="line">                <span class="keyword">if</span>(needReverse)&#123;</span><br><span class="line">                    Collections.reverse(row);</span><br><span class="line">                &#125;</span><br><span class="line">                rows.add(row);</span><br><span class="line">                row = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                <span class="comment">//重新设定nextLevelNum和needReverse</span></span><br><span class="line">                nextLevelNum = queue.size();</span><br><span class="line">                needReverse = !needReverse;</span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rows;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="题3-数组中重复的数字"><a href="#题3-数组中重复的数字" class="headerlink" title="题3 数组中重复的数字"></a>题3 <a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8" target="_blank" rel="noopener">数组中重复的数字</a></h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>HashSet 时间复杂度O(n)  空间复杂度O(n)</p>
+<h2 id="题2-平衡二叉树"><a href="#题2-平衡二叉树" class="headerlink" title="题2 平衡二叉树"></a>题2 <a href="https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222" target="_blank" rel="noopener">平衡二叉树</a></h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>我的思路就是根据AVL定义解决，然而自顶向下递归必然会存在很多重复计算。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean IsBalanced_Solution(TreeNode root) &#123;</span><br><span class="line">        if(root &#x3D;&#x3D; null)</span><br><span class="line">            return true;</span><br><span class="line">        int balanceFactor &#x3D; treeHeight(root.left) - treeHeight(root.right);</span><br><span class="line">        return Math.abs(balanceFactor) &lt;&#x3D; 1 &amp;&amp; IsBalanced_Solution(root.left) &amp;&amp; IsBalanced_Solution(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    public int treeHeight(TreeNode node)&#123;</span><br><span class="line">        if(node &#x3D;&#x3D; null)</span><br><span class="line">            return 0;</span><br><span class="line">        int leftHeight &#x3D; treeHeight(node.left);</span><br><span class="line">        int rightHeight &#x3D;  treeHeight(node.right);</span><br><span class="line">        return Math.max(leftHeight,rightHeight)+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在计算每个节点的深度的时候，进行了多次的重复计算，这样计算的开销还是比较大的。</p>
+<hr>
+<h1 id="20200426-晴"><a href="#20200426-晴" class="headerlink" title="20200426 晴"></a>20200426 晴</h1><h2 id="题1-把二叉树打印成多行"><a href="#题1-把二叉树打印成多行" class="headerlink" title="题1 把二叉树打印成多行"></a>题1 <a href="https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288" target="_blank" rel="noopener">把二叉树打印成多行</a></h2><h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>显然，此题是层序遍历的应用。二叉树的层序遍历很简单，使用队列就能完成，本题要在层序遍历的基础上使用一个变量，来记录下一层的元素个数，每当遍历完了一层，就更新这个值，且换行。</p>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul>
+<li>题目给的方法返回值是 ArrayList&lt;ArrayList<Integer> &gt; ，一开始没反应过来，后来仔细一想，是每行的元素单独保存在一个ArrayList里，再返回所有行的元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt; &gt; Print(TreeNode pRoot) &#123;</span><br><span class="line">        <span class="keyword">if</span>(pRoot==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ArrayList &lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> nextLevelNum = <span class="number">1</span>; <span class="comment">//记录还要访问几个元素才到下一层,初始值为1,因为第一层肯定只有根节点一个元素</span></span><br><span class="line">        Queue &lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(pRoot);</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; rows = <span class="keyword">new</span> ArrayList&lt;&gt;(); </span><br><span class="line">        ArrayList &lt;Integer&gt; row = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            TreeNode node = queue.poll();<span class="comment">//当前队头节点出队列</span></span><br><span class="line">            row.add(node.val);    <span class="comment">//将节点的元素值加入到row列表</span></span><br><span class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123; <span class="comment">//并将其非空子节点加入队列</span></span><br><span class="line">                queue.offer(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                queue.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            nextLevelNum--;  <span class="comment">//每访问完了一个节点，nextLevelNum就减1</span></span><br><span class="line">            <span class="keyword">if</span>(nextLevelNum == <span class="number">0</span>)&#123; <span class="comment">//说明这一层已经访问完了，要重新设置它的取值,它的取值其实就是当前队列的元素个数</span></span><br><span class="line">                nextLevelNum = queue.size();</span><br><span class="line">                rows.add(row);</span><br><span class="line">                row = <span class="keyword">new</span> ArrayList&lt;&gt;(); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rows;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节："><a href="#细节：" class="headerlink" title="细节："></a>细节：</h3><ul>
+<li><p>队列操作的API、导入所在包，nextLevelNum这个变量是本题精髓！</p>
+</li>
+<li><pre><code class="java">    <span class="keyword">if</span>(pRoot==<span class="keyword">null</span>)
+        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList &lt;&gt;();  一开始写的<span class="keyword">return</span> <span class="keyword">null</span>，无法通过！
+&lt;!--￼<span class="number">3</span>--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+<h2 id="题3-数组中重复的数字"><a href="#题3-数组中重复的数字" class="headerlink" title="题3 数组中重复的数字"></a>题3 <a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8" target="_blank" rel="noopener">数组中重复的数字</a></h2><h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><p>HashSet 时间复杂度O(n)  空间复杂度O(n)</p>
 <p>参考别人的：重排数组 ：时间复杂度O(n)，空间复杂度O(1)。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span>数组中重复的数字 </span>&#123;</span><br><span class="line">    <span class="comment">// Parameters:</span></span><br><span class="line">    <span class="comment">//    numbers:     an array of integers</span></span><br><span class="line">    <span class="comment">//    length:      the length of array numbers</span></span><br><span class="line">    <span class="comment">//    duplication: (Output) the duplicated number in the array number,length of duplication array is 1,so using duplication[0] = ? in implementation;</span></span><br><span class="line">    <span class="comment">//                  Here duplication like pointor in C/C++, duplication[0] equal *duplication in C/C++</span></span><br><span class="line">    <span class="comment">//    这里要特别注意~返回任意重复的一个，赋值duplication[0]</span></span><br><span class="line">    <span class="comment">// Return value:       true if the input is valid, and there are some duplications in the array number</span></span><br><span class="line">    <span class="comment">//                     otherwise false</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">duplicate</span><span class="params">(<span class="keyword">int</span> numbers[],<span class="keyword">int</span> length,<span class="keyword">int</span> [] duplication)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(numbers == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        HashSet &lt;Integer&gt; set = <span class="keyword">new</span> HashSet &lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;numbers.length ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!set.contains(numbers[i]))&#123;</span><br><span class="line">                set.add(numbers[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                duplication[<span class="number">0</span>] = numbers[i];</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -210,17 +162,17 @@
 
 
 
-<h2 id="【待解决】题4-数组中的逆序对"><a href="#【待解决】题4-数组中的逆序对" class="headerlink" title="【待解决】题4 数组中的逆序对"></a>【待解决】题4 <a href="https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5" target="_blank" rel="noopener">数组中的逆序对</a></h2><h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ul>
+<h2 id="【待解决】题4-数组中的逆序对"><a href="#【待解决】题4-数组中的逆序对" class="headerlink" title="【待解决】题4 数组中的逆序对"></a>【待解决】题4 <a href="https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5" target="_blank" rel="noopener">数组中的逆序对</a></h2><h3 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h3><ul>
 <li>暴力求解：从第一个元素开始，判断后面比它小的元素的个数  O(n^2)，不出所料，运行超时，通过50%的用例。</li>
 <li>【待学习】提示：归并的改进</li>
 </ul>
 <hr>
-<h1 id="20200422"><a href="#20200422" class="headerlink" title="20200422"></a>20200422</h1><h2 id="题1-二叉搜索树的第k个结点"><a href="#题1-二叉搜索树的第k个结点" class="headerlink" title="题1 二叉搜索树的第k个结点"></a>题1 <a href="https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a" target="_blank" rel="noopener">二叉搜索树的第k个结点</a></h2><h3 id="做题前思路-1"><a href="#做题前思路-1" class="headerlink" title="做题前思路"></a>做题前思路</h3><p>给定一棵二叉搜索树，请找出其中的第k小的结点。根据BST中序遍历结果是升序的这一性质，可以中序遍历，直到遍历到第k个结点。</p>
+<h1 id="20200422"><a href="#20200422" class="headerlink" title="20200422"></a>20200422</h1><h2 id="题1-二叉搜索树的第k个结点"><a href="#题1-二叉搜索树的第k个结点" class="headerlink" title="题1 二叉搜索树的第k个结点"></a>题1 <a href="https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a" target="_blank" rel="noopener">二叉搜索树的第k个结点</a></h2><h3 id="做题前思路"><a href="#做题前思路" class="headerlink" title="做题前思路"></a>做题前思路</h3><p>给定一棵二叉搜索树，请找出其中的第k小的结点。根据BST中序遍历结果是升序的这一性质，可以中序遍历，直到遍历到第k个结点。</p>
 <h3 id="按照此思路的代码："><a href="#按照此思路的代码：" class="headerlink" title="按照此思路的代码："></a>按照此思路的代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//中序递归，成功AC</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num;    <span class="comment">//num表示当前中序遍历已经访问了几个元素</span></span><br><span class="line">    TreeNode node; <span class="comment">//node存放结果</span></span><br><span class="line">    <span class="function">TreeNode <span class="title">KthNode</span><span class="params">(TreeNode pRoot, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       inorder(pRoot,k);</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inorder</span><span class="params">(TreeNode node,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        inorder(node.left,k);</span><br><span class="line">        num++;</span><br><span class="line">        <span class="keyword">if</span>(num==k)&#123;</span><br><span class="line">            <span class="keyword">this</span>.node=node;</span><br><span class="line">            <span class="keyword">return</span>;  <span class="comment">//结束后续的访问</span></span><br><span class="line">        &#125;</span><br><span class="line">        inorder(node.right,k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>分析：就算找到了Kth结点也会遍历完整个BST。时间复杂度是O(N)</p>
 <p>改进：可以考虑非递归实现中序遍历，这样就能在找到Kth结点后结束遍历。</p>
-<h2 id="【待解决】题2-字符流中第一个不重复的字符"><a href="#【待解决】题2-字符流中第一个不重复的字符" class="headerlink" title="【待解决】题2 字符流中第一个不重复的字符"></a>【待解决】题2 <a href="https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720" target="_blank" rel="noopener">字符流中第一个不重复的字符</a></h2><h2 id="做题前思路-2"><a href="#做题前思路-2" class="headerlink" title="做题前思路"></a>做题前思路</h2><p>hashmap</p>
+<h2 id="【待解决】题2-字符流中第一个不重复的字符"><a href="#【待解决】题2-字符流中第一个不重复的字符" class="headerlink" title="【待解决】题2 字符流中第一个不重复的字符"></a>【待解决】题2 <a href="https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720" target="_blank" rel="noopener">字符流中第一个不重复的字符</a></h2><h2 id="做题前思路-1"><a href="#做题前思路-1" class="headerlink" title="做题前思路"></a>做题前思路</h2><p>hashmap</p>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
 <li>LinkedHashMap和HashMap的差别<ul>
 <li>LinkedHashMap</li>
@@ -228,7 +180,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="题3-统计一个数字在排序数组中出现的次数"><a href="#题3-统计一个数字在排序数组中出现的次数" class="headerlink" title="题3 统计一个数字在排序数组中出现的次数"></a>题3 <a href="https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2" target="_blank" rel="noopener">统计一个数字在排序数组中出现的次数</a></h2><h3 id="做题前思路-3"><a href="#做题前思路-3" class="headerlink" title="做题前思路"></a>做题前思路</h3><ul>
+<h2 id="题3-统计一个数字在排序数组中出现的次数"><a href="#题3-统计一个数字在排序数组中出现的次数" class="headerlink" title="题3 统计一个数字在排序数组中出现的次数"></a>题3 <a href="https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2" target="_blank" rel="noopener">统计一个数字在排序数组中出现的次数</a></h2><h3 id="做题前思路-2"><a href="#做题前思路-2" class="headerlink" title="做题前思路"></a>做题前思路</h3><ul>
 <li><p>法1：二分查找定位该数字，再找左边和右边相等的元素个数。</p>
 </li>
 <li><p><a href="https://www.cnblogs.com/lishanlei/p/10707678.html" target="_blank" rel="noopener">多种方法改进参考文章</a></p>
@@ -249,7 +201,7 @@
 <h3 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h3><p>以输入{1,2,3,4,5}，{4,5,3,2,1}为例。</p>
 <p>借助一个辅助栈，遍历压栈序列，先将第一个元素放在栈中，这里是1，然后判断栈顶元素是不是出栈序列的第一个元素，这里1≠4，所以继续压栈，直到相等之后开始出栈，出栈一个元素，对于出栈序列向后移动一位，直到不相等，这样循环等压栈顺序遍历完成，如果辅助栈还不为空，说明弹出序列不是该栈的弹出顺序。</p>
 <p> 我的代码没有用JDK提供的Stack，而是用一个数组+size模拟栈。</p>
-<h2 id="题2：二叉树的下一个结点"><a href="#题2：二叉树的下一个结点" class="headerlink" title="题2：二叉树的下一个结点"></a>题2：<a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e" target="_blank" rel="noopener">二叉树的下一个结点</a></h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeLinkNode <span class="title">GetNext</span><span class="params">(TreeLinkNode pNode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TreeLinkNode successor = <span class="keyword">null</span>; <span class="comment">//表示后续结点，保存返回结果</span></span><br><span class="line">        <span class="comment">//当这个结点有右子树，那么其后续结点必然在其右子树中的最小的元素</span></span><br><span class="line">        <span class="keyword">if</span>(pNode.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            successor = pNode.right;  </span><br><span class="line">            <span class="keyword">while</span>(successor.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                successor = successor.left;  <span class="comment">//一直向左走找最小的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pNode.next != <span class="keyword">null</span>)&#123;  <span class="comment">//没有右子树但是有根节点</span></span><br><span class="line">            successor = pNode;  </span><br><span class="line">            <span class="keyword">while</span>(successor.next != <span class="keyword">null</span> &amp;&amp; successor == successor.next.right)&#123;</span><br><span class="line">                successor = successor.next; <span class="comment">//当此结点始终是其父节点的右子树的时候，逐级找父节点</span></span><br><span class="line">            &#125;</span><br><span class="line">            successor = successor.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> successor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="题2：二叉树的下一个结点"><a href="#题2：二叉树的下一个结点" class="headerlink" title="题2：二叉树的下一个结点"></a>题2：<a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e" target="_blank" rel="noopener">二叉树的下一个结点</a></h2><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeLinkNode <span class="title">GetNext</span><span class="params">(TreeLinkNode pNode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TreeLinkNode successor = <span class="keyword">null</span>; <span class="comment">//表示后续结点，保存返回结果</span></span><br><span class="line">        <span class="comment">//当这个结点有右子树，那么其后续结点必然在其右子树中的最小的元素</span></span><br><span class="line">        <span class="keyword">if</span>(pNode.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            successor = pNode.right;  </span><br><span class="line">            <span class="keyword">while</span>(successor.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                successor = successor.left;  <span class="comment">//一直向左走找最小的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pNode.next != <span class="keyword">null</span>)&#123;  <span class="comment">//没有右子树但是有根节点</span></span><br><span class="line">            successor = pNode;  </span><br><span class="line">            <span class="keyword">while</span>(successor.next != <span class="keyword">null</span> &amp;&amp; successor == successor.next.right)&#123;</span><br><span class="line">                successor = successor.next; <span class="comment">//当此结点始终是其父节点的右子树的时候，逐级找父节点</span></span><br><span class="line">            &#125;</span><br><span class="line">            successor = successor.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> successor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="解析：-1"><a href="#解析：-1" class="headerlink" title="解析："></a>解析：</h3><p>求二叉树某一结点的后续结点。</p>
 <p><img src="/images/image-20200421205013742.png" alt="image-20200421205013742"></p>
@@ -278,7 +230,7 @@
 
 <h2 id="题4-包含min函数的栈"><a href="#题4-包含min函数的栈" class="headerlink" title="题4:包含min函数的栈"></a>题4:<a href="https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49" target="_blank" rel="noopener">包含min函数的栈</a></h2><p>定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。</p>
 <p>注意：保证测试中不会当栈为空的时候，对栈调用pop()或者min()或者top()方法。</p>
-<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><p>一开始我的想法很简单，用一个使用一个变量记录当前的最小元素，如果新压入栈的元素更小，就更新它。</p>
+<h3 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h3><p>一开始我的想法很简单，用一个使用一个变量记录当前的最小元素，如果新压入栈的元素更小，就更新它。</p>
 <p>但是仔细一想，这种做法有一个问题，假如记录的最小元素出栈了，就没办法以O(1）的时间复杂度获取新的最小元素了，所以在保存最小元素的同时，有必要保存最小元素出栈后次要小的元素，同理，也要保存第三小的元素….</p>
 <p>所以，要用一个辅助栈来保存当前的最小元素以及之前的的最小元素，栈顶就是当前栈的最小元素，栈顶元素的下一个元素就是这个元素出栈后的新的最小元素。</p>
 <ul>
@@ -292,12 +244,12 @@
 <li>pop()</li>
 <li>push()</li>
 </ul>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Stack &lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();  <span class="comment">//数据栈 </span></span><br><span class="line">    <span class="keyword">public</span> Stack &lt;Integer&gt; minStack = <span class="keyword">new</span> Stack&lt;&gt;();; <span class="comment">//辅助栈</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack.push(node);</span><br><span class="line">        <span class="keyword">if</span>(stack.size()==<span class="number">1</span>)&#123;  <span class="comment">//现在是1，说明压栈前是0。</span></span><br><span class="line">            minStack.push(node);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            minStack.push(node&lt;minStack.peek() ? node : minStack.peek());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Stack &lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();  <span class="comment">//数据栈 </span></span><br><span class="line">    <span class="keyword">public</span> Stack &lt;Integer&gt; minStack = <span class="keyword">new</span> Stack&lt;&gt;();; <span class="comment">//辅助栈</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack.push(node);</span><br><span class="line">        <span class="keyword">if</span>(stack.size()==<span class="number">1</span>)&#123;  <span class="comment">//现在是1，说明压栈前是0。</span></span><br><span class="line">            minStack.push(node);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            minStack.push(node&lt;minStack.peek() ? node : minStack.peek());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>关键字 ：最小值辅助栈</p>
 <h2 id="题5-把数组排成最小的数"><a href="#题5-把数组排成最小的数" class="headerlink" title="题5 把数组排成最小的数"></a>题5 <a href="https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993" target="_blank" rel="noopener">把数组排成最小的数</a></h2><p>没啥思路，借鉴了网上的<a href="https://blog.csdn.net/xiaoxingxing1744/article/details/84191277" target="_blank" rel="noopener">解法</a>，觉得很妙。</p>
 <p>关键字：自定义比较大小的方法。</p>
-<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>转成字符串，自定义比较器后排序</p>
+<h3 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h3><p>转成字符串，自定义比较器后排序</p>
 <h3 id="知识点复习-1"><a href="#知识点复习-1" class="headerlink" title="知识点复习"></a>知识点复习</h3><ul>
 <li><p>int类型转成String类型</p>
 <ul>
@@ -330,7 +282,7 @@
 
 </li>
 </ul>
-<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/22</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to:</span></span><br><span class="line"><span class="comment"> * 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，</span></span><br><span class="line"><span class="comment"> * 打印能拼接出的所有数字中最小的一个。例如输入数组&#123;3，32，321&#125;，则打印出这三个数字能排成的最小数字为321323。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span>把数组排成最小的数 </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">PrintMinNumber</span><span class="params">(<span class="keyword">int</span> [] numbers)</span> </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        String numString [] = <span class="keyword">new</span> String[numbers.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numbers.length; i++)&#123;</span><br><span class="line">            numString[i]=String.valueOf(numbers[i]); <span class="comment">//将整数转成字符串</span></span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(numString, <span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String str1, String str2)</span> </span>&#123;   <span class="comment">//3  12  312 123</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (String str : numString)&#123;</span><br><span class="line">            sb.append(str);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[]numbers=&#123;<span class="number">3</span>,<span class="number">32</span>,<span class="number">321</span>&#125;;</span><br><span class="line">        System.out.println(PrintMinNumber(numbers));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/22</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to:</span></span><br><span class="line"><span class="comment"> * 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，</span></span><br><span class="line"><span class="comment"> * 打印能拼接出的所有数字中最小的一个。例如输入数组&#123;3，32，321&#125;，则打印出这三个数字能排成的最小数字为321323。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span>把数组排成最小的数 </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">PrintMinNumber</span><span class="params">(<span class="keyword">int</span> [] numbers)</span> </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        String numString [] = <span class="keyword">new</span> String[numbers.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numbers.length; i++)&#123;</span><br><span class="line">            numString[i]=String.valueOf(numbers[i]); <span class="comment">//将整数转成字符串</span></span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(numString, <span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String str1, String str2)</span> </span>&#123;   <span class="comment">//3  12  312 123</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (String str : numString)&#123;</span><br><span class="line">            sb.append(str);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[]numbers=&#123;<span class="number">3</span>,<span class="number">32</span>,<span class="number">321</span>&#125;;</span><br><span class="line">        System.out.println(PrintMinNumber(numbers));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -340,21 +292,9 @@
 
         <blockquote class="post-copyright">
     
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2020-04-25T16:22:18.441Z" itemprop="dateUpdated">2020-04-26 00:22:18</time>
-</span><br>
-
-
-        
-        欢迎留言评论！
-        
-    </div>
-    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="/images/hfq-favicon.jpg" alt="然后就">
+            <img src="/" alt="然后就">
             然后就
         </a>
     </footer>
@@ -369,51 +309,6 @@
 
 
             
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【每日更新】算法题》 — 然后就的博客&url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
 
 
         </div>
@@ -457,30 +352,6 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="gitalk-container"></div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-        var id = location.pathname
-        if (location.pathname.length > 50) {
-          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
-        }
-        const gitalk = new Gitalk({
-          clientID: '5266827d0c65b2c78ad9',
-          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
-          repo: 'blog_comment',
-          owner: 'HFQ123',
-          admin: ['HFQ123'],
-          id: id,      // Ensure uniqueness and length less than 50
-          title: document.title.split('|')[0],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</section>
-
 
 
 
@@ -493,15 +364,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -525,87 +387,19 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【每日更新】算法题》 — 然后就的博客&url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
