@@ -1,7 +1,7 @@
 ---
 title: 《Head-First-设计模式》读书笔记charpter5
 date: 2020-04-18 22:19:15
-tags: [设计模式,读书笔记]
+tags: [设计模式,笔记]
 category: 设计模式 
 ---
 
