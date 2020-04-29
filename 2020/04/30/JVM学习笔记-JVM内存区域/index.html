@@ -29,7 +29,7 @@
 <meta property="og:description" content="学习JVM有一段时间了，消化后整理了此笔记便于自己复习，此系列定位为“笔记”，一些地方就写得比较精简了，适合已经系统学习过JVM的读者翻阅。 主要参考材料是《深入理解Java虚拟机》第二版。 JVM内存区域运行时数据区域Java虚拟机在执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据区域，每个区域有各自的用途。 根据该区域是否是线程私有，可以分为线程私有的区域和线程共享的区域。 线">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-29T16:38:18.000Z">
-<meta property="article:modified_time" content="2020-04-29T18:44:41.413Z">
+<meta property="article:modified_time" content="2020-04-29T19:33:51.315Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="JVM">
 <meta property="article:tag" content="笔记">
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JVM内存区域"><span class="post-toc-number">1.</span> <span class="post-toc-text">JVM内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行时数据区域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">运行时数据区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程私有的内存区域"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">线程私有的内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序计数器"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">程序计数器</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Java虚拟机栈"><span class="post-toc-number">1.1.1.2.</span> <span class="post-toc-text">Java虚拟机栈</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#本地方法栈"><span class="post-toc-number">1.1.1.3.</span> <span class="post-toc-text">本地方法栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程共享的内存区域"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">线程共享的内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#堆"><span class="post-toc-number">1.1.2.1.</span> <span class="post-toc-text">堆</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#方法区"><span class="post-toc-number">1.1.2.2.</span> <span class="post-toc-text">方法区</span></a></li></ol></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JVM内存区域"><span class="post-toc-number">1.</span> <span class="post-toc-text">JVM内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行时数据区域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">运行时数据区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程私有的内存区域"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">线程私有的内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序计数器"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">程序计数器</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Java虚拟机栈"><span class="post-toc-number">1.1.1.2.</span> <span class="post-toc-text">Java虚拟机栈</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#本地方法栈"><span class="post-toc-number">1.1.1.3.</span> <span class="post-toc-text">本地方法栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程共享的内存区域"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">线程共享的内存区域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#堆"><span class="post-toc-number">1.1.2.1.</span> <span class="post-toc-text">堆</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#方法区"><span class="post-toc-number">1.1.2.2.</span> <span class="post-toc-text">方法区</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HotSpot虚拟机对象探秘"><span class="post-toc-number">2.</span> <span class="post-toc-text">HotSpot虚拟机对象探秘</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象的创建"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">对象的创建</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象的内存布局"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">对象的内存布局</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象的访问"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">对象的访问</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实战-OutOfMemoryError异常"><span class="post-toc-number">3.</span> <span class="post-toc-text">实战:OutOfMemoryError异常</span></a></li></ol>
         </nav>
     </aside>
 
@@ -218,6 +218,73 @@
 <p>Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有常量池信息（用于存放编译期生成的各种字面量和符号引用），类加载后Class文件中的常量池信息就进入了方法区的运行时常量池。</p>
 </li>
 </ul>
+<h2 id="HotSpot虚拟机对象探秘"><a href="#HotSpot虚拟机对象探秘" class="headerlink" title="HotSpot虚拟机对象探秘"></a>HotSpot虚拟机对象探秘</h2><p>《深入理解Java虚拟机》书中详细地介绍在HotSpot虚拟机在堆中对象分配、布局和访问的全过程。</p>
+<h3 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h3><p>对象的创建总体上有这几个步骤：</p>
+<ul>
+<li><p>类加载检查</p>
+<p>虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p>
+</li>
+<li><p>为新生对象分配内存</p>
+<p>在类加载检查通过后，接下来虚拟机将为新生对象分配内存。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。<strong>分配方式</strong>有 <strong>“指针碰撞”</strong> 和 <strong>“空闲列表”</strong> 两种，<strong>选择那种分配方式由 Java 堆是否规整决定，而 Java 堆是否规整又由所采用的垃圾收集器是否带有压缩整理功能决定</strong>。</p>
+</li>
+<li><p>初始化为零值</p>
+<p>内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），这一步操作保证了对象的实例字段在 Java 代码中可以不赋初始值就直接使用，程序能访问到这些字段的数据类型所对应的零值。</p>
+</li>
+<li><p>对象头的设置</p>
+<p>初始化零值完成之后，虚拟机要对对象进行必要的设置，例如这个对象是那个类的实例、如何才能找到<strong>类的元数据信息、对象的哈希码、对象的 GC 分代年龄等信息</strong>。 <strong>这些信息存放在对象头中。</strong> 另外，根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式。</p>
+</li>
+<li><p>执行init方法</p>
+<p>把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完全产生出来。</p>
+</li>
+</ul>
+<h3 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h3><p>在 Hotspot 虚拟机中，对象在内存中的布局可以分为 3 块区域：<strong>对象头</strong>、<strong>实例数据</strong>和<strong>对齐填充</strong>。</p>
+<p><strong>Hotspot 虚拟机的对象头包括两部分信息</strong>，<strong>第一部分用于存储对象自身的运行时数据</strong>，如哈希码、GC 分代年龄、锁状态标志等等,被官方称作Mark Word，<strong>另一部分是类型指针</strong>，即对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</p>
+<p><strong>实例数据部分是对象真正存储的有效信息</strong>，也是在程序中所定义的各种类型的字段内容。</p>
+<p><strong>对齐填充部分不是必然存在的，也没有什么特别的含义，仅仅起占位作用。</strong> 对象的大小必须是 8 字节的整数倍。</p>
+<h3 id="对象的访问"><a href="#对象的访问" class="headerlink" title="对象的访问"></a>对象的访问</h3><p>建立对象就是为了使用对象，我们的 Java 程序需要通过栈上的 reference 数据来操作堆上的具体对象。对象的访问方式由虚拟机实现而定，目前主流的访问方式有<strong>使用句柄</strong>和<strong>直接指针</strong>两种。</p>
+<p>这两种对象访问方式各有优势，使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。</p>
+<p>。。。此处待上图。。。</p>
+<h2 id="实战-OutOfMemoryError异常"><a href="#实战-OutOfMemoryError异常" class="headerlink" title="实战:OutOfMemoryError异常"></a>实战:OutOfMemoryError异常</h2><p>上面讲的都是理论，在实战中，可能会遇到OOM的问题，我们开发人员要做的就是快速判断是哪个区域的内存溢出，知道什么样的代码可能会导致这些区域内存溢出，以及出现这些异常该如何处理。</p>
+<table>
+<thead>
+<tr>
+<th>内存溢出区域</th>
+<th>报错信息</th>
+<th>可能的原因</th>
+<th>解决方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>堆</td>
+<td>OOM java heap space</td>
+<td></td>
+<td>调节堆大小(-Xms,-Xmx)<br />检查代码对象的生命周期是否合理</td>
+</tr>
+<tr>
+<td>栈</td>
+<td>StackoverflowError</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>OutOfMemoryError</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>方法区</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
         </div>
 
@@ -226,7 +293,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-04-29T18:44:41.413Z" itemprop="dateUpdated">2020-04-30 02:44:41</time>
+    最后更新时间：<time datetime="2020-04-29T19:33:51.315Z" itemprop="dateUpdated">2020-04-30 03:33:51</time>
 </span><br>
 
 
