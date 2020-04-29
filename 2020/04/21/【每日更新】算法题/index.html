@@ -42,8 +42,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -62,11 +62,11 @@
     <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/images/hfq-favicon.jpg">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -83,35 +83,42 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                归档
+                Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                标签
+                Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                分类
+                Categories
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/HFQ123" target="_blank" >
+              <a href="https://github.com/yscoder" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/aboutMe" target="_blank" >
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
                 <i class="icon icon-lg icon-link"></i>
-                关于
+                测试
               </a>
             </li>
         
@@ -343,7 +350,14 @@
 
 <p>这种做法完全是使用定义做的，比如说当A[n]=5，则B[3] = A[0]XA[1]XA[2]XA[4]，B[4]=A[0]XA[1]XA[2]XA[3]，可以看到计算B[3]和B[4]时有重叠计算的部分（A[0]XA[1]XA[2]）。要想优化，我们就看看是否可以只计算一次重叠的部分。</p>
 <p>确实有这样的优化方法，可以将时间复杂度从O(n^2)优化成O(n)。</p>
-<p><img src="../images/image-20200428213947621.png" alt="image-20200428213947621"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="../images/image-20200428213947621.png" alt="image-20200428213947621" title="">
+                </div>
+                <div class="image-caption">image-20200428213947621</div>
+            </figure>
+
 <p>上图参考了《剑指Offer》，基于此思路的改进代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] multiply(<span class="keyword">int</span>[] A) &#123;</span><br><span class="line">        <span class="keyword">int</span> left [] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];    <span class="comment">//左下角计算的中间结果(含对角线)</span></span><br><span class="line">        <span class="keyword">int</span> right[] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];    <span class="comment">//右下角计算的中间结果(含对角线)</span></span><br><span class="line">        <span class="keyword">int</span> B[] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];        <span class="comment">//返回结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">                left[i]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                left[i] = left[i-<span class="number">1</span>] * A[i-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = A.length-<span class="number">1</span>; i &gt;=<span class="number">0</span> ; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==A.length-<span class="number">1</span>)&#123;</span><br><span class="line">                right[i] = <span class="number">1</span>; </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right[i] = right[i+<span class="number">1</span>] * A[i+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            B[i] = left [i] *right [i]; <span class="comment">//在这个循环就可以直接出B[i]，不用再重新写一个for循环。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -421,7 +435,14 @@
 
 
 <p><img src="/images/image-20200427235728192.png" alt="第n级竖着放"></p>
-<p><img src="/images/image-20200427235839863.png" alt="第n级横着放"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200427235839863.png" alt="第n级横着放" title="">
+                </div>
+                <div class="image-caption">第n级横着放</div>
+            </figure>
+
 <h3 id="改进-1"><a href="#改进-1" class="headerlink" title="改进"></a>改进</h3><p>递归做会有多次的重复计算，可以考虑空间换时间，动态规划求斐波那契数列。</p>
 <p>此处略。</p>
 <h2 id="【待解决】题4二进制中1的个数"><a href="#【待解决】题4二进制中1的个数" class="headerlink" title="## 【待解决】题4二进制中1的个数"></a>## 【待解决】题4<a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8" target="_blank" rel="noopener">二进制中1的个数</a></h2><h3 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h3><p>题目要求是求整数的补码中的1的个数。</p>
@@ -508,7 +529,14 @@
 <h2 id="题2：二叉树的下一个结点"><a href="#题2：二叉树的下一个结点" class="headerlink" title="题2：二叉树的下一个结点"></a>题2：<a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e" target="_blank" rel="noopener">二叉树的下一个结点</a></h2><h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeLinkNode <span class="title">GetNext</span><span class="params">(TreeLinkNode pNode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TreeLinkNode successor = <span class="keyword">null</span>; <span class="comment">//表示后续结点，保存返回结果</span></span><br><span class="line">        <span class="comment">//当这个结点有右子树，那么其后续结点必然在其右子树中的最小的元素</span></span><br><span class="line">        <span class="keyword">if</span>(pNode.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            successor = pNode.right;  </span><br><span class="line">            <span class="keyword">while</span>(successor.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                successor = successor.left;  <span class="comment">//一直向左走找最小的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pNode.next != <span class="keyword">null</span>)&#123;  <span class="comment">//没有右子树但是有根节点</span></span><br><span class="line">            successor = pNode;  </span><br><span class="line">            <span class="keyword">while</span>(successor.next != <span class="keyword">null</span> &amp;&amp; successor == successor.next.right)&#123;</span><br><span class="line">                successor = successor.next; <span class="comment">//当此结点始终是其父节点的右子树的时候，逐级找父节点</span></span><br><span class="line">            &#125;</span><br><span class="line">            successor = successor.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> successor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="解析：-1"><a href="#解析：-1" class="headerlink" title="解析："></a>解析：</h3><p>求二叉树某一结点的后续结点。</p>
-<p><img src="/images/image-20200421205013742.png" alt="image-20200421205013742"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200421205013742.png" alt="image-20200421205013742" title="">
+                </div>
+                <div class="image-caption">image-20200421205013742</div>
+            </figure>
+
 <p>根据这个pNode结点的状态，分为三种情况求解:</p>
 <ul>
 <li>pNode存在右子树，那么其后续结点必然在其右子树中。<ul>
@@ -604,19 +632,23 @@
 
 
         
-        欢迎留言评论！
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" target="_blank" rel="external">http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/</a>
         
     </div>
     
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="/images/hfq-favicon.jpg" alt="然后就">
+            <img src="/img/avatar.jpg" alt="然后就">
             然后就
         </a>
     </footer>
 </blockquote>
 
         
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
 
 
         <div class="post-footer">
@@ -631,7 +663,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -713,34 +745,36 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="gitalk-container"></div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-        var id = location.pathname
-        if (location.pathname.length > 50) {
-          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
-        }
-        const gitalk = new Gitalk({
-          clientID: '5266827d0c65b2c78ad9',
-          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
-          repo: 'blog_comment',
-          owner: 'HFQ123',
-          admin: ['HFQ123'],
-          id: id,      // Ensure uniqueness and length less than 50
-          title: document.title.split('|')[0],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</section>
-
 
 
 
 </article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
 
 
 
@@ -767,7 +801,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>然后就 &copy; 2020</span>
+        <p><span>然后就 &copy; 2015 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -785,7 +819,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/&title=《【每日更新】算法题》 — 然后就的博客&pic=http://HFQ123.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -829,12 +863,12 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -854,7 +888,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
@@ -864,6 +898,23 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 
