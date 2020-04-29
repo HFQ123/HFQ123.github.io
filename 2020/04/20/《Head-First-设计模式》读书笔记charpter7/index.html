@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     
-    <meta name="keywords" content="设计模式,读书笔记">
+    <meta name="keywords" content="设计模式,笔记">
     <meta name="description" content="本篇博客是《Head First 设计模式》第七章的读书笔记。 分享主题是设计模式中的 「适配器模式(Adapter Pattern)」以及 「外观模式(Facade Pattern)」。 适配器模式由于这两种设计模式都比较好理解，所以先直接从定义讲起。 定义适配器模式将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。    日常生活的类比我们先用日常生活中例子类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Head-First-设计模式》读书笔记charpter7">
@@ -34,10 +34,10 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421011820380.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421011152136.png">
 <meta property="article:published_time" content="2020-04-20T14:40:09.000Z">
-<meta property="article:modified_time" content="2020-04-20T17:20:51.356Z">
+<meta property="article:modified_time" content="2020-04-29T17:40:09.874Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="设计模式">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://hfq123.github.io/images/image-20200420230152018.png">
     
@@ -140,23 +140,9 @@
 </blockquote> 
 
 <h3 id="日常生活的类比"><a href="#日常生活的类比" class="headerlink" title="日常生活的类比"></a>日常生活的类比</h3><p>我们先用日常生活中例子类比来理解适配器模式。如下图，由于接口的差异，美国笔记本电脑插头无法直接插进欧洲插座获电，而使用了中间的接口转换器后，问题就解决了。而值得注意的是，从无法使用到可以使用，我们既没有改变插座，也没有改变插头，唯一的变化就是引入了接口转换器这一<strong>适配器</strong>。在这里，这个适配器的作用就是将现有的不符合标准的插头接口“转化”成目标接口，这也正是适配器模式做的全部工作。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200420230152018.png" alt="插头接口转换器的例子" title="">
-                </div>
-                <div class="image-caption">插头接口转换器的例子</div>
-            </figure>
-
+<p><img src="/images/image-20200420230152018.png" alt="插头接口转换器的例子"></p>
 <h3 id="具体应用场景"><a href="#具体应用场景" class="headerlink" title="具体应用场景"></a>具体应用场景</h3><p>如下图，系统中有两个接口:Duck和Turkey，它们都有fly()方法，这两个接口的差异在于Duck的quack()和Turkey接口的gobble()方法。MallardDuck和WildTurkey分别实现了Duck接口和Turkey接口。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200420231854471.png" alt="image-20200420231854471" title="">
-                </div>
-                <div class="image-caption">image-20200420231854471</div>
-            </figure>
-
+<p><img src="/images/image-20200420231854471.png" alt="image-20200420231854471"></p>
 <p>此外，在外部有个testDuck方法，它的参数是一个Duck对象，在方法体内分别调用了这个Duck对象的quack()方法和fly()方法，我们无需关注它的目的是什么，只需要关注要想调用这个方法，需要一个Duck类型的对象作为参数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testDuck</span><span class="params">(Duck duck)</span></span>&#123;</span><br><span class="line">     duck.quack();</span><br><span class="line">     duck.fly();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
@@ -164,14 +150,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"A duck says:"</span>);</span><br><span class="line">    Duck mallardDuck =<span class="keyword">new</span> MallardDuck();</span><br><span class="line">    testDuck(mallardDuck);  <span class="comment">//这行代码可以正常执行</span></span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"A turkey says:"</span>);</span><br><span class="line">    Turkey wildTurkey =<span class="keyword">new</span> WildTurkey();</span><br><span class="line">    testDuck(wildTurkey);   <span class="comment">//这行代码必然会报错，因为wildTurkey 不是 Duck类型的。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们用这个例子来类比上文中插头接口转换器的例子，testDuck()这个方法就相当于上例中的插座，它要求一个Duck对象作为参数才可以正常使用（换句话说，它的标准是Duck接口），就相当于欧洲插座要求一个符合欧洲标准的插头才能正常使用，不符合testDuck()标准的wildTurkey对象就相当于上例中的美国插头（类比详见下图）。而如果我们要是想在不改动WildTurkey类代码的基础上，完成testDuck(wildTurkey)这条语句的功能，就要想办法构建一个上例中的适配器。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421001232960.png" alt="类比插头接口转换器的例子" title="">
-                </div>
-                <div class="image-caption">类比插头接口转换器的例子</div>
-            </figure>
-
+<p><img src="/images/image-20200421001232960.png" alt="类比插头接口转换器的例子"></p>
 <p>构建TurkeyAdapter这个适配器：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 为Turkey接口构造适配器，以使得它符合Duck接口这个标准</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span></span>&#123;   <span class="comment">//适配器要实现目标接口Duck</span></span><br><span class="line">    Turkey turkey;   <span class="comment">//组合了一个Turkey接口的对象</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey = turkey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123; <span class="comment">//这里直接调用了turkey的gobble方法，当然，你也可以做点别的</span></span><br><span class="line">        <span class="keyword">this</span>.turkey.gobble();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey.fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -181,47 +160,16 @@
 <p>至此，一个应用适配器模式的demo就写完了。引入了适配器后，在既不修改WildTurkey类代码、又不修改testDuck方法的代码的基础上，我们完成了原本不兼容的工作，看上去就像实现了将一个Turkey接口的对象转化成一个Duck接口的对象。</p>
 <h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><p>适配器模式的UML建模图如下，为了便于理解，我结合刚才的例子添加了红字标注出上例中的各个部分分别代表了什么。适配器Adpter实现了目标接口，且其类中组合了一个被适配器Adptee的对象。</p>
 <p>p.s 我本篇博客介绍的例子是采用对象组合的方式实现适配器模式，书中还给出了另外一种实现适配器模式的思路——多重继承，简而言之就是Adapter既继承Target，又继承Adaptee，由于java语法不支持多重继承，在此不做过多介绍。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421003327658.png" alt="适配器模式的UML图" title="">
-                </div>
-                <div class="image-caption">适配器模式的UML图</div>
-            </figure>
-
+<p><img src="/images/image-20200421003327658.png" alt="适配器模式的UML图"></p>
 <p>以上就是适配器模式的全部内容了，是不是很简单！接下来一起来看看更简单的外观模式吧。</p>
 <h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote><p>外观模式提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
 </blockquote> 
 
-<h3 id="具体应用场景-1"><a href="#具体应用场景-1" class="headerlink" title="具体应用场景"></a>具体应用场景</h3><p>书中给出的例子是家庭影院的例子：放映电影需要执行一系列任务，这些任务涉及到了多个对象（以及它们对应的多个方法），这导致了每次需要放映电影都要写上一长串代码。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421005039865.png" alt="image-20200421005039865" title="">
-                </div>
-                <div class="image-caption">image-20200421005039865</div>
-            </figure>
-
+<h3 id="具体应用场景-1"><a href="#具体应用场景-1" class="headerlink" title="具体应用场景"></a>具体应用场景</h3><p>书中给出的例子是家庭影院的例子：放映电影需要执行一系列任务，这些任务涉及到了多个对象（以及它们对应的多个方法），这导致了每次需要放映电影都要写上一长串代码。<br><img src="/images/image-20200421005039865.png" alt="image-20200421005039865"></p>
 <p>你需要的正是一个外观：有了外观模式，通过实现一个更合理的接口的外观类，你可以将一个复杂的子系统变的容易使用。所以我们引入一个外观类HomeTheaterFacade，这个类中组合了所有与放映电影相关的对象（爆米花机、投影仪等等），它提供了一些更加友好的方法（每个方法都是一个子系统）以供调用，调用方不用知道方法内部是如何做的，以放映电影为例，调用方只需要提供需要完成放映操作的对象实例化HomeTheaterFacade，再调用它的watchMovie()方法，引入外观模式后的类图如下所示：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421011820380.png" alt="家庭影院外观类图" title="">
-                </div>
-                <div class="image-caption">家庭影院外观类图</div>
-            </figure>
-
+<p><img src="/images/image-20200421011820380.png" alt="家庭影院外观类图"></p>
 <p>放映电影的内部方法代码和调用放映电影方法的代码见下图：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421011152136.png" alt="放映电影方法、调用放映电影方法的代码实现" title="">
-                </div>
-                <div class="image-caption">放映电影方法、调用放映电影方法的代码实现</div>
-            </figure>
-
-
-
+<p><img src="/images/image-20200421011152136.png" alt="放映电影方法、调用放映电影方法的代码实现"></p>
 <h2 id="适配器模式和外观模式总结"><a href="#适配器模式和外观模式总结" class="headerlink" title="适配器模式和外观模式总结"></a>适配器模式和外观模式总结</h2><p>适配器模式在不修改接口的代码的基础上，提供了将一个接口转成另一个接口的方法，以达到兼容。</p>
 <p>外观模式定义了一个高层接口,让子系统更容易使用，接口简单对调用方更友好。</p>
 
@@ -242,7 +190,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
 
 
             
