@@ -17,16 +17,14 @@
     <title>《Head-First-设计模式》读书笔记charpter8 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
     
-    
-    <meta name="keywords" content="设计模式,读书笔记">
-    <meta name="description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。">
+    <meta name="keywords" content="设计模式,笔记">
+    <meta name="description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。  接下来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Head-First-设计模式》读书笔记charpter8">
 <meta property="og:url" content="http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。">
+<meta property="og:description" content="本篇博客是《Head First 设计模式》第八章的读书笔记。 分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。 定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。    具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。  接下来">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421145905200.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421150454878.png">
@@ -34,17 +32,17 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421163742368.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421175736238.png">
 <meta property="article:published_time" content="2020-04-21T06:52:00.000Z">
-<meta property="article:modified_time" content="2020-04-21T10:12:58.507Z">
+<meta property="article:modified_time" content="2020-04-29T16:40:34.452Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="设计模式">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://hfq123.github.io/images/image-20200421145905200.png">
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -55,66 +53,24 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/images/hfq-favicon.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">然后就</h5>
-          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/HFQ123" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/aboutMe" target="_blank" >
-                <i class="icon icon-lg icon-link"></i>
-                关于
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -129,20 +85,6 @@
         </a>
         <div class="flex-col header-title ellipsis">《Head-First-设计模式》读书笔记charpter8</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -171,13 +113,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#具体应用场景"><span class="post-toc-number">2.</span> <span class="post-toc-text">具体应用场景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#UML图"><span class="post-toc-number">3.</span> <span class="post-toc-text">UML图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用钩子-Hook"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用钩子(Hook)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#好莱坞原则"><span class="post-toc-number">5.</span> <span class="post-toc-text">好莱坞原则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java-API中的模板方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">Java API中的模板方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-《Head-First-设计模式》读书笔记charpter8"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -193,10 +128,6 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -206,29 +137,14 @@
 </blockquote> 
 
 <h2 id="具体应用场景"><a href="#具体应用场景" class="headerlink" title="具体应用场景"></a>具体应用场景</h2><p>从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421145905200.png" alt="咖啡和茶的制作流程" title="">
-                </div>
-                <div class="image-caption">咖啡和茶的制作流程</div>
-            </figure>
-
+<p><img src="/images/image-20200421145905200.png" alt="咖啡和茶的制作流程"></p>
 <p>接下来用代码表示咖啡的制作过程：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 咖啡的制作流程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//冲泡咖啡</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brewCoffeeGrinds();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addSugarAndMilk();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brewCoffeeGrinds</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dripping Coffee through filter"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addSugarAndMilk</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding sugar and milk"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同样的，茶的制作过程代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 茶的制作过程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tea</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//冲泡茶</span></span><br><span class="line">        boilWater();</span><br><span class="line">        steepTeaBag();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addLemon();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">steepTeaBag</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Steeping the tea"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLemon</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding lemon"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以发现，boilWater()和pourInCup()方法的代码重复了。究其原因，这是因为咖啡和茶的制作流程大致上一样，它们的制作过程都可以用下图的算法表示，1、3步骤是一样的，2、4步骤有差异，所以我们想到用继承的方法重用1、3步骤的代码，将实现1、3步骤的方法抽取到一个父类中，而2、4步骤这两个有差异的步骤在咖啡子类和茶子类中实现。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421150454878.png" alt="制作咖啡和制作茶的相同和不同的步骤" title="">
-                </div>
-                <div class="image-caption">制作咖啡和制作茶的相同和不同的步骤</div>
-            </figure>
-
+<p>可以发现，boilWater()和pourInCup()方法的代码重复了。究其原因，这是因为咖啡和茶的制作流程大致上一样，它们的制作过程都可以用下图的算法表示，1、3步骤是一样的，2、4步骤有差异，所以我们想到用继承的方法重用1、3步骤的代码，将实现1、3步骤的方法抽取到一个父类中，而2、4步骤这两个有差异的步骤在咖啡子类和茶子类中实现。<br><img src="/images/image-20200421150454878.png" alt="制作咖啡和制作茶的相同和不同的步骤"></p>
 <p>基于此想法，我们设置一个咖啡因饮料的父类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Created</span> by hfq on 2020/4/21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@used</span> to: 咖啡因饮料的父类，是一个抽象类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123; <span class="comment">//为了防止子类修改制作流程，使用final关键字修饰</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addCondiments();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span></span>&#123;   <span class="comment">//步骤1，共同的操作，由父类实现</span></span><br><span class="line">        System.out.println(<span class="string">"Bolling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span></span>;  <span class="comment">//步骤2，冲泡，由于不同饮料实现有差异，由子类实现</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span></span>&#123;  <span class="comment">//步骤3，共同的操作，由父类实现</span></span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span></span>; <span class="comment">//步骤4，添加调料，由于不同饮料实现有差异，由子类实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -238,14 +154,7 @@
 <p>这样，我们就完成了共同代码（prepareRecipe()、boilWater()、pourInCup()三个方法）的重用。其中，prepareRecipe()方法就叫做<strong>模板方法</strong>。它作为制作咖啡因饮料算法的模板，在这个模板中，每个步骤都被一个方法代表了，其中，制作不同的咖啡因饮料有<strong>共同的步骤</strong>：就是上文说的步骤1和步骤3，它们可以直接在父类中实现(分别对应于boilWater()和pourInCup()方法)。制作不同的咖啡因饮料也有<strong>不同的步骤</strong>：步骤2和步骤4，由于子类有不同的实现，所以父类中不实现，设置为抽象方法，由子类实现，这就是模板方法模式中说的“将一些步骤延迟到子类中”。</p>
 <p>如果有新的制作流程一致的咖啡因饮料加入，只需要继承父类，并负责实现父类的抽象方法（表示制作步骤中不同的部分）。</p>
 <h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p>模板方法模式的UML建模图如下：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421155001199.png" alt="模板方法模式的UML建模图" title="">
-                </div>
-                <div class="image-caption">模板方法模式的UML建模图</div>
-            </figure>
-
+<p><img src="/images/image-20200421155001199.png" alt="模板方法模式的UML建模图"></p>
 <h2 id="使用钩子-Hook"><a href="#使用钩子-Hook" class="headerlink" title="使用钩子(Hook)"></a>使用钩子(Hook)</h2><p>在上例中引入一个新的需求：客户可以自行选择是否需要在饮料中加入调料（也就是选择是否执行制作饮料中的步骤4），这时模板方法的钩子就起作用了。</p>
 <p>做法很简单：在模板方法中，加入判断，如果判断为真，则执行步骤4，修改后的模板方法类代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span></span>&#123;  <span class="comment">//为了防止子类修改制作流程，使用final关键字修饰</span></span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        <span class="keyword">if</span>(customerWantsCondimentsHook())&#123;</span><br><span class="line">            addCondiments();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	...省略了相同的代码.... </span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">customerWantsCondimentsHook</span><span class="params">()</span></span>&#123;  <span class="comment">//这是一个钩子，子类可以选择是否覆盖</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -257,14 +166,7 @@
 </blockquote> 
 
 <p>好莱坞原则和模板方法之间的连接比较明显，当我们设计模板方法模式时，我们告诉子类，不要调用我们，我们会调用你。让我们再看一下的咖啡因饮料的设计类图：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421163742368.png" alt="好莱坞原则和模板方法" title="">
-                </div>
-                <div class="image-caption">好莱坞原则和模板方法</div>
-            </figure>
-
+<p><img src="/images/image-20200421163742368.png" alt="好莱坞原则和模板方法"></p>
 <h2 id="Java-API中的模板方法"><a href="#Java-API中的模板方法" class="headerlink" title="Java API中的模板方法"></a>Java API中的模板方法</h2><p>书中指出，模板方法模式很常见，因为对于创建框架来说，这个模式简直棒极了。由框架控制如何做事情，而由使用框架的人指定框架算法中的每个步骤的细节。另外，模板方法有多种实现，不一定看起来和上例讲述的设计一致。</p>
 <p>书中给出三个java api中的模板方法示例：</p>
 <ul>
@@ -276,16 +178,7 @@
 </li>
 </ul>
 <p>第一个示例归结于模板方法我觉得似乎有些牵强，后两个示例平时开发没使用过，不熟悉。所以讲讲另外一个比较熟悉的示例吧：Servlet类的service()方法就是一个模板方法，定义了算法骨架，doGet()、doPost()方法是这个算法骨架中的具体步骤，子类可以实现自己的doGet()方法和doPost()方法，这样做子类自己的doGet()、doPost()方法就”挂进”了父类service()方法这一模板方法。 与我们上文咖啡因饮料示例不同的是，子类具有不同实现的方法在父类是抽象的，子类必须实现，而Servlet中的doGet()和doPost()有默认实现。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421175736238.png" alt="Servlet中的模板方法" title="">
-                </div>
-                <div class="image-caption">Servlet中的模板方法</div>
-            </figure>
-
-
-
+<p><img src="/images/image-20200421175736238.png" alt="Servlet中的模板方法"></p>
 <p>Servlet中的模板方法具体实现参考<a href="https://blog.csdn.net/y_love_f/article/details/38302413" target="_blank" rel="noopener">这里</a>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>模板方法模式实际上是封装了一个固定流程，该流程由几个步骤组成，具体步骤可以由子类进行不同实现，从而让固定的流程产生不同的结果。</li>
@@ -296,21 +189,9 @@
 
         <blockquote class="post-copyright">
     
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2020-04-21T10:12:58.507Z" itemprop="dateUpdated">2020-04-21 18:12:58</time>
-</span><br>
-
-
-        
-        欢迎留言评论！
-        
-    </div>
-    
     <footer>
         <a href="http://HFQ123.github.io">
-            <img src="/images/hfq-favicon.jpg" alt="然后就">
+            <img src="/" alt="然后就">
             然后就
         </a>
     </footer>
@@ -321,55 +202,10 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
 
 
             
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&title=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&title=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
 
 
         </div>
@@ -413,30 +249,6 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="gitalk-container"></div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-        var id = location.pathname
-        if (location.pathname.length > 50) {
-          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
-        }
-        const gitalk = new Gitalk({
-          clientID: '5266827d0c65b2c78ad9',
-          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
-          repo: 'blog_comment',
-          owner: 'HFQ123',
-          admin: ['HFQ123'],
-          id: id,      // Ensure uniqueness and length less than 50
-          title: document.title.split('|')[0],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</section>
-
 
 
 
@@ -449,15 +261,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -481,87 +284,19 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&title=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&title=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Head-First-设计模式》读书笔记charpter8》 — 然后就的博客&url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/&via=http://HFQ123.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
