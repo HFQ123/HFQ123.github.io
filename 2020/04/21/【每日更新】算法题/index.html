@@ -274,14 +274,7 @@
 
 <p>这种做法完全是使用定义做的，比如说当A[n]=5，则B[3] = A[0]XA[1]XA[2]XA[4]，B[4]=A[0]XA[1]XA[2]XA[3]，可以看到计算B[3]和B[4]时有重叠计算的部分（A[0]XA[1]XA[2]）。要想优化，我们就看看是否可以只计算一次重叠的部分。</p>
 <p>确实有这样的优化方法，可以将时间复杂度从O(n^2)优化成O(n)。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="../images/image-20200428213947621.png" alt="image-20200428213947621" title="">
-                </div>
-                <div class="image-caption">image-20200428213947621</div>
-            </figure>
-
+<p><img src="../images/image-20200428213947621.png" alt="image-20200428213947621"></p>
 <p>上图参考了《剑指Offer》，基于此思路的改进代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] multiply(<span class="keyword">int</span>[] A) &#123;</span><br><span class="line">        <span class="keyword">int</span> left [] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];    <span class="comment">//左下角计算的中间结果(含对角线)</span></span><br><span class="line">        <span class="keyword">int</span> right[] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];    <span class="comment">//右下角计算的中间结果(含对角线)</span></span><br><span class="line">        <span class="keyword">int</span> B[] = <span class="keyword">new</span> <span class="keyword">int</span> [A.length];        <span class="comment">//返回结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">                left[i]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                left[i] = left[i-<span class="number">1</span>] * A[i-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = A.length-<span class="number">1</span>; i &gt;=<span class="number">0</span> ; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==A.length-<span class="number">1</span>)&#123;</span><br><span class="line">                right[i] = <span class="number">1</span>; </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right[i] = right[i+<span class="number">1</span>] * A[i+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            B[i] = left [i] *right [i]; <span class="comment">//在这个循环就可以直接出B[i]，不用再重新写一个for循环。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -359,14 +352,7 @@
 
 
 <p><img src="/images/image-20200427235728192.png" alt="第n级竖着放"></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200427235839863.png" alt="第n级横着放" title="">
-                </div>
-                <div class="image-caption">第n级横着放</div>
-            </figure>
-
+<p><img src="/images/image-20200427235839863.png" alt="第n级横着放"></p>
 <h3 id="改进-1"><a href="#改进-1" class="headerlink" title="改进"></a>改进</h3><p>递归做会有多次的重复计算，可以考虑空间换时间，动态规划求斐波那契数列。</p>
 <p>此处略。</p>
 <h2 id="【待解决】题4二进制中1的个数"><a href="#【待解决】题4二进制中1的个数" class="headerlink" title="## 【待解决】题4二进制中1的个数"></a>## 【待解决】题4<a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8" target="_blank" rel="noopener">二进制中1的个数</a></h2><h3 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h3><p>题目要求是求整数的补码中的1的个数。</p>
@@ -453,14 +439,7 @@
 <h2 id="题2：二叉树的下一个结点"><a href="#题2：二叉树的下一个结点" class="headerlink" title="题2：二叉树的下一个结点"></a>题2：<a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e" target="_blank" rel="noopener">二叉树的下一个结点</a></h2><h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeLinkNode <span class="title">GetNext</span><span class="params">(TreeLinkNode pNode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TreeLinkNode successor = <span class="keyword">null</span>; <span class="comment">//表示后续结点，保存返回结果</span></span><br><span class="line">        <span class="comment">//当这个结点有右子树，那么其后续结点必然在其右子树中的最小的元素</span></span><br><span class="line">        <span class="keyword">if</span>(pNode.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            successor = pNode.right;  </span><br><span class="line">            <span class="keyword">while</span>(successor.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                successor = successor.left;  <span class="comment">//一直向左走找最小的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pNode.next != <span class="keyword">null</span>)&#123;  <span class="comment">//没有右子树但是有根节点</span></span><br><span class="line">            successor = pNode;  </span><br><span class="line">            <span class="keyword">while</span>(successor.next != <span class="keyword">null</span> &amp;&amp; successor == successor.next.right)&#123;</span><br><span class="line">                successor = successor.next; <span class="comment">//当此结点始终是其父节点的右子树的时候，逐级找父节点</span></span><br><span class="line">            &#125;</span><br><span class="line">            successor = successor.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> successor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="解析：-1"><a href="#解析：-1" class="headerlink" title="解析："></a>解析：</h3><p>求二叉树某一结点的后续结点。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200421205013742.png" alt="image-20200421205013742" title="">
-                </div>
-                <div class="image-caption">image-20200421205013742</div>
-            </figure>
-
+<p><img src="/images/image-20200421205013742.png" alt="image-20200421205013742"></p>
 <p>根据这个pNode结点的状态，分为三种情况求解:</p>
 <ul>
 <li>pNode存在右子树，那么其后续结点必然在其右子树中。<ul>

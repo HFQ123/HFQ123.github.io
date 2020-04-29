@@ -19,12 +19,12 @@
     
     
     <meta name="keywords" content="项目,JavaWeb">
-    <meta name="description" content="需求分析在智慧停车管理平台(WEB端)项目中，为了清晰地展示当前停车场的车位使用情况，想到把车位的使用状态可视化地展示到室内停车场地图上。效果如下：                                                                                              image-20200410113840534">
+    <meta name="description" content="需求分析在智慧停车管理平台(WEB端)项目中，为了清晰地展示当前停车场的车位使用情况，想到把车位的使用状态可视化地展示到室内停车场地图上。效果如下：  根据室内地图的车位图标颜色不同，用户可以看到停车场各个车位的使用状态。此外，当用户点击地图内的车位图标时，还能获取当前指定车位的状态（是否占用，如果占用，还会显示车牌号）。 实现技术前端：Jquery (ajax请求数据) 后端：SpringBoo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cxsj项目-停车位使用情况可视化">
 <meta property="og:url" content="http://hfq123.github.io/2020/04/10/cxsj%E9%A1%B9%E7%9B%AE-%E5%81%9C%E8%BD%A6%E4%BD%8D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="需求分析在智慧停车管理平台(WEB端)项目中，为了清晰地展示当前停车场的车位使用情况，想到把车位的使用状态可视化地展示到室内停车场地图上。效果如下：                                                                                              image-20200410113840534">
+<meta property="og:description" content="需求分析在智慧停车管理平台(WEB端)项目中，为了清晰地展示当前停车场的车位使用情况，想到把车位的使用状态可视化地展示到室内停车场地图上。效果如下：  根据室内地图的车位图标颜色不同，用户可以看到停车场各个车位的使用状态。此外，当用户点击地图内的车位图标时，还能获取当前指定车位的状态（是否占用，如果占用，还会显示车牌号）。 实现技术前端：Jquery (ajax请求数据) 后端：SpringBoo">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200410113840534.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200409174547260.png">
@@ -128,42 +128,21 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>在智慧停车管理平台(WEB端)项目中，为了清晰地展示当前停车场的车位使用情况，想到把车位的使用状态可视化地展示到室内停车场地图上。效果如下：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200410113840534.png" alt="image-20200410113840534" title="">
-                </div>
-                <div class="image-caption">image-20200410113840534</div>
-            </figure>
-
+<p><img src="/images/image-20200410113840534.png" alt="image-20200410113840534"></p>
 <p>根据室内地图的车位图标颜色不同，用户可以看到停车场各个车位的使用状态。此外，当用户点击地图内的车位图标时，还能获取当前指定车位的状态（是否占用，如果占用，还会显示车牌号）。</p>
 <h2 id="实现技术"><a href="#实现技术" class="headerlink" title="实现技术"></a>实现技术</h2><p>前端：Jquery (ajax请求数据)</p>
 <p>后端：SpringBoot Mybatis (数据库查询数据)</p>
 <p>室内地图支持：Esmap （地图展示)</p>
 <h2 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h2><h3 id="1-引入Esmap的室内地图-熟悉其sdk"><a href="#1-引入Esmap的室内地图-熟悉其sdk" class="headerlink" title="1. 引入Esmap的室内地图,熟悉其sdk"></a>1. 引入Esmap的室内地图,熟悉其sdk</h3><p>首先，从下载室内地图的<a href="https://www.esmap.cn/escopemap/content/cn/member/mapdownload.html" target="_blank" rel="noopener">示例</a>，以获得示例地图的数据包。我选择的是“基本地图显示”示例。</p>
 <p>然后，在html中引入室内地图，这一步Esmap官网的<a href="https://www.esmap.cn/escopemap/content/cn/develope/develope.html" target="_blank" rel="noopener">开发文档</a>有详细的流程我就不多介绍了。按照指示引入地图到html后，实现的初始效果如下：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200409174547260.png" alt="image-20200409174547260" title="">
-                </div>
-                <div class="image-caption">image-20200409174547260</div>
-            </figure>
-
+<p><img src="/images/image-20200409174547260.png" alt="image-20200409174547260"></p>
 <p>示例默认的主题颜色比较单调，可以通过<a href="https://www.esmap.cn/escopemap/content/cn/develope/map-styleedit.html" target="_blank" rel="noopener">配置参数</a>来修改主题样式（如地图背景颜色等）。</p>
 <p>接下来，熟悉Esmap的sdk，本案例中，我们主要关注的就是：如何跟踪点击事件？(用户点击后停车位能够触发操作)，修改图标的颜色（加载车位可视化页面时根据车位的使用状态为车位图标设置不同的颜色），发现这分别对应开发文档中<a href="https://www.esmap.cn/escopemap/content/cn/develope/map-event.html" target="_blank" rel="noopener">地图事件</a>中的“地图点击返回事件”和<a href="https://www.esmap.cn/escopemap/content/cn/develope/map-fun.html" target="_blank" rel="noopener">常用方法</a>中的“改变房子颜色”的changeModelColor()方法。</p>
 <p>接下来我们就研究一下这两个方法。</p>
 <h4 id="方法1：地图点击返回事件"><a href="#方法1：地图点击返回事件" class="headerlink" title="方法1：地图点击返回事件"></a>方法1：地图点击返回事件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//地图点击返回事件</span></span><br><span class="line"><span class="comment">//https://www.esmap.cn/escopemap/content/cn/develope/map-event.html</span></span><br><span class="line">map.on(<span class="string">'mapClickNode'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event);   <span class="comment">//打印事件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以发现，当点击地图的车位图标时，打印的车位对象如下图。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200410095433726.png" alt="image-20200410095433726" title="">
-                </div>
-                <div class="image-caption">image-20200410095433726</div>
-            </figure>
-
+<p><img src="/images/image-20200410095433726.png" alt="image-20200410095433726"></p>
 <p>因为点击地图其他图标(比如说楼梯、道路)也会触发地图点击事件，而在本案例中我们只要关注点击车位事件，所以我们可以以地图点击返回事件event中的name属性里是否包含”车位”二字来区分被点击的图标是否为车位，如果判断是车位，才会触发后续的方法changeModelColor()来改变被点击车位的颜色。</p>
 <h4 id="方法2：改变房子颜色"><a href="#方法2：改变房子颜色" class="headerlink" title="方法2：改变房子颜色"></a>方法2：改变房子颜色</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//改变房子颜色(一定要在地图加载完成事件之后才有效)</span></span><br><span class="line"><span class="comment">//id,name二选择一，都可以是数组, fnum可选择，参数color:'#FF0000'</span></span><br><span class="line"><span class="comment">//https://www.esmap.cn/escopemap/content/cn/develope/map-fun.html</span></span><br><span class="line">map.changeModelColor(&#123;</span><br><span class="line">     <span class="comment">//id:[1,2],</span></span><br><span class="line">     name:<span class="string">'车位1091'</span>,</span><br><span class="line">     <span class="comment">//fnum:[1],</span></span><br><span class="line">     color:<span class="string">'#FF0000'</span>&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -185,14 +164,7 @@
 </li>
 </ul>
 <p>创建好车位数据表之后，生成一些假数据（我是通过写了一个java类，按照给定格式随机生成记录，然后拼接字符串打印这条记录的insert语句，然后到数据库执行，后来网上了解一下，或许可以尝试使用Python的伪造数据生成器Faker），生成的部分假数据如下图展示。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200410102612112.png" alt="image-20200410102612112" title="">
-                </div>
-                <div class="image-caption">image-20200410102612112</div>
-            </figure>
-
+<p><img src="/images/image-20200410102612112.png" alt="image-20200410102612112"></p>
 <p>   下一步，写一个Controller，完成车位查询的api接口，响应POST方法，为请求返回json数据，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> parkinglot_id 停车场ID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> parking_space_id 车位id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * 如果参数parking_space_id 为空，查找所有停车场ID为parkinglot_id的所有车位使用情况</span></span><br><span class="line"><span class="comment">     * 如果参数parking_space_id非空，根据停车场id和车位id 查询一条记录。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/parkinglot/&#123;parkinglot_id&#125;/space"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">selectAllSpace</span><span class="params">(@PathVariable(name = <span class="string">"parkinglot_id"</span>)</span> Integer parkinglot_id,</span></span><br><span class="line"><span class="function">                                  @<span class="title">RequestParam</span><span class="params">(name = <span class="string">"parking_space_id"</span>,required = <span class="keyword">false</span>)</span> Integer parking_space_id</span></span><br><span class="line"><span class="function">                                  )</span>&#123;</span><br><span class="line">        ParkingSpaceExample example = <span class="keyword">new</span> ParkingSpaceExample();</span><br><span class="line">        <span class="keyword">if</span>(parking_space_id!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            example.createCriteria()</span><br><span class="line">                    .andParkinglotIdEqualTo(parkinglot_id)</span><br><span class="line">                    .andIdEqualTo(parking_space_id);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            example.createCriteria()</span><br><span class="line">                    .andParkinglotIdEqualTo(parkinglot_id);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;ParkingSpace&gt; parkingSpaces = parkingSpaceMapper.selectByExample(example);</span><br><span class="line">        <span class="keyword">return</span> parkingSpaces;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -200,14 +172,7 @@
 
 <p>如果请求时携带了parking_space_id参数，就只查询车位id等于parking_space_id的那条车位记录，否则，查询该停车场的全部车位记录。请求参数携带车位标识和不携带车位标识这两种请求应用场景分别是：加载页面时，需要查询全部车位的车位状态，而用户点击地图的某个车位图标时，只需要查询这一个车位状态。</p>
 <p>当不携带车位标识时，某次请求响应的部分json数据如下图展示。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/image-20200410104637275.png" alt="image-20200410104637275" title="">
-                </div>
-                <div class="image-caption">image-20200410104637275</div>
-            </figure>
-
+<p><img src="/images/image-20200410104637275.png" alt="image-20200410104637275"></p>
 <p>至此，我们就完成了车位数据表的建立和查询。</p>
 <h3 id="3-将地图显示和数据库“绑定”"><a href="#3-将地图显示和数据库“绑定”" class="headerlink" title="3. 将地图显示和数据库“绑定”"></a>3. 将地图显示和数据库“绑定”</h3><p>这一步我们就完成可视化的任务，具体需要完成的功能有两个：功能一是加载车位详情页面的时候，查询车位数据表，根据车位状态为地图的车位图标“上色”（空位占用则红，车位空闲则为绿）；功能二是当用户点击车位图标时，查询数据库该车位的当前状态并显示出来（如果车位占用还会显示出当前的车牌号）。</p>
 <p>有了步骤1、2的基础后，这一步就很简单了，简单地说，就是用步骤2的数据填充到步骤1的方法内。具体做法是在javascript脚本中使用ajax请求获取后端的车位数据，然后对这些数据按指定格式处理，作为调用Esmap sdk的配置参数。</p>
