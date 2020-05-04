@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JVM-虚拟机性能监控与故障处理实战 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JVM">
+    <meta name="description" content="本文主要介绍如何应用一些虚拟机的性能监控和分析的命令。 jdk命令行工具jps                                                                                             image-20200504175625119               jps可以查看当前jvm运行的进程名和它们对应的虚拟机进程号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM-虚拟机性能监控与故障处理实战">
+<meta property="og:url" content="http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="然后就的博客">
+<meta property="og:description" content="本文主要介绍如何应用一些虚拟机的性能监控和分析的命令。 jdk命令行工具jps                                                                                             image-20200504175625119               jps可以查看当前jvm运行的进程名和它们对应的虚拟机进程号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504175625119.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504175926715.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180217340.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180250530.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180359885.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180455772.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180509345.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504180715612.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504181116799.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200504181849691.png">
+<meta property="article:published_time" content="2020-05-04T09:53:58.000Z">
+<meta property="article:modified_time" content="2020-05-04T10:34:25.400Z">
+<meta property="article:author" content="然后就">
+<meta property="article:tag" content="JVM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hfq123.github.io/images/image-20200504175625119.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/images/hfq-favicon.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">然后就</h5>
+          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/HFQ123" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutMe" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JVM-虚拟机性能监控与故障处理实战</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JVM-虚拟机性能监控与故障处理实战</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-05-04T09:53:58.000Z" itemprop="datePublished" class="page-time">
+  2020-05-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#jdk命令行工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">jdk命令行工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jps"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">jps</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jstat"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">jstat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jinfo"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">jinfo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jmap"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">jmap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jhat"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">jhat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jstack"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">jstack</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可视化工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">可视化工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jconsole"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">jconsole</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VisualVM"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">VisualVM</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JVM-虚拟机性能监控与故障处理实战"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JVM-虚拟机性能监控与故障处理实战</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-05-04 17:53:58" datetime="2020-05-04T09:53:58.000Z"  itemprop="datePublished">2020-05-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文主要介绍如何应用一些虚拟机的性能监控和分析的命令。</p>
+<h2 id="jdk命令行工具"><a href="#jdk命令行工具" class="headerlink" title="jdk命令行工具"></a>jdk命令行工具</h2><h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504175625119.png" alt="image-20200504175625119" title="">
+                </div>
+                <div class="image-caption">image-20200504175625119</div>
+            </figure>
+
+<p>jps可以查看当前jvm运行的进程名和它们对应的虚拟机进程号。查到进程号后方便结合后续的很多其他命令。</p>
+<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>jstat用于监视虚拟机各种运行状态信息，显示<strong>类装载、内存、垃圾收集、JIT编译</strong>等运行数据。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504175926715.png" alt="image-20200504175926715" title="">
+                </div>
+                <div class="image-caption">image-20200504175926715</div>
+            </figure>
+
+<p>表示分析进程 id 为 8608 的 gc 情况，每隔 1000ms 打印一次记录，不停止。</p>
+<h3 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h3><p>jinfo用于<strong>实时查看和调整虚拟机各项参数</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180217340.png" alt="image-20200504180217340" title="">
+                </div>
+                <div class="image-caption">image-20200504180217340</div>
+            </figure>
+
+<p>带参数的jinfo</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180250530.png" alt="image-20200504180250530" title="">
+                </div>
+                <div class="image-caption">image-20200504180250530</div>
+            </figure>
+
+
+
+<h3 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h3><p>用于<strong>生成堆转储快照</strong>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180359885.png" alt="image-20200504180359885" title="">
+                </div>
+                <div class="image-caption">image-20200504180359885</div>
+            </figure>
+
+
+
+<h3 id="jhat"><a href="#jhat" class="headerlink" title="jhat"></a>jhat</h3><p>用于<strong>分析堆转储快照</strong>。使用jhat，用户可以在浏览器上查看分析结果。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180455772.png" alt="image-20200504180455772" title="">
+                </div>
+                <div class="image-caption">image-20200504180455772</div>
+            </figure>
+
+<p>进入localhost:7070:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180509345.png" alt="image-20200504180509345" title="">
+                </div>
+                <div class="image-caption">image-20200504180509345</div>
+            </figure>
+
+
+
+<h3 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h3><p>用于<strong>生成虚拟机当前时刻的线程快照</strong>。</p>
+<p>主要目的是定位线程出现长时间停顿的原因， 如死锁、死循环、请求外部资源长时间等待…..</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504180715612.png" alt="持续等待用户输入造成停顿时间过长" title="">
+                </div>
+                <div class="image-caption">持续等待用户输入造成停顿时间过长</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504181116799.png" alt="jstack定位死锁" title="">
+                </div>
+                <div class="image-caption">jstack定位死锁</div>
+            </figure>
+
+
+
+<h2 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h2><h3 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h3><p>可以在cmd窗口打开jconsole图形化工具，然后连接到本地进程或远程进程。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200504181849691.png" alt="image-20200504181849691" title="">
+                </div>
+                <div class="image-caption">image-20200504181849691</div>
+            </figure>
+
+
+
+<h3 id="VisualVM"><a href="#VisualVM" class="headerlink" title="VisualVM"></a>VisualVM</h3><p>最强大的运行监视和故障处理程序。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-04T10:34:25.400Z" itemprop="dateUpdated">2020-05-04 18:34:25</time>
+</span><br>
+
+
+        
+        欢迎留言评论！
+        
+    </div>
+    
+    <footer>
+        <a href="http://HFQ123.github.io">
+            <img src="/images/hfq-favicon.jpg" alt="然后就">
+            然后就
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&title=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&title=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/04/JVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JVM学习笔记-垃圾回收</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '5266827d0c65b2c78ad9',
+          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
+          repo: 'blog_comment',
+          owner: 'HFQ123',
+          admin: ['HFQ123'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>然后就 &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&title=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&title=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM-虚拟机性能监控与故障处理实战》 — 然后就的博客&url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/05/04/JVM-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
