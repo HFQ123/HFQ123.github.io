@@ -158,6 +158,53 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-java并发编程-等待-通知机制"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-05-09 17:01:04" datetime="2020-05-09T09:01:04.000Z"  itemprop="datePublished">2020-05-09</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2020/05/09/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E7%AD%89%E5%BE%85-%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%88%B6/">java并发编程-等待/通知机制</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        https://www.cnblogs.com/powercto/p/10848825.html#a%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%98%E6%96%B9%E8%AF%B4wait-%E8%A6%81%E6%94%BE%E5%9C%A8while%E9%87%8C%E9%9D%A2%EF%BC%9F
+while的作用
+标志的作用： 即使唤醒线程先执行了，也...
+    
+
+        <a href="/2020/05/09/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E7%AD%89%E5%BE%85-%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%88%B6/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-cxsj项目-服务端主动推送数据到客户端"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -230,12 +277,20 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        
+        之前，学设计模式的时候，接触了单例模式的四种实现方法，那个时候还不怎么理解，糊里糊涂地整理了笔记。
+现在学了JVM和并发编程后，对单例模式的实现细节有了更好的掌握。借此机会回顾一下DCL(Double Check Lock，即双重检查锁)实现单例和静态内部类实现单例。
+DCL单例模式经典懒汉单例模式的实现123456789101112public final class Singleton&...
     
 
         <a href="/2020/05/06/%E5%86%8D%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%B9%B6%E5%8F%91%EF%BC%8C%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB/" rel="tag">设计模式，并发，推荐阅读</a></li></ul>
+
     </div>
     
 </article>
@@ -569,8 +624,12 @@ JVM内存区域运行时数据区域Java虚拟机在执行Java程序的过程中
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        20200507 晴最近停刷了几天题，今天是返校后第一天刷题，愧对“飘风不终朝，骤雨不终日”啊。以后每天都刷，务必在秋招前把牛客网上剑指offer和leetcode精选刷完。。
-两个链表的第一个公共节点&lt;%blockquote%&gt;输入两个链表，找出它们的第一个公共结点。（注意因为传入数据是链表，所以错误测试数据的提示是用其他方式显示的，保证传入数据是正确的）&lt;%endblo...
+        20200508 晴题1  数值的整数次方思路上学期算法课中学过，使用分治法将时间复杂度降低到O(logn)，且采用此方法，空间复杂度也会是O(logn)。
+这次用的是快速幂算法，时间复杂度是O(logn)，空间复杂度是O(1)。
+接下来介绍一下快速幂的思想：
+比如说我们要计算 3的14次方，即base=3,exponent=14,可以这样算：
+14的二进制表示是1110，
+1110的倒数第...
     
 
         <a href="/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/" class="post-more waves-effect waves-button">
@@ -581,60 +640,6 @@ JVM内存区域运行时数据区域Java虚拟机在执行Java程序的过程中
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/" rel="tag">算法刷题</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-《Head-First-设计模式》读书笔记charpter8"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2020-04-21 14:52:00" datetime="2020-04-21T06:52:00.000Z"  itemprop="datePublished">2020-04-21</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/">《Head-First-设计模式》读书笔记charpter8</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        本篇博客是《Head First 设计模式》第八章的读书笔记。
-分享主题是设计模式中的 「模板方法模式(Template Method Pattern)」。
-定义模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。
- 
-
-具体应用场景从饮品店制作咖啡和茶的制作方法讲起，咖啡和茶的制作流程如下图所示。
-
-...
-    
-
-        <a href="/2020/04/21/%E3%80%8AHead-First-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0charpter8/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
 
     </div>
     
