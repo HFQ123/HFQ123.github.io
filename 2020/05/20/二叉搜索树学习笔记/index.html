@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>数据结构之树学习小结 | 然后就的博客 | 飘风不终朝,骤雨不终日。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="笔记,数据结构">
+    <meta name="description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很全面的笔记了，节约时间，细节没有再展开。 本篇博客分享主题：「树」，简单总结一下近期学的二叉搜索树、平衡二叉搜索树、红黑树，重点介绍二叉搜索树。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之树学习小结">
+<meta property="og:url" content="http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="然后就的博客">
+<meta property="og:description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很全面的笔记了，节约时间，细节没有再展开。 本篇博客分享主题：「树」，简单总结一下近期学的二叉搜索树、平衡二叉搜索树、红黑树，重点介绍二叉搜索树。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200520151358919.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200520151453143.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200520151531566.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200411002614229.png">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200520155601295.png">
+<meta property="article:published_time" content="2020-05-20T05:33:29.000Z">
+<meta property="article:modified_time" content="2020-05-20T09:45:09.268Z">
+<meta property="article:author" content="然后就">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hfq123.github.io/images/image-20200520151358919.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/images/hfq-favcation.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/images/hfq-favicon.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">然后就</h5>
+          <a href="mailto:1184586992@qq.com" title="1184586992@qq.com" class="mail">1184586992@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/HFQ123" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutMe" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数据结构之树学习小结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数据结构之树学习小结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-05-20T05:33:29.000Z" itemprop="datePublished" class="page-time">
+  2020-05-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本认识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本认识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BST的插入删除操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">BST的插入删除操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">常用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遍历-适用所有二叉树"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">遍历(适用所有二叉树)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求前驱节点和后续节点"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">求前驱节点和后续节点</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计思想"><span class="post-toc-number">4.</span> <span class="post-toc-text">设计思想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略模式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">策略模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模板方法模式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">模板方法模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#性能比较"><span class="post-toc-number">5.</span> <span class="post-toc-text">性能比较</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#个人总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">个人总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推荐阅读"><span class="post-toc-number">7.</span> <span class="post-toc-text">推荐阅读</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-二叉搜索树学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数据结构之树学习小结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-05-20 13:33:29" datetime="2020-05-20T05:33:29.000Z"  itemprop="datePublished">2020-05-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>此系列是我数据结构的学习笔记，观看视频课程，网上有很全面的笔记了，节约时间，细节没有再展开。</p>
+<p>本篇博客分享主题：「树」，简单总结一下近期学的二叉搜索树、平衡二叉搜索树、红黑树，重点介绍二叉搜索树。</p>
+<h2 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h2><p>二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。</p>
+<ul>
+<li>任意一个节点的值都<code>大于</code>其<code>左子树</code>所有节点的值。</li>
+<li>任意一个节点的值都<code>小于</code>其<code>右子树</code>所有节点的值。</li>
+<li>它的<code>左右子树</code>也是一颗二叉搜索树。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200520151358919.png" alt="一棵二叉搜索树（BST）" title="">
+                </div>
+                <div class="image-caption">一棵二叉搜索树（BST）</div>
+            </figure>
+
+<p>为什么要引入二叉搜索树，需求是什么？</p>
+<ul>
+<li><p>在乱序数组中插入元素，搜索操作平均时间复杂度O(n)，插入操作复杂度O(1)</p>
+</li>
+<li><p>排好序的数组，二分搜索，最坏时间复杂度O(logn),但插入、删除操作平均复杂度是O(n)</p>
+</li>
+<li><p>使用二叉搜索树，添加、删除、搜索的最坏时间复杂度均可优化至：<code>O(logn)</code>））（更准确得说是O(h),h为树高）</p>
+</li>
+</ul>
+<p>而后面学到的平衡二叉搜索树（AVL）、红黑树（Red Black tree）都是特殊的二叉搜索树，它们主要是为了解决BST太不平衡时效率退化的问题，只不过为了维持二叉树的(相对)平衡，它们有各自附加的要求。总的来说，添加、删除节点这两个基本操作都是一样的，只不过对于AVL和RBT来说，在添加或删除元素之后，可能会破坏树原来的性质，所以需要一些额外的操作（对于AVL来说是旋转，对于RBT来说是着色和旋转）来维持树的性质，以达到更好的性能。</p>
+<p>退化成链表的二叉搜索树时间复杂度就变成了O(n)，那么AVL和RBT是怎么优化的呢？<br>AVL树的节点除了维护节点的左右父节点的指针之外，还会维护此节点的高度，AVL树规定每个节点的平衡因子只可能是1，0，-1，否则，称之为失衡。添加和删除节点后可能会导致失衡，我们就做一些额外的操作让它重复恢复平衡就行,具体又分为LL、RR和LR、RL的旋转情况，本文不再展开。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200520151453143.png" alt="上面那棵BST等价的AVL树" title="">
+                </div>
+                <div class="image-caption">上面那棵BST等价的AVL树</div>
+            </figure>
+
+
+
+<p>而红黑树的节点除了维护节点的左右父节点的指针之外，还会维护此节点的颜色,红黑树的性质比起AVL更加复杂：</p>
+<p>1、节点是RED或者BLACK<br>2、根节点是BLACK<br>3、叶子节点（外部节点，空节点）都是BLACK<br>4、RED节点的子节点都是BLACK</p>
+<ul>
+<li>RED节点的parent都是BLACK</li>
+<li>从根节点到叶子节点的所有路径上不能有2个连续的RED节点</li>
+</ul>
+<p>5、从任意节点到叶子节点的所有路径都包含相同数目的BLACK节点。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200520151531566.png" alt="上面那棵BST等价的红黑树" title="">
+                </div>
+                <div class="image-caption">上面那棵BST等价的红黑树</div>
+            </figure>
+
+
+
+<h2 id="BST的插入删除操作"><a href="#BST的插入删除操作" class="headerlink" title="BST的插入删除操作"></a>BST的插入删除操作</h2><p>插入操作比较简单，只需要不断将要插入结点的值和当前工作节点比较，如果待插入节点的值比当前节点的值大，就往左走，否则就往右走，直到工作节点为空，就确定了插入位置。</p>
+<p>查找的操作也类似。</p>
+<p>删除需要考虑三种情况：度为0、1、2。 </p>
+<p>度为2： 令后继结点的元素值覆盖删除结点，然后删除后继节点，后继节点的度必为0/1，所以就转化成了下面的两种情况 (ps.取前驱节点替代也可以）<br>度为1： 使删除结点的父节点指向删除结点的子结点，注意删除的是根节点的特殊情况<br>度为0： 直接删除，注意删除的是根节点的特殊情况</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="遍历-适用所有二叉树"><a href="#遍历-适用所有二叉树" class="headerlink" title="遍历(适用所有二叉树)"></a>遍历(适用所有二叉树)</h3><ol>
+<li><p>前序遍历(Preorder)，访问顺序： <code>根节点</code> -&gt; <code>前序遍历左子树</code> -&gt; <code>前序遍历右子树</code><br>递归实现。</p>
+</li>
+<li><p>中序遍历(Inorder)，访问顺序：<code>中序遍历左子树</code> -&gt; <code>根节点</code> -&gt; <code>中序遍历右子树</code></p>
+<p>中序遍历的结果是有序的，因为根据BST的定义，左&lt;中&lt;右。</p>
+</li>
+<li><p>后序遍历(Postorder)，访问顺序：<code>后序遍历左子树</code> -&gt; <code>后序遍历右子树</code> -&gt; <code>根节点</code></p>
+</li>
+<li><p>层序遍历(Level Order)，访问顺序：<code>从上到下</code>，<code>从左到右</code>依次访问节点。</p>
+</li>
+</ol>
+<p>对于前中后序遍历来说，既可以用递归实现，还可以非递归实现(栈)。</p>
+<p>参考我的其他博客：</p>
+<p><a href="[https://hfq123.github.io/2020/04/21/%E3%80%90%E6%AF%8F%E6%97%A5%E6%9B%B4%E6%96%B0%E3%80%91%E7%AE%97%E6%B3%95%E9%A2%98/#%E9%A2%984-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%88%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%EF%BC%89](https://hfq123.github.io/2020/04/21/[每日更新]算法题/#题4-二叉树的前序遍历（非递归方法）)">前序遍历的非递归实现</a></p>
+<p><a href="https://hfq123.github.io/2020/04/21/[每日更新]算法题/#题1-非递归二叉树后序遍历">后序遍历的非递归实现</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200411002614229.png" alt="一棵二叉树的遍历结果" title="">
+                </div>
+                <div class="image-caption">一棵二叉树的遍历结果</div>
+            </figure>
+
+
+
+<h3 id="求前驱节点和后续节点"><a href="#求前驱节点和后续节点" class="headerlink" title="求前驱节点和后续节点"></a>求前驱节点和后续节点</h3><p>一个节点的前驱节点和后续节点分别指的是树的中序遍历结果中这个节点的前一个结点和后一个结点，计算前驱节点的思路如下：</p>
+<ul>
+<li>如果此节点有左子树，必定有前驱节点，前驱节点=node.left.right…right</li>
+<li>如果此节点没有左子树，但是有根节点，则可能有前驱节点，前驱节点=node.parent.parent…直到当前结点是父节点的左孩子。</li>
+<li>否则，返回null</li>
+</ul>
+<p>后续节点同理。</p>
+<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2><p>这一部分，简单谈一谈设计BST类代码时候的设计模式，可供参考，把代码写的优雅一点。</p>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>从二叉搜索树的定义来看，涉及到比较操作，所以二叉搜索树存储的元素必须具备可比较性。</p>
+<p>一方面，我们可以规定节点元素必须是<strong>可比较</strong>的，也就是使节点元素的类实现Comparable接口，里面实现compareTo方法，又可以在BST类中加入一个<strong>外部比较器</strong>，可以让调用者自行决定使用什么比较方法来比较元素大小。<br>详情不再展开，参考<a href="https://www.cnblogs.com/qq1083735206/p/6242205.html" target="_blank" rel="noopener">比较器comparable与comparator的使用</a></p>
+<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><p>BST类是父类，AVL和RBT是子类。我们前面说了，在BST中的插入删除方法，只需要做基本操作，而AVL和RBT的插入删除操作之后，还需要做一些额外操作来维持树的性质，所以在设计BST这一个父类的时候，将add()和remove()方法（分别用于插入和删除结点）作为模板方法，在两个方法的最后调用afterAdd()和afterRemove()作为“钩子”，在BST类中，afterAdd()和afterRemove()这两个方法里什么都不做，而AVL和RBT子类重写它们，里面写插入/删除节点后维持树性质的代码。</p>
+<p>这样一来，AVL和RBT这两个子类，就可以重用基本操作部分的代码。</p>
+<h2 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h2><p>参考<a href="https://www.iteye.com/topic/614070" target="_blank" rel="noopener">动态查找树比较</a>。</p>
+<p>BST效率总结： 查找最好时间复杂度O(logN)，最坏时间复杂度O(N)，和高度相关O(h)。</p>
+<p>插入删除操作算法简单，时间复杂度与查找差不多。</p>
+<p> AVL效率总结： 查找的时间复杂度维持在O(logN)，不会出现最差情况</p>
+<p> AVL树在执行每个插入操作时最多需要1次旋转，其时间复杂度在O(logN)左右。</p>
+<p> AVL树在执行删除时代价稍大，可能造成O(logN)次旋转，执行每个删除操作的时间复杂度需要O(2logN)。</p>
+<p>红黑树效率总结：</p>
+<p>查找效率最好情况下时间复杂度为O(logN)，但在最坏情况下比AVL要差一些（因为树高可能比AVL高），但也远远好于BST。</p>
+<p>插入和删除操作改变树的平衡性的概率要远远小于AVL（RBT不是高度平衡的）。因此需要的旋转操作的可能性要小，而且一旦需要旋转，插入一个结点最多只需要旋转2次，删除最多只需要旋转3次(小于AVL的删除操作所需要的旋转次数)。虽然变色操作的时间复杂度在O(logN)，但是实际上，这种操作由于简单所需要的代价很小。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200520155601295.png" alt="AVL树和红黑树性能对比以及选择图解" title="">
+                </div>
+                <div class="image-caption">AVL树和红黑树性能对比以及选择图解</div>
+            </figure>
+
+
+
+<h2 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h2><p>BST和AVL树和红黑树的基础，在理想情况下，它的查找、插入、删除的时间复杂度是O(logN)，但是在一些情况下，其时间复杂度会退化，极端情况下退化成链表，总的来说，BST查找、插入、删除的时间复杂度是和其整体高度正相关的。所以，AVL为了不让BST由于高度失衡而导致时间复杂度退化，就规定了平衡因子的概念，它的查找操作完全和BST一样，插入删除操作之后如果导致树失衡会做旋转操作使得恢复平衡，这样就严格控制了其平衡性（也就是控制了树的高度），所以查找、插入、删除三个操作的时间复杂度都能稳定维持在O(logN）。这里我们还有必要了解一些AVL插入和删除节点的细节:在AVL树插入节点只会造成1次旋转（单旋或双旋），而在AVL树删除节点可能会造成O(logN)次旋转（删除后，父节点失衡调整后导致其祖父节点直到根节点都失衡，都需要旋转）。</p>
+<p>而红黑树相较于AVL树来说，对于树的平衡要求没有AVL那么高（所以说，拥有同样多节点的树，红黑树可能比AVL树的树高更大），虽然在红黑树节点定义中，并没有看到关于高度的定义，只有颜色的定义，但是实际上只要满足了其五条要求（在插入删除节点后可能会破坏红黑树要求，所以要进行染色和旋转操作），最后构建出来的红黑树的高度就不会像BST那样有高度严重失衡的坏情况，事实上，红黑树的最长路径长度不超过最短路径长度的2倍，所以说其查找代价还是能基本维持在O(logN)，有时查找性能或许比AVL略逊色一点（因为其高度可能比AVL大），但是其RBT的删除操作代价要比AVL要好的多，删除一个结点最多只需要3次旋转操作。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>以下博文的笔记很详细，给出链接供查阅。</p>
+<p>作者：逍遥归来         来源：掘金</p>
+<p><a href="https://juejin.im/post/5dfc735ee51d45582d3405de" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（八）：二叉搜索树</a></p>
+<p><a href="https://juejin.im/post/5e057217f265da33d912ecfe" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（九）：平衡二叉搜索树（AVL）</a></p>
+<p><a href="https://juejin.im/post/5e0aedb8f265da5d5e2419a1" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（十）：B树</a></p>
+<p><a href="https://juejin.im/post/5e0da754f265da5d2202025a" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（十一）：红黑树</a></p>
+<p>另外，推荐一个可以模拟各种树构建、删除过程的网页：</p>
+<p><a href="http://520it.com/binarytrees/" target="_blank" rel="noopener">构建各种树的可视化网页工具</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-20T09:45:09.268Z" itemprop="dateUpdated">2020-05-20 17:45:09</time>
+</span><br>
+
+
+        
+        欢迎留言评论！
+        
+    </div>
+    
+    <footer>
+        <a href="http://HFQ123.github.io">
+            <img src="/images/hfq-favicon.jpg" alt="然后就">
+            然后就
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/19/synchronized%E5%92%8CReentrantLock%E7%9A%84%E5%AF%B9%E6%AF%94/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">synchronized和ReentrantLock的对比</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '5266827d0c65b2c78ad9',
+          clientSecret: 'c22957154ff2940eb1ebf851cc743c62df14878b',
+          repo: 'blog_comment',
+          owner: 'HFQ123',
+          admin: ['HFQ123'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>然后就 &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
