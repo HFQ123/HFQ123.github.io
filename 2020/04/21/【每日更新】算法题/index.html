@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200427235839863.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200421205013742.png">
 <meta property="article:published_time" content="2020-04-21T12:17:21.000Z">
-<meta property="article:modified_time" content="2020-05-20T16:18:16.244Z">
+<meta property="article:modified_time" content="2020-05-20T16:20:04.416Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="算法刷题">
 <meta property="article:tag" content="剑指Offer">
@@ -565,8 +565,6 @@
 <p>看着很简单， 不过我做的时候经常忽略了边界条件，代码参考了<a href="https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/solution/mian-shi-ti-21-diao-zheng-shu-zu-shun-xu-shi-qi-4/" target="_blank" rel="noopener">Leetcode题解</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] exchange(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = nums.length - <span class="number">1</span>, tmp;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; (nums[i] &amp; <span class="number">1</span>) == <span class="number">1</span>) i++; <span class="comment">//判断偶数用位运算提高效率</span></span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; (nums[j] &amp; <span class="number">1</span>) == <span class="number">0</span>) j--;</span><br><span class="line">            tmp = nums[i];</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            nums[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="20200510-晴"><a href="#20200510-晴" class="headerlink" title="20200510 晴"></a>20200510 晴</h1><h2 id="题1【待熟练】树的子结构"><a href="#题1【待熟练】树的子结构" class="headerlink" title="题1【待熟练】树的子结构"></a>题1【待熟练】<a href="https://www.nowcoder.com/practice/6e196c44c7004d15b1610b9afca8bd88" target="_blank" rel="noopener">树的子结构</a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">HasSubtree</span><span class="params">(TreeNode root1,TreeNode root2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root2==<span class="keyword">null</span> || root1 ==<span class="keyword">null</span>)&#123; <span class="comment">//题目要求的“空树不是任意一个树的子结构”的逻辑在这里完成</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isSubTree(root1,root2) || HasSubtree(root1.left,root2)|| HasSubtree(root1.right,root2);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubTree</span><span class="params">(TreeNode r1,TreeNode r2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(r2==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(r1==<span class="keyword">null</span> || r1.val!=r2.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> isSubTree(r1.left,r2.left) &amp;&amp; isSubTree(r1.right,r2.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>此解法参考<a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener">题解</a>。</p>
@@ -592,9 +590,6 @@
                 </div>
                 <div class="image-caption">image-20200510021007308</div>
             </figure>
-
-
-
 
 
 <h1 id="20200508-晴"><a href="#20200508-晴" class="headerlink" title="20200508 晴"></a>20200508 晴</h1><h2 id="题1-数值的整数次方"><a href="#题1-数值的整数次方" class="headerlink" title="题1  数值的整数次方"></a>题1 <a href="https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00" target="_blank" rel="noopener"> 数值的整数次方</a></h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>上学期算法课中学过，使用分治法将时间复杂度降低到O(logn)，且采用此方法，空间复杂度也会是O(logn)。</p>
@@ -1046,7 +1041,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-05-20T16:18:16.244Z" itemprop="dateUpdated">2020-05-21 00:18:16</time>
+    最后更新时间：<time datetime="2020-05-20T16:20:04.416Z" itemprop="dateUpdated">2020-05-21 00:20:04</time>
 </span><br>
 
 
