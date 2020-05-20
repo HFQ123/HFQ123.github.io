@@ -24,7 +24,7 @@
     <meta name="description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很全面的笔记了，节约时间，细节没有再展开。 本篇博客分享主题：「树」，简单总结一下近期学的二叉搜索树、平衡二叉搜索树、红黑树，重点介绍二叉搜索树。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构之树学习小结">
-<meta property="og:url" content="http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="然后就的博客">
 <meta property="og:description" content="此系列是我数据结构的学习笔记，观看视频课程，网上有很全面的笔记了，节约时间，细节没有再展开。 本篇博客分享主题：「树」，简单总结一下近期学的二叉搜索树、平衡二叉搜索树、红黑树，重点介绍二叉搜索树。 基本认识二叉搜索树(Binary Search Tree),又叫做二叉查找树、二叉排序树。  任意一个节点的值都大于其左子树所有节点的值。 任意一个节点的值都小于其右子树所有节点的值。 它的左右子树也是">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200411002614229.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200520155601295.png">
 <meta property="article:published_time" content="2020-05-20T05:33:29.000Z">
-<meta property="article:modified_time" content="2020-05-20T09:45:09.268Z">
+<meta property="article:modified_time" content="2020-05-20T14:19:40.531Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="数据结构">
@@ -177,7 +177,7 @@
     </aside>
 
 
-<article id="post-二叉搜索树学习笔记"
+<article id="post-数据结构与算法—树学习笔记"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
@@ -313,11 +313,11 @@
 <h2 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h2><p>BST和AVL树和红黑树的基础，在理想情况下，它的查找、插入、删除的时间复杂度是O(logN)，但是在一些情况下，其时间复杂度会退化，极端情况下退化成链表，总的来说，BST查找、插入、删除的时间复杂度是和其整体高度正相关的。所以，AVL为了不让BST由于高度失衡而导致时间复杂度退化，就规定了平衡因子的概念，它的查找操作完全和BST一样，插入删除操作之后如果导致树失衡会做旋转操作使得恢复平衡，这样就严格控制了其平衡性（也就是控制了树的高度），所以查找、插入、删除三个操作的时间复杂度都能稳定维持在O(logN）。这里我们还有必要了解一些AVL插入和删除节点的细节:在AVL树插入节点只会造成1次旋转（单旋或双旋），而在AVL树删除节点可能会造成O(logN)次旋转（删除后，父节点失衡调整后导致其祖父节点直到根节点都失衡，都需要旋转）。</p>
 <p>而红黑树相较于AVL树来说，对于树的平衡要求没有AVL那么高（所以说，拥有同样多节点的树，红黑树可能比AVL树的树高更大），虽然在红黑树节点定义中，并没有看到关于高度的定义，只有颜色的定义，但是实际上只要满足了其五条要求（在插入删除节点后可能会破坏红黑树要求，所以要进行染色和旋转操作），最后构建出来的红黑树的高度就不会像BST那样有高度严重失衡的坏情况，事实上，红黑树的最长路径长度不超过最短路径长度的2倍，所以说其查找代价还是能基本维持在O(logN)，有时查找性能或许比AVL略逊色一点（因为其高度可能比AVL大），但是其RBT的删除操作代价要比AVL要好的多，删除一个结点最多只需要3次旋转操作。</p>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>以下博文的笔记很详细，给出链接供查阅。</p>
-<p>作者：逍遥归来         来源：掘金</p>
 <p><a href="https://juejin.im/post/5dfc735ee51d45582d3405de" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（八）：二叉搜索树</a></p>
 <p><a href="https://juejin.im/post/5e057217f265da33d912ecfe" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（九）：平衡二叉搜索树（AVL）</a></p>
 <p><a href="https://juejin.im/post/5e0aedb8f265da5d5e2419a1" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（十）：B树</a></p>
 <p><a href="https://juejin.im/post/5e0da754f265da5d2202025a" target="_blank" rel="noopener">小码哥《恋上数据结构与算法》笔记（十一）：红黑树</a></p>
+<p><a href="https://blog.csdn.net/qq_41999455/article/details/95342982" target="_blank" rel="noopener">为什么HashMap使用红黑树而不使用AVL树</a></p>
 <p>另外，推荐一个可以模拟各种树构建、删除过程的网页：</p>
 <p><a href="http://520it.com/binarytrees/" target="_blank" rel="noopener">构建各种树的可视化网页工具</a></p>
 
@@ -328,7 +328,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-05-20T09:45:09.268Z" itemprop="dateUpdated">2020-05-20 17:45:09</time>
+    最后更新时间：<time datetime="2020-05-20T14:19:40.531Z" itemprop="dateUpdated">2020-05-20 22:19:40</time>
 </span><br>
 
 
@@ -360,7 +360,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -370,22 +370,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -507,7 +507,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&pic=http://HFQ123.github.ioimages/hfq-favicon.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -517,22 +517,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《数据结构之树学习小结》 — 然后就的博客&source=分享我的学习内容：Java,SpringBoot,设计模式,算法...." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构之树学习小结》 — 然后就的博客&url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://HFQ123.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -543,7 +543,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/05/20/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://hfq123.github.io/2020/05/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
 </div>
 
 
