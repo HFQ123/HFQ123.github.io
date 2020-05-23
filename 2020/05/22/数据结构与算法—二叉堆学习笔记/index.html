@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200522162621139.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200523113011879.png">
 <meta property="article:published_time" content="2020-05-22T04:36:36.000Z">
-<meta property="article:modified_time" content="2020-05-23T03:37:35.746Z">
+<meta property="article:modified_time" content="2020-05-23T03:54:44.994Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -261,22 +261,19 @@
 
 <p>二叉堆的接口设计中，除了上面这三个最重要的方法，还有一些别的方法：</p>
 <ul>
-<li><p>插入新元素替换最大值replace(Element element)：用元素elementXXXXXXXXXXXX</p>
-</li>
 <li><p>replace(E element)</p>
+<p>删除最大值的同时插入一个新元素：用元素element代替根节点的值，然后进行下沉(siftDown)操作。</p>
 </li>
-<li><p>批量建堆,也就是把一个数组建立成堆： 有两种办法。</p>
+<li><p>批量建堆,也就是把一个没有规律的数组建立成堆： 有两种办法。</p>
+<p>方法1：自上而下的上浮O(nlogn)：本质是一个个添加</p>
 </li>
 </ul>
-<p>自上而下的上浮O(nlogn)：本质是一个个添加</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自上而下的上浮</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapify1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;size;i++)&#123;</span><br><span class="line">        siftUp(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>自下而上的下沉O(n)。</p>
+<p>​    方法2：自下而上的下沉O(n)。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自下而上的下沉</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapify2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=size/<span class="number">2</span>;i&gt;=<span class="number">0</span>;i--)&#123; <span class="comment">//从非叶子结点开始下沉</span></span><br><span class="line">        siftDown(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<p>注意 自上而下的下沉 或者 自下而上的上浮 都不行。</p>
+<p>注意：自上而下的下沉或者自下而上的上浮都不能作为批量建堆的方法。</p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>1、Top K问题</p>
 <p>从n个数里找出最大的k个数。（k&lt;&lt;n）</p>
 <p>◼ 如果使用排序算法（如快速排序）进行<strong>全排序</strong>，需要 O(nlogn) 的时间复杂度。</p>
@@ -322,7 +319,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-05-23T03:37:35.746Z" itemprop="dateUpdated">2020-05-23 11:37:35</time>
+    最后更新时间：<time datetime="2020-05-23T03:54:44.994Z" itemprop="dateUpdated">2020-05-23 11:54:44</time>
 </span><br>
 
 
