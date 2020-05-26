@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200525151433269.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200526130800785.png">
 <meta property="article:published_time" content="2020-05-24T02:55:31.000Z">
-<meta property="article:modified_time" content="2020-05-26T06:03:18.428Z">
+<meta property="article:modified_time" content="2020-05-26T07:37:32.377Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="置顶文章">
@@ -342,7 +342,83 @@
 <p>partition操作是O(n)级别的</p>
 <p>空间复杂度：因为涉及到递归调用造成栈空间的使用，空间复杂度是O(logn)</p>
 <p>稳定性：不稳定。</p>
-<h1 id="十大排序算法总结"><a href="#十大排序算法总结" class="headerlink" title="十大排序算法总结"></a>十大排序算法总结</h1><p>| 算法     | 平均时间复杂度 | 最好时间复杂度 | 最坏时间复杂度 | 空间复杂度 | 稳定性<br>| 冒泡排序 | O(n^2)    |</p>
+<h1 id="十大排序算法总结"><a href="#十大排序算法总结" class="headerlink" title="十大排序算法总结"></a>十大排序算法总结</h1><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>平均时间复杂度</th>
+<th>最好时间复杂度</th>
+<th>最坏时间复杂度</th>
+<th>空间复杂度</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>冒泡排序</td>
+<td>O(n^2)</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n^2)</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(n)</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(n^2)</td>
+<td>O(logn)</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>备注：上表中冒泡排序的最好时间复杂度是O(n)针对的是优化后的冒泡排序：优化的冒泡排序中每次冒泡过程会记录最后交换的位置，此优化对于最后一些元素已经局部有序的情况有效，当数组已经是有序状态，有最好的时间复杂度，为O(n)。</p>
 
         </div>
 
@@ -351,7 +427,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-05-26T06:03:18.428Z" itemprop="dateUpdated">2020-05-26 14:03:18</time>
+    最后更新时间：<time datetime="2020-05-26T07:37:32.377Z" itemprop="dateUpdated">2020-05-26 15:37:32</time>
 </span><br>
 
 
