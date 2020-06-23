@@ -21,13 +21,14 @@
     
     
     <meta name="keywords" content="项目">
-    <meta name="description" content="这篇博客介绍我在简历中提到的「智慧停车项目」，因为项目没上线，演示部分所以就用截图的形式给出。 项目简介面向停车场管理员的web系统，项目目标是解决停车场、停车利用率不高的问题。 系统功能划分根据业务和开发难度，我把系统大致划分了三个功能模块，分别是信息发布和维护模块，可视化模块，数据分析模块。">
+    <meta name="description" content="这篇博客介绍我在简历中提到的「智慧停车管理项目」的管理员端，因为项目没上线，演示部分所以就用截图的形式给出。 项目简介伴随国内汽车拥有量剧增，城市“停车难”问题近年来日渐凸显，是成为很多城市的通病。 停车难在哪？对于车主来说，有两难：一难在停车高峰时间段、繁华地段或是不熟悉的地段快速找到空闲停车位，在停车高峰期或是繁华地段，车主往往需要花费许多时间找车位甚至排队停车。二是找车难，在大型停车场、或者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="智慧停车项目介绍">
 <meta property="og:url" content="http://hfq123.github.io/2020/06/23/%E6%99%BA%E6%85%A7%E5%81%9C%E8%BD%A6%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="这篇博客介绍我在简历中提到的「智慧停车项目」，因为项目没上线，演示部分所以就用截图的形式给出。 项目简介面向停车场管理员的web系统，项目目标是解决停车场、停车利用率不高的问题。 系统功能划分根据业务和开发难度，我把系统大致划分了三个功能模块，分别是信息发布和维护模块，可视化模块，数据分析模块。">
+<meta property="og:description" content="这篇博客介绍我在简历中提到的「智慧停车管理项目」的管理员端，因为项目没上线，演示部分所以就用截图的形式给出。 项目简介伴随国内汽车拥有量剧增，城市“停车难”问题近年来日渐凸显，是成为很多城市的通病。 停车难在哪？对于车主来说，有两难：一难在停车高峰时间段、繁华地段或是不熟悉的地段快速找到空闲停车位，在停车高峰期或是繁华地段，车主往往需要花费许多时间找车位甚至排队停车。二是找车难，在大型停车场、或者">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hfq123.github.io/images/image-20200623204030887.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200618180703483.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623142308247.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623142634142.png">
@@ -39,11 +40,11 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623143754390.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623145317266.png">
 <meta property="article:published_time" content="2020-06-23T06:13:50.000Z">
-<meta property="article:modified_time" content="2020-06-23T07:12:10.665Z">
+<meta property="article:modified_time" content="2020-06-23T12:41:03.582Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hfq123.github.io/images/image-20200618180703483.png">
+<meta name="twitter:image" content="http://hfq123.github.io/images/image-20200623204030887.png">
     
         <link rel="alternate" type="application/atom+xml" title="然后就的博客" href="/atom.xml">
     
@@ -169,7 +170,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统功能划分"><span class="post-toc-number">2.</span> <span class="post-toc-text">系统功能划分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统演示"><span class="post-toc-number">3.</span> <span class="post-toc-text">系统演示</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技术实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">技术实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技术栈介绍"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">技术栈介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现方案"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">实现方案</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统功能划分"><span class="post-toc-number">3.</span> <span class="post-toc-text">系统功能划分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统演示"><span class="post-toc-number">4.</span> <span class="post-toc-text">系统演示</span></a></li></ol>
         </nav>
     </aside>
 
@@ -193,9 +194,29 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>这篇博客介绍我在简历中提到的「智慧停车项目」，因为项目没上线，演示部分所以就用截图的形式给出。</p>
-<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>面向停车场管理员的web系统，项目目标是解决停车场、停车利用率不高的问题。</p>
-<h2 id="系统功能划分"><a href="#系统功能划分" class="headerlink" title="系统功能划分"></a>系统功能划分</h2><p>根据业务和开发难度，我把系统大致划分了三个功能模块，分别是信息发布和维护模块，可视化模块，数据分析模块。</p>
+            <p>这篇博客介绍我在简历中提到的「智慧停车管理项目」的管理员端，因为项目没上线，演示部分所以就用截图的形式给出。</p>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>伴随国内汽车拥有量剧增，城市“停车难”问题近年来日渐凸显，是成为很多城市的通病。</p>
+<p>停车难在哪？对于车主来说，有两难：一难在停车高峰时间段、繁华地段或是不熟悉的地段快速找到空闲停车位，在停车高峰期或是繁华地段，车主往往需要花费许多时间找车位甚至排队停车。二是找车难，在大型停车场、或者是车主不熟悉的停车场，很容易忘记自己的爱车的停放位置。<br>对于停车场来说，大部分城市的停车位使用率不高。《2017 中国智慧停车行业大数据报告》称：“全国近 50%的停车场使用率低于 30%,近 9 成以上停车场使用率低于 50%”。解决停车问题最直接的方式就是建立更多的停车场，然而，汽车总量不断增多，但土地是有限的，如何实现有效管理，是缓解停车难的一个思考方向。<br>基于此市场痛点，智慧停车行业也就应运而生了。智慧停车是指将无线通信技术、移动终端技术、GPS 定位技术、GIS 技术等综合应用于城市停车位的采集、管理、查询、预订与导航服务，实现停车位资源的实时更新、查询、预订与导航服务一体化，实现停车位资源利用率的最大化、停车场利润的最大化和车主停车服务的最优化。</p>
+<p><strong>此项目的目标对象有两类用户：一类是普通车主，另一类是停车场管理员，普通车主端用微信小程序实现，停车场管理员端则是Web端实现，本篇博客介绍的也就是管理员端。</strong></p>
+<h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><h3 id="技术栈介绍"><a href="#技术栈介绍" class="headerlink" title="技术栈介绍"></a>技术栈介绍</h3><p>本智慧停车管理项目涉及的技术栈如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/image-20200623204030887.png" alt="智慧停车管理项目技术栈" title="">
+                </div>
+                <div class="image-caption">智慧停车管理项目技术栈</div>
+            </figure>
+
+<h3 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h3><p>之前我写过2篇博客详细地介绍了项目中两个功能实现过程，如感兴趣，请移步下面的两篇文章：</p>
+<ul>
+<li><a href="[https://hfq123.github.io/2020/04/10/cxsj%E9%A1%B9%E7%9B%AE-%E5%81%9C%E8%BD%A6%E4%BD%8D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%8F%AF%E8%A7%86%E5%8C%96/](https://hfq123.github.io/2020/04/10/cxsj项目-停车位使用情况可视化/)">实现方案——停车场车位使用情况可视化</a></li>
+</ul>
+<p>此博客介绍了停车位可视化功能的实现方案。</p>
+<ul>
+<li><a href="https://hfq123.github.io/2020/05/07/cxsj项目-服务端主动推送数据到客户端/">实现方案——实时通知提醒显示</a></li>
+</ul>
+<p>此博客介绍了实现通知实时提醒的功能的实现方案。</p>
+<h2 id="系统功能划分"><a href="#系统功能划分" class="headerlink" title="系统功能划分"></a>系统功能划分</h2><p>根据业务和开发难度，我把智慧停车系统的管理员端大致划分了三个功能模块，分别是信息发布和维护模块，可视化模块，数据分析模块。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -300,7 +321,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-06-23T07:12:10.665Z" itemprop="dateUpdated">2020-06-23 15:12:10</time>
+    最后更新时间：<time datetime="2020-06-23T12:41:03.582Z" itemprop="dateUpdated">2020-06-23 20:41:03</time>
 </span><br>
 
 
