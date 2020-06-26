@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623143754390.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200623145317266.png">
 <meta property="article:published_time" content="2020-06-23T06:13:50.000Z">
-<meta property="article:modified_time" content="2020-06-26T14:21:12.320Z">
+<meta property="article:modified_time" content="2020-06-26T14:23:38.564Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
@@ -230,8 +230,61 @@
                 <div class="image-caption">智慧停车系统功能分解图</div>
             </figure>
 
-
-
+<p>开发完成情况：</p>
+<table>
+<thead>
+<tr>
+<th><strong>功能模块</strong></th>
+<th><strong>功能说明</strong></th>
+<th><strong>完成情况</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户登录</td>
+<td>管理员进入管理系统前，需先登录，才可进行后续操作。</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>发布公告</td>
+<td>管理员可以发布停车场公告。</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>回复公告</td>
+<td>管理员可以回复车主在公告下面的回复。</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>通知提醒</td>
+<td>当车主在公告下回复，会生成通知提醒管理员。</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>订单管理</td>
+<td>管理员可以管理车主的车位预订单。</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>报表生成</td>
+<td>管理员可以选定时间段，然后获取统计信息的图表（如停车流量）。</td>
+<td>部分完成，有些指标（如停车位使用率、营收情况）的可视化还没做。</td>
+</tr>
+<tr>
+<td>停车位状态可视化</td>
+<td>管理员可以在室内地图上查看各个车位的使用状态</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>停车场满载预警</td>
+<td>当停车场即将满载，生成系统通知提醒管理员。</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>停车需求预测</td>
+<td>根据历史停车数据完成停车需求预测</td>
+<td>部分完成，用python建立了模型,但是效果一般，而且不能在web端调用。</td>
+</tr>
+</tbody></table>
 <h2 id="系统演示"><a href="#系统演示" class="headerlink" title="系统演示"></a>系统演示</h2><p>1、首页</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -326,7 +379,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-06-26T14:21:12.320Z" itemprop="dateUpdated">2020-06-26 22:21:12</time>
+    最后更新时间：<time datetime="2020-06-26T14:23:38.564Z" itemprop="dateUpdated">2020-06-26 22:23:38</time>
 </span><br>
 
 
