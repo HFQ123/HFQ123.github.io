@@ -224,9 +224,9 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ThreadLocal是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。
+        ThreadLocal类是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal类的变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。
 本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。
-应用场景现有一需求：给出一个时间...
+应用场景现有一需求：给出一...
     
 
         <a href="/2020/06/26/Java%E5%B9%B6%E5%8F%91-ThreadLocal%E4%BB%8B%E7%BB%8D/" class="post-more waves-effect waves-button">

@@ -21,17 +21,17 @@
     
     
     <meta name="keywords" content="并发,笔记">
-    <meta name="description" content="ThreadLocal是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。 本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。 应用场景现有一需求：给出一个时间戳（自">
+    <meta name="description" content="ThreadLocal类是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal类的变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。 本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。 应用场景现有一需求：给出一个时间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发-ThreadLocal介绍">
 <meta property="og:url" content="http://hfq123.github.io/2020/06/26/Java%E5%B9%B6%E5%8F%91-ThreadLocal%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="然后就的博客">
-<meta property="og:description" content="ThreadLocal是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。 本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。 应用场景现有一需求：给出一个时间戳（自">
+<meta property="og:description" content="ThreadLocal类是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal类的变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。 本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。 应用场景现有一需求：给出一个时间">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200626151533206.png">
 <meta property="og:image" content="http://hfq123.github.io/images/image-20200626152627060.png">
 <meta property="article:published_time" content="2020-06-26T06:39:06.000Z">
-<meta property="article:modified_time" content="2020-06-26T11:07:05.583Z">
+<meta property="article:modified_time" content="2020-06-26T11:11:34.299Z">
 <meta property="article:author" content="然后就">
 <meta property="article:tag" content="并发">
 <meta property="article:tag" content="笔记">
@@ -186,7 +186,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>ThreadLocal是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。</p>
+            <p>ThreadLocal类是JDK提供的、基于“线程封闭”实现的保证线程安全的策略。顾名思义，它提供线程本地变量，如果创建一个ThreadLocal类的变量，那么访问这个变量的每个线程都会有这个变量的一个副本，所以在并发情况下，每个线程操作的是自己本地内存中的变量，从而规避了线程安全问题。</p>
 <p>本博客将从应用场景到实际原理介绍Java并发中的「ThreadLocal」。</p>
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>现有一需求：给出一个时间戳（自1970 年1月1日08:00:00 GMT至当前时间的秒数），求出该时间戳对应的日期格式是如何表示的。</p>
 <p>我们可以采用jdk内置的日期工具类SimpleDateFormat来解决这个问题 ：</p>
@@ -233,10 +233,11 @@
 
 <p>Thread类中的成员变量有很多，比如线程名、线程优先级、是否守护线程等字段，在这里，我们需要重点关注其中的<code>ThreadLocal.ThreadLocalMap</code>类型的名为<code>threadLocals</code>变量，根据其类型名称ThreadLocal<strong>Map</strong>，我们猜测它是一个map，实际上正是如此，ThreadLocalMap这个数据结构，内部实现是一个数组（数组元素是Entry类型的），每个Entry保存了一对键值对（key-value），其中，key是ThreadLocal类型的，value是Object类型的，表示每个线程需要的对象副本，在上文给的案例中，key就是dateFormatThreadLocal对象（类型是ThreadLocal）,对应的value也就是一个SimpleDateFormat对象。</p>
 <p>这样一来，每个线程对象内部有不同的ThreadLocalMap对象，ThreadLocal类型的变量会保存在线程内部的ThreadLocalMap，这就实现了ThreadLocal类型变量在线程之间隔离的效果。</p>
-<p>关于ThreadLocalMap，还值得一提的是，它是一个map数据结构，所以我们可以用理解HashMap的方式理解它，不过它和HashMap有一点区别是：HashMap是通过拉链法解决哈希冲突的，而ThreadLocalMap是通过线性探测解决哈希冲突，另外，它的key是ThreadLocal类型，继承自WeakReference，是弱引用，而value是强引用，所以可能存在 key 被回收，而 value 没被回收，出现内存泄漏，使用完ThreadLocal之后，调用remove方法。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文首先通过一个应用场景引出了ThreadLocal的应用场景，得到的结论是：ThreadLocal机制提供了一种介于<strong>方法内局部变量</strong>级别和<strong>类成员变量</strong>级别之间的一种变量。对于方法中的的局部变量来说，即使是同一个线程多次调用，也会每次调用即创建不同的对象，对象没有共享，当然也就不存在所谓的线程安全问题了。而对于类成员变量来说，它是线程共享的，如果这个成员变量本身不提供保证线程安全机制的话（就比如说本文案例中的SimpleDateFormat类），在并发访问的时候如果不加锁，就会暴露线程安全问题。ThreadLocal的出现给出了一种既能使得变量在线程之间隔离（以达到不加锁实现线程安全的目的）、又能在线程内部共享（以达到节约内存的目的）的优雅解决方案。</p>
+<p>关于ThreadLocalMap，还值得一提的是，它是一个map数据结构，所以我们可以用理解HashMap的方式理解它，不过它和HashMap有一点区别是：HashMap是通过拉链法解决哈希冲突的，而ThreadLocalMap是通过线性探测解决哈希冲突，另外，它的key是ThreadLocal类型，继承自WeakReference，是弱引用，而value是强引用，所以可能存在 key 被回收，而 value 没被回收，出现内存泄漏，所以使用完ThreadLocal之后，应调用remove方法移除以释放内存。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一句话总结ThreadLocal类的作用——实现线程内跨方法共享，线程间隔离。</p>
+<p>本文首先通过一个应用场景引出了ThreadLocal的应用场景，得到的结论是：ThreadLocal机制提供了一种介于<strong>方法内局部变量</strong>级别和<strong>类成员变量</strong>级别之间的一种变量。对于方法中的的局部变量来说，即使是同一个线程多次调用，也会每次调用即创建不同的对象，对象没有共享，当然也就不存在所谓的线程安全问题了。而对于类成员变量来说，它是线程共享的，如果这个成员变量本身不提供保证线程安全机制的话（就比如说本文案例中的SimpleDateFormat类），在并发访问的时候如果不加锁，就会暴露线程安全问题。ThreadLocal的出现给出了一种既能使得变量在线程之间隔离（以达到不加锁实现线程安全的目的）、又能在线程内部共享（以达到节约内存的目的）的优雅解决方案。</p>
 <p>然后简单介绍了ThreadLocal机制的实现原理，关键在于理清Thread、ThreadLocal、ThreadLocalMap的关系。</p>
-<p>更底层的原理部分其实我自己也还没吃透，所以本文算是入门，后期有新的体会还会记录，关于ThreadLocal更多内容，推荐阅读:</p>
+<p>更详细更底层的原理部分其实我自己也还没吃透，所以本文算是入门，后期有新的体会还会记录，关于ThreadLocal更多内容，推荐阅读:</p>
 <p><a href="https://www.cnblogs.com/fsmly/p/11020641.html" target="_blank" rel="noopener">Java中的ThreadLocal详解</a></p>
 <p><a href="https://snailclimb.gitee.io/javaguide/#/docs/java/Multithread/ThreadLocal" target="_blank" rel="noopener">万字图文深度解析ThreadLocal</a></p>
 
@@ -247,7 +248,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-06-26T11:07:05.583Z" itemprop="dateUpdated">2020-06-26 19:07:05</time>
+    最后更新时间：<time datetime="2020-06-26T11:11:34.299Z" itemprop="dateUpdated">2020-06-26 19:11:34</time>
 </span><br>
 
 
